@@ -8,6 +8,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
+using Date.Context;
+using Domin.Entities;
+using Microsoft.EntityFrameworkCore;
+using Oghabian.Helper;
 
 namespace Oghabian
 {
@@ -25,6 +30,36 @@ namespace Oghabian
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddDbContext<Context>(option =>
+            {
+                option.UseSqlServer(Configuration.GetConnectionString("Food"));
+            });
+            services.AddIdentity<UserEntity, IdentityRole>()
+                .AddEntityFrameworkStores<Context>().AddRoles<IdentityRole>()
+                .AddDefaultTokenProviders().AddErrorDescriber<CustomErrorMessage>();
+            services.Configure<IdentityOptions>(option =>
+            {
+                option.User.RequireUniqueEmail = true;
+                option.Password.RequireDigit = false;
+                option.Password.RequireLowercase = false;
+                option.Password.RequireNonAlphanumeric = true;
+                option.Password.RequiredLength = 6;
+                option.Password.RequiredUniqueChars = 1;
+                option.SignIn.RequireConfirmedEmail = true;
+                option.SignIn.RequireConfirmedAccount = false;
+                option.SignIn.RequireConfirmedPhoneNumber = false;
+                option.Lockout.MaxFailedAccessAttempts = 4;
+                option.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(15);
+
+            });
+            services.ConfigureApplicationCookie(cooke =>
+            {
+                cooke.ExpireTimeSpan = TimeSpan.FromDays(30);
+                cooke.LoginPath = "/SignIn";
+                cooke.AccessDeniedPath = "/";
+                cooke.SlidingExpiration = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
