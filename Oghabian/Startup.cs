@@ -13,6 +13,7 @@ namespace Oghabian
 {
     public class Startup
     {
+        //MainSite
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
