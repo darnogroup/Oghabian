@@ -22,6 +22,7 @@ namespace Domin.Entities
         public string FoodFat { set; get; }
         public string FoodProtein { set; get; }
         public string FoodLink { set; get; }
+        public DateTime Time { set; get; }
         public string MealId { set; get; }
         public MealEntity Meal { set; get; }
         public string SicknessId { set; get; }

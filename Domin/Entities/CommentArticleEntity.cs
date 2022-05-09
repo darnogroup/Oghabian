@@ -13,5 +13,7 @@ namespace Domin.Entities
         public DateTime CreateTime { set; get; }=DateTime.Now;
         public string ArticleId { set; get; }
         public ArticleEntity Article { set; get; }
+        public string UserId { set; get; }
+        public UserEntity User { set; get; }
     }
 }

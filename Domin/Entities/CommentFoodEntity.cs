@@ -14,5 +14,7 @@ namespace Domin.Entities
         public int CommentStar { set; get; }
         public string FoodId { set; get; }
         public FoodEntity Food { set; get; }
+        public string UserId { set; get; }
+        public UserEntity User { set; get; }
     }
 }

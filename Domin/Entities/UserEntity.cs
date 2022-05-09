@@ -16,8 +16,10 @@ namespace Domin.Entities
         public string LoginCode { set; get; }
         public string UserAvatar { set; get; }
         public string LoginKey { set; get; }
-       public string Address { set; get; }
-       public string AddressCode { set; get; }
-       public IEnumerable<FavoriteEntity>Favorite { set; get; }
+        public DateTime Time { set; get; }=DateTime.Now;
+        public IEnumerable<FavoriteEntity>Favorite { set; get; }
+        public IEnumerable<CommentArticleEntity>CommentArticle { set; get; }
+        public IEnumerable<CommentFoodEntity>CommentFood { set; get; }
+       public AddressEntity Address { set; get; }
     }
 }

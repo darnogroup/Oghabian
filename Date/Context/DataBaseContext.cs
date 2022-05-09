@@ -11,9 +11,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Date.Context
 {
-    public class Context: IdentityDbContext<UserEntity>
+    public class DataBaseContext: IdentityDbContext<UserEntity>
     {
-        public Context(DbContextOptions<Context> options) : base(options)
+        public DataBaseContext(DbContextOptions<DataBaseContext> options) : base(options)
         {
 
         }
@@ -31,6 +31,13 @@ namespace Date.Context
         public virtual DbSet<SettingEntity>Setting { set; get; }
         public virtual DbSet<SicknessEntity>Sickness { set; get; }
         public virtual DbSet<SliderEntity>Slider { set; get; }
+        public virtual DbSet<AddressEntity>Address { set; get; }
+        public virtual DbSet<StateEntity>State { set; get; }
+        public virtual DbSet<CityEntity>City { set; get; }
+        public virtual DbSet<MessageEntity>Message { set; get; }
+        public virtual DbSet<SupporterEntity>Supporter { set; get; }
+        public virtual DbSet<FavoriteEntity>Favorite { set; get; }
+        public virtual DbSet<GalleryEntity>Gallery { set; get; }
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -61,6 +68,12 @@ namespace Date.Context
             builder.ApplyConfiguration(new QuestionConfiguration());
             builder.ApplyConfiguration(new SicknessConfiguration());
             builder.ApplyConfiguration(new SliderConfiguration());
+            builder.ApplyConfiguration(new AddressConfiguration());
+            builder.ApplyConfiguration(new MessageConfiguration());
+            builder.ApplyConfiguration(new StateConfiguration());
+            builder.ApplyConfiguration(new CityConfiguration());
+            builder.ApplyConfiguration(new SupporterConfiguration());
+            builder.ApplyConfiguration(new UserConfiguration());
         }
     }
 }

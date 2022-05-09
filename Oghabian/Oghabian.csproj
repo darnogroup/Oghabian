@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Date\Date.csproj" />
+    <ProjectReference Include="..\Ioc\Ioc.csproj" />
   </ItemGroup>
 
 </Project>

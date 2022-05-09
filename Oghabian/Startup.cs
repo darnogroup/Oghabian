@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Date.Context;
 using Domin.Entities;
+using Ioc;
 using Microsoft.EntityFrameworkCore;
 using Oghabian.Helper;
 
@@ -31,12 +32,12 @@ namespace Oghabian
         {
             services.AddControllersWithViews();
 
-            services.AddDbContext<Context>(option =>
+            services.AddDbContext<DataBaseContext>(option =>
             {
                 option.UseSqlServer(Configuration.GetConnectionString("Food"));
             });
             services.AddIdentity<UserEntity, IdentityRole>()
-                .AddEntityFrameworkStores<Context>().AddRoles<IdentityRole>()
+                .AddEntityFrameworkStores<DataBaseContext>().AddRoles<IdentityRole>()
                 .AddDefaultTokenProviders().AddErrorDescriber<CustomErrorMessage>();
             services.Configure<IdentityOptions>(option =>
             {
@@ -60,6 +61,7 @@ namespace Oghabian
                 cooke.AccessDeniedPath = "/";
                 cooke.SlidingExpiration = true;
             });
+            Dependency(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -89,5 +91,11 @@ namespace Oghabian
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
+
+        public void Dependency(IServiceCollection service)
+        {
+            Injection.Service(service);
+        }
     }
+   
 }

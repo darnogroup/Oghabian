@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Date.Migrations
 {
-    [DbContext(typeof(Context.Context))]
+    [DbContext(typeof(Context.DataBaseContext))]
     [Migration("20220508115139_CreateDataBase")]
     partial class CreateDataBase
     {
