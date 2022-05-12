@@ -10,7 +10,7 @@ namespace Domin.Interfaces
     public interface ICategoryInterface
     {
         Task<IEnumerable<CategoryEntity>> GetCategories(string search, int skip);
-        Task<CategoryEntity> GetCategoryById(int id);
+        Task<CategoryEntity> GetCategoryById(string id);
         void InsertCategory(CategoryEntity category);
         void UpdateCategory(CategoryEntity category);
         void DeleteCategory(CategoryEntity category);

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Application.Service.Interface;
+using Application.Service.Repository;
 using Date.Repositories;
 using Domin.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
@@ -30,6 +32,17 @@ namespace Ioc
             service.AddScoped<ISicknessInterface, SicknessRepository>();
             service.AddScoped<ISliderInterface, SliderRepository>();
             service.AddScoped<IUserInterface, UserRepository>();
+            service.AddScoped<IStateInterface, StateRepository>();
+            service.AddScoped<ICityInterface, CityRepository>();
+            service.AddScoped<IGeneralInterface,GeneralRepository>();
+            //Services
+            service.AddScoped<IMealService, MealService>();
+            service.AddScoped<ISicknessService, SicknessService>();
+            service.AddScoped<IStateService, StateService>();
+            service.AddScoped<ICityService, CityService>();
+            service.AddScoped<ICategoryService, CategoryService>();
+            service.AddScoped<IArticleService, ArticleService>();
+            service.AddScoped<IQuestionService, QuestionService>();
         }
     }
 }

@@ -25,6 +25,7 @@ namespace Date.Repositories
                 .ToListAsync();
         }
 
+      
         public async Task<ArticleEntity> GetArticleById(string id)
         {
             return await _context.Article.FindAsync(id);

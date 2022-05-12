@@ -24,7 +24,7 @@ namespace Date.Repositories
                 .Skip(skip).Take(10).ToListAsync();
         }
 
-        public async Task<CategoryEntity> GetCategoryById(int id)
+        public async Task<CategoryEntity> GetCategoryById(string id)
         {
             return await _context.Category.FindAsync(id);
         }

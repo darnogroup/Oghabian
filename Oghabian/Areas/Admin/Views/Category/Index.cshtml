@@ -1,0 +1,100 @@
+﻿@model Tuple<List<CategoryViewModel>, int, int>
+@{
+    ViewData["Title"] = "دسته بندی ها";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<nav class="page-breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/Admin">پیشخوان</a></li>
+        <li class="breadcrumb-item " aria-current="page">لیست دسته بندی ها </li>
+    </ol>
+</nav>
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="card-title">لیست  دسته بندی ها </h6>
+                <div>
+                    <div id="dataTableExample_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-4">
+                                <div class="dataTables_length" id="dataTableExample_length">
+                                    <label><a role="button" asp-controller="Category" asp-action="Create" class="btn btn-outline-success">افزودن دسته  بندی</a></label>
+
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-8">
+                                <div id="dataTableExample_filter" class="dataTables_filter">
+
+                                    <form class="row" href="/Admin/Categories">
+
+                                        <input type="text" name="search" class="form-control col-md-5  w-50" placeholder="جستجو" aria-controls="dataTableExample">
+                                        <button type="submit" class="mr-2 btn btn-outline-warning">
+                                            فیلتر
+                                        </button>
+                                        <a role="button" asp-controller="Category" asp-action="Index" class="mr-2 btn btn-outline-info">تازه سازی</a>
+                                    </form>
+                                </div>
+                            </div>
+                        </div><div class="row">
+                            <div class="col-sm-12">
+                                <table id="dataTableExample" class="table dataTable no-footer" role="grid" aria-describedby="dataTableExample_info">
+                                    <thead>
+                                        <tr role="row">
+                                            <th>نام دسته  بندی</th>
+
+                                            <th>عملیات</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach (var item in Model.Item1)
+                                        {
+                                            <tr role="row" id="item_@item.CategoryId">
+
+                                                <td>@item.CategoryName</td>
+
+                                                <td>
+                                                    <a role="button" asp-controller="Category" asp-action="Edit" asp-route-id="@item.CategoryId" class="btn btn-outline-warning">ویرایش</a>
+                                                    <button onclick="DeleteCategory('@item.CategoryId')" class="btn btn-outline-danger">پاک کردن</button>
+                                                </td>
+
+                                            </tr>
+                                        }
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            @if (Model.Item2 > 1)
+                            {
+                                <div class="col-sm-12 col-md-12">
+                                    <div class="dataTables_paginate paging_simple_numbers" id="dataTableExample_paginate">
+                                        <ul class="pagination">
+                                            <li class="paginate_button page-item previous  @((Model.Item3-1 == 0) ? "disabled" :"")" id="dataTableExample_previous">
+                                                <a href="/Admin/Categories?page=@(Model.Item3-1)&search=@ViewBag.Search" aria-controls="dataTableExample" data-dt-idx="0" tabindex="0" class="page-link">قبلی</a>
+                                            </li>
+                                            @for (int i = 1; i <= (Model.Item2); i++)
+                                            {
+                                                <li class="paginate_button page-item active @(Model.Item3 == i ? "active" : "")">
+                                                    <a href="/Admin/Categories?page=@i&search=@ViewBag.Search" aria-controls="dataTableExample" data-dt-idx="1" tabindex="0" class="page-link">@i</a>
+                                                </li>
+                                            }
+                                            <li class="paginate_button page-item next @((Model.Item3 + 1 > Model.Item2) ? "disabled" : "")" id="dataTableExample_next">
+                                                <a href="/Admin/Categories?page=@(Model.Item3+1)&search=@ViewBag.Search" aria-controls="dataTableExample" data-dt-idx="2" tabindex="0" class="page-link">بعدی</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

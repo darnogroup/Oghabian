@@ -1,0 +1,660 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <partial name="_HeadTags"/>
+    @RenderSection("Header",false)
+</head>
+
+<body class="rtl">
+    <div class="main-wrapper">
+
+        <!-- partial:partials/_sidebar.html -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <a href="#" class="sidebar-brand">
+                    Noble<span>UI</span>
+                </a>
+                <div class="sidebar-toggler not-active">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+            <div class="sidebar-body">
+                <ul class="nav">
+                    <li class="nav-item nav-category">اصلی</li>
+                    <li class="nav-item">
+                        <a href="dashboard-one.html" class="nav-link">
+                            <i class="link-icon" data-feather="box"></i>
+                            <span class="link-title">داشبورد</span>
+                        </a>
+                    </li>
+                    <li class="nav-item nav-category">برنامه ها</li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#emails" role="button" aria-expanded="false"
+                           aria-controls="emails">
+                            <i class="link-icon" data-feather="mail"></i>
+                            <span class="link-title">ایمیل</span>
+                            <i class="link-arrow" data-feather="chevron-down"></i>
+                        </a>
+                        <div class="collapse" id="emails">
+                            <ul class="nav sub-menu">
+                                <li class="nav-item">
+                                    <a href="pages/email/inbox.html" class="nav-link">صندوق دریافت</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/email/read.html" class="nav-link">خواندن ایمیل</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/email/compose.html" class="nav-link">ارسال ایمیل</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a href="pages/apps/chat.html" class="nav-link">
+                            <i class="link-icon" data-feather="message-square"></i>
+                            <span class="link-title">گفتگو</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="pages/apps/calendar.html" class="nav-link">
+                            <i class="link-icon" data-feather="calendar"></i>
+                            <span class="link-title">تقویم رویداد میلادی</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="pages/apps/calendar-jalali.html" class="nav-link">
+                            <i class="link-icon" data-feather="calendar"></i>
+                            <span class="link-title">تقویم رویداد شمسی</span>
+                        </a>
+                    </li>
+                    <li class="nav-item nav-category">کامپوننت ها</li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#uiComponents" role="button" aria-expanded="false"
+                           aria-controls="uiComponents">
+                            <i class="link-icon" data-feather="feather"></i>
+                            <span class="link-title">عناصر UI</span>
+                            <i class="link-arrow" data-feather="chevron-down"></i>
+                        </a>
+                        <div class="collapse" id="uiComponents">
+                            <ul class="nav sub-menu">
+                                <li class="nav-item">
+                                    <a href="pages/ui-components/alerts.html" class="nav-link">هشدار ها</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/ui-components/badges.html" class="nav-link">نشان ها</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/ui-components/breadcrumbs.html" class="nav-link">مسیر راهنما</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/ui-components/buttons.html" class="nav-link">دکمه ها</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/ui-components/button-group.html" class="nav-link">دکمه گروهی</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/ui-components/cards.html" class="nav-link">کارت ها</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/ui-components/carousel.html" class="nav-link">اسلاید تصاویر</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/ui-components/collapse.html" class="nav-link">کامپوننت Collapse</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/ui-components/dropdowns.html" class="nav-link">منو کشویی</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/ui-components/list-group.html" class="nav-link">لیست گروهی</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/ui-components/media-object.html" class="nav-link">اشیاء رسانه ای</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/ui-components/modal.html" class="nav-link">مُدال</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/ui-components/navs.html" class="nav-link">نَو ها</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/ui-components/navbar.html" class="nav-link">نوبار</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/ui-components/pagination.html" class="nav-link">صفحه بندی</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/ui-components/popover.html" class="nav-link">کادر محتوا</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/ui-components/progress.html" class="nav-link">نوار پیشرفت</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/ui-components/scrollbar.html" class="nav-link">پیمایش صفحه</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/ui-components/scrollspy.html" class="nav-link">پیمایش صفحه Scrollspy</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/ui-components/spinners.html" class="nav-link">اسپینر</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/ui-components/tooltips.html" class="nav-link">تولتیپ</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#advancedUI" role="button" aria-expanded="false"
+                           aria-controls="advancedUI">
+                            <i class="link-icon" data-feather="anchor"></i>
+                            <span class="link-title">عناصر پیشرفته UI</span>
+                            <i class="link-arrow" data-feather="chevron-down"></i>
+                        </a>
+                        <div class="collapse" id="advancedUI">
+                            <ul class="nav sub-menu">
+                                <li class="nav-item">
+                                    <a href="pages/advanced-ui/cropper.html" class="nav-link">برش عکس</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/advanced-ui/owl-carousel.html" class="nav-link">اسلاید تصاویر (Owl carousel 2)</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/advanced-ui/sweet-alert.html" class="nav-link">هشدار شیرین (Sweet Alert 2)</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#forms" role="button" aria-expanded="false"
+                           aria-controls="forms">
+                            <i class="link-icon" data-feather="inbox"></i>
+                            <span class="link-title">فرم ها</span>
+                            <i class="link-arrow" data-feather="chevron-down"></i>
+                        </a>
+                        <div class="collapse" id="forms">
+                            <ul class="nav sub-menu">
+                                <li class="nav-item">
+                                    <a href="pages/forms/basic-elements.html" class="nav-link">عناصر پایه</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/forms/advanced-elements.html" class="nav-link">عناصر پیشرفته</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/forms/editors.html" class="nav-link">ویرایشگر</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/forms/wizard.html" class="nav-link">فرم حرفه ای (مرحله ای)</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#charts" role="button" aria-expanded="false"
+                           aria-controls="charts">
+                            <i class="link-icon" data-feather="pie-chart"></i>
+                            <span class="link-title">نمودار ها</span>
+                            <i class="link-arrow" data-feather="chevron-down"></i>
+                        </a>
+                        <div class="collapse" id="charts">
+                            <ul class="nav sub-menu">
+                                <li class="nav-item">
+                                    <a href="pages/charts/apex.html" class="nav-link">نمودار Apex</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/charts/chartjs.html" class="nav-link">نمودار ChartJs</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/charts/flot.html" class="nav-link">نمودار Flot</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/charts/morrisjs.html" class="nav-link">نمودار Morris</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/charts/peity.html" class="nav-link">نمودار Peity</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/charts/sparkline.html" class="nav-link">نمودار Sparkline</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#tables" role="button" aria-expanded="false"
+                           aria-controls="tables">
+                            <i class="link-icon" data-feather="layout"></i>
+                            <span class="link-title">جداول</span>
+                            <i class="link-arrow" data-feather="chevron-down"></i>
+                        </a>
+                        <div class="collapse" id="tables">
+                            <ul class="nav sub-menu">
+                                <li class="nav-item">
+                                    <a href="pages/tables/basic-table.html" class="nav-link">جداول پایه</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/tables/data-table.html" class="nav-link">جدول داده</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#icons" role="button" aria-expanded="false"
+                           aria-controls="icons">
+                            <i class="link-icon" data-feather="smile"></i>
+                            <span class="link-title">آیکون ها</span>
+                            <i class="link-arrow" data-feather="chevron-down"></i>
+                        </a>
+                        <div class="collapse" id="icons">
+                            <ul class="nav sub-menu">
+                                <li class="nav-item">
+                                    <a href="pages/icons/feather-icons.html" class="nav-link">آیکون Feather</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/icons/flag-icons.html" class="nav-link">آیکون Flag</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/icons/mdi-icons.html" class="nav-link">آیکون Mdi</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item nav-category">صفحات</li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#general-pages" role="button" aria-expanded="false"
+                           aria-controls="general-pages">
+                            <i class="link-icon" data-feather="book"></i>
+                            <span class="link-title">صفحات ویژه</span>
+                            <i class="link-arrow" data-feather="chevron-down"></i>
+                        </a>
+                        <div class="collapse" id="general-pages">
+                            <ul class="nav sub-menu">
+                                <li class="nav-item">
+                                    <a href="pages/general/blank-page.html" class="nav-link">صفحه خالی</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/general/faq.html" class="nav-link">سوالات متداول</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/general/invoice.html" class="nav-link">فاکتور</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/general/profile.html" class="nav-link">پروفایل</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/general/pricing.html" class="nav-link">پلن فروش</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/general/timeline.html" class="nav-link">تایم لاین</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#authPages" role="button" aria-expanded="false"
+                           aria-controls="authPages">
+                            <i class="link-icon" data-feather="unlock"></i>
+                            <span class="link-title">احراز هویت</span>
+                            <i class="link-arrow" data-feather="chevron-down"></i>
+                        </a>
+                        <div class="collapse" id="authPages">
+                            <ul class="nav sub-menu">
+                                <li class="nav-item">
+                                    <a href="pages/auth/login.html" class="nav-link">ورود</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/auth/register.html" class="nav-link">ثبت نام</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#errorPages" role="button" aria-expanded="false"
+                           aria-controls="errorPages">
+                            <i class="link-icon" data-feather="cloud-off"></i>
+                            <span class="link-title">خطا</span>
+                            <i class="link-arrow" data-feather="chevron-down"></i>
+                        </a>
+                        <div class="collapse" id="errorPages">
+                            <ul class="nav sub-menu">
+                                <li class="nav-item">
+                                    <a href="pages/error/404.html" class="nav-link">404</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/error/500.html" class="nav-link">500</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <nav class="settings-sidebar">
+            <div class="sidebar-body">
+                <a href="#" class="settings-sidebar-toggler">
+                    <i data-feather="settings"></i>
+                </a>
+                <h6 class="text-muted">سایدبار : </h6>
+                <div class="form-group border-bottom">
+                    <div class="form-check form-check-inline">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="sidebarThemeSettings" id="sidebarLight"
+                                   value="sidebar-light" checked>
+                            روشن
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="sidebarThemeSettings" id="sidebarDark"
+                                   value="sidebar-dark">
+                            تیره
+                        </label>
+                    </div>
+                </div>
+                <div class="theme-wrapper">
+                    <h6 class="text-muted mb-2">تم روشن : </h6>
+                    <a class="theme-item active" href="../demo_1/dashboard-one.html">
+                        <img src="~/Admin/images/screenshots/light.jpg" alt="light theme">
+                    </a>
+                    <h6 class="text-muted mb-2">تم تیره : </h6>
+                    <a class="theme-item" href="../demo_2/dashboard-one.html">
+                        <img src="~/Admin/images/screenshots/dark.jpg" alt="light theme">
+                    </a>
+                </div>
+            </div>
+        </nav>
+        <!-- partial -->
+
+        <div class="page-wrapper">
+
+            <!-- partial:partials/_navbar.html -->
+            <nav class="navbar">
+                <a href="#" class="sidebar-toggler">
+                    <i data-feather="menu"></i>
+                </a>
+                <div class="navbar-content">
+                    <form class="search-form">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i data-feather="search"></i>
+                                </div>
+                            </div>
+                            <input type="text" class="form-control" id="navbarForm" placeholder="جستجو ...">
+                        </div>
+                    </form>
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-toggle="dropdown"
+                               aria-haspopup="true" aria-expanded="false">
+                                <i class="flag-icon flag-icon-ir mt-1" title="فارسی"></i> <span class="font-weight-medium ml-1 mr-1">فارسی</span>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="languageDropdown">
+                                <a href="javascript:;" class="dropdown-item py-2">
+                                    <i class="flag-icon flag-icon-ir" title="us"
+                                       id="ir"></i> <span class="ml-1"> فارسی </span>
+                                </a>
+                                <a href="javascript:;" class="dropdown-item py-2">
+                                    <i class="flag-icon flag-icon-tr" title="fr"
+                                       id="tr"></i> <span class="ml-1"> ترکی استانبولی </span>
+                                </a>
+                                <a href="javascript:;" class="dropdown-item py-2">
+                                    <i class="flag-icon flag-icon-de" title="de"
+                                       id="de"></i> <span class="ml-1"> آلمانی </span>
+                                </a>
+                                <a href="javascript:;" class="dropdown-item py-2">
+                                    <i class="flag-icon flag-icon-us" title="pt"
+                                       id="us"></i> <span class="ml-1"> انگلیسی </span>
+                                </a>
+                                <a href="javascript:;" class="dropdown-item py-2">
+                                    <i class="flag-icon flag-icon-es" title="es"
+                                       id="es"></i> <span class="ml-1"> اسپانیایی </span>
+                                </a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown nav-apps">
+                            <a class="nav-link dropdown-toggle" href="#" id="appsDropdown" role="button" data-toggle="dropdown"
+                               aria-haspopup="true" aria-expanded="false">
+                                <i data-feather="grid"></i>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="appsDropdown">
+                                <div class="dropdown-header d-flex align-items-center justify-content-between">
+                                    <p class="mb-0 font-weight-medium">برنامه ها</p>
+                                    <a href="javascript:;" class="text-muted">ویرایش</a>
+                                </div>
+                                <div class="dropdown-body">
+                                    <div class="d-flex align-items-center apps">
+                                        <a href="pages/apps/chat.html">
+                                            <i data-feather="message-square" class="icon-lg"></i>
+                                            <p>گفتگو</p>
+                                        </a>
+                                        <a href="pages/apps/calendar.html">
+                                            <i data-feather="calendar" class="icon-lg"></i>
+                                            <p>تقویم</p>
+                                        </a>
+                                        <a href="pages/email/inbox.html">
+                                            <i data-feather="mail" class="icon-lg"></i>
+                                            <p>ایمیل</p>
+                                        </a>
+                                        <a href="pages/general/profile.html">
+                                            <i data-feather="instagram" class="icon-lg"></i>
+                                            <p>پروفایل</p>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="dropdown-footer d-flex align-items-center justify-content-center">
+                                    <a href="javascript:;">مشاهده همه</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown nav-messages">
+                            <a class="nav-link dropdown-toggle" href="#" id="messageDropdown" role="button" data-toggle="dropdown"
+                               aria-haspopup="true" aria-expanded="false">
+                                <i data-feather="mail"></i>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="messageDropdown">
+                                <div class="dropdown-header d-flex align-items-center justify-content-between">
+                                    <p class="mb-0 font-weight-medium">9 پیغام جدید</p>
+                                    <a href="javascript:;" class="text-muted">پاک کردن همه</a>
+                                </div>
+                                <div class="dropdown-body">
+                                    <a href="javascript:;" class="dropdown-item">
+                                        <div class="figure">
+                                            <img src="~/Admin/images/face3.jpg" alt="userr">
+                                        </div>
+                                        <div class="content">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <p>رضا افشار</p>
+                                                <p class="sub-text text-muted">2 دقیقه قبل</p>
+                                            </div>
+                                            <p class="sub-text text-muted">وضعیت پروژه</p>
+                                        </div>
+                                    </a>
+                                    <a href="javascript:;" class="dropdown-item">
+                                        <div class="figure">
+                                            <img src="~/Admin/images/face2.jpg" alt="userr">
+                                        </div>
+                                        <div class="content">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <p>پریسا توکلی</p>
+                                                <p class="sub-text text-muted">30 دقیقه قبل</p>
+                                            </div>
+                                            <p class="sub-text text-muted">جلسه</p>
+                                        </div>
+                                    </a>
+                                    <a href="javascript:;" class="dropdown-item">
+                                        <div class="figure">
+                                            <img src="~/Admin/images/face4.jpg" alt="userr">
+                                        </div>
+                                        <div class="content">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <p>پدرام شریفی</p>
+                                                <p class="sub-text text-muted">1 ساعت قبل</p>
+                                            </div>
+                                            <p class="sub-text text-muted">به روز رسانی پروژه</p>
+                                        </div>
+                                    </a>
+                                    <a href="javascript:;" class="dropdown-item">
+                                        <div class="figure">
+                                            <img src="~/Admin/images/face5.jpg" alt="userr">
+                                        </div>
+                                        <div class="content">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <p>آرزو محبی</p>
+                                                <p class="sub-text text-muted">2 ساعت قبل</p>
+                                            </div>
+                                            <p class="sub-text text-muted">پایان پروژه</p>
+                                        </div>
+                                    </a>
+                                    <a href="javascript:;" class="dropdown-item">
+                                        <div class="figure">
+                                            <img src="~/Admin/images/face6.jpg" alt="userr">
+                                        </div>
+                                        <div class="content">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <p>نرگس علیپور</p>
+                                                <p class="sub-text text-muted">5 ساعت قبل</p>
+                                            </div>
+                                            <p class="sub-text text-muted">رکورد جدید</p>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="dropdown-footer d-flex align-items-center justify-content-center">
+                                    <a href="javascript:;">مشاهده همه</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown nav-notifications">
+                            <a class="nav-link dropdown-toggle" href="#" id="notificationDropdown" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i data-feather="bell"></i>
+                                <div class="indicator">
+                                    <div class="circle"></div>
+                                </div>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="notificationDropdown">
+                                <div class="dropdown-header d-flex align-items-center justify-content-between">
+                                    <p class="mb-0 font-weight-medium">6 اعلان جدید</p>
+                                    <a href="javascript:;" class="text-muted">پاک کردن همه</a>
+                                </div>
+                                <div class="dropdown-body">
+                                    <a href="javascript:;" class="dropdown-item">
+                                        <div class="icon">
+                                            <i data-feather="user-plus"></i>
+                                        </div>
+                                        <div class="content">
+                                            <p>کاربر جدید ثبت نام کرد</p>
+                                            <p class="sub-text text-muted">2 ثانیه قبل</p>
+                                        </div>
+                                    </a>
+                                    <a href="javascript:;" class="dropdown-item">
+                                        <div class="icon">
+                                            <i data-feather="gift"></i>
+                                        </div>
+                                        <div class="content">
+                                            <p>سفارش جدید دریافت شد</p>
+                                            <p class="sub-text text-muted">30 دقیقه قبل</p>
+                                        </div>
+                                    </a>
+                                    <a href="javascript:;" class="dropdown-item">
+                                        <div class="icon">
+                                            <i data-feather="alert-circle"></i>
+                                        </div>
+                                        <div class="content">
+                                            <p>محدودیت سرور!</p>
+                                            <p class="sub-text text-muted">1 ساعت قبل</p>
+                                        </div>
+                                    </a>
+                                    <a href="javascript:;" class="dropdown-item">
+                                        <div class="icon">
+                                            <i data-feather="layers"></i>
+                                        </div>
+                                        <div class="content">
+                                            <p>برنامه ها نیاز به به روز رسانی دارند</p>
+                                            <p class="sub-text text-muted">5 ساعت قبل</p>
+                                        </div>
+                                    </a>
+                                    <a href="javascript:;" class="dropdown-item">
+                                        <div class="icon">
+                                            <i data-feather="download"></i>
+                                        </div>
+                                        <div class="content">
+                                            <p>دانلود تکمیل شد</p>
+                                            <p class="sub-text text-muted">6 ساعت قبل</p>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="dropdown-footer d-flex align-items-center justify-content-center">
+                                    <a href="javascript:;">مشاهده همه</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown nav-profile">
+                            <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-toggle="dropdown"
+                               aria-haspopup="true" aria-expanded="false">
+                                <img src="~/Admin/images/face1.jpg" alt="userr">
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="profileDropdown">
+                                <div class="dropdown-header d-flex flex-column align-items-center">
+                                    <div class="figure mb-3">
+                                        <img src="~/Admin/images/face1.jpg" alt="">
+                                    </div>
+                                    <div class="info text-center">
+                                        <p class="name font-weight-bold mb-0">نسترن افشار</p>
+                                        <p class="email text-muted mb-3">nastaranfshar@gmail.com</p>
+                                    </div>
+                                </div>
+                                <div class="dropdown-body">
+                                    <ul class="profile-nav p-0 pt-3">
+                                        <li class="nav-item">
+                                            <a href="pages/general/profile.html" class="nav-link">
+                                                <i data-feather="user"></i>
+                                                <span>پروفایل</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="javascript:;" class="nav-link">
+                                                <i data-feather="edit"></i>
+                                                <span>ویرایش پروفایل</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="javascript:;" class="nav-link">
+                                                <i data-feather="repeat"></i>
+                                                <span>تغییر کاربر</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="javascript:;" class="nav-link">
+                                                <i data-feather="log-out"></i>
+                                                <span>خروج</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <!-- partial -->
+
+            <div class="page-content">
+              @RenderBody()
+            </div>
+
+            <!-- partial:partials/_footer.html -->
+            <footer class="footer d-flex flex-column flex-md-row align-items-center justify-content-between">
+                <p class="text-muted text-center text-md-left">Copyright © 2020، تمام حقوق محفوظ است</p>
+            </footer>
+            <!-- partial -->
+
+        </div>
+    </div>
+<partial name="_Script"/>
+@RenderSection("Footer",false)
+</body>
+
+</html>

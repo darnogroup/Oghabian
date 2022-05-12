@@ -1,0 +1,46 @@
+﻿@model UpdateQuestionViewModel
+@{
+    ViewData["Title"] = "ویرایش سوال متداول";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<nav class="page-breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/Admin">پیشخوان</a></li>
+        <li class="breadcrumb-item"><a asp-controller="Question" asp-action="Index">لیست سوالات متداول</a></li>
+        <li class="breadcrumb-item " aria-current="page">افزودن سوال متداول</li>
+    </ol>
+</nav>
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="card-title">ویرایش سوال متداول</h6>
+                @if (ViewBag.Alert != null)
+                {
+                    <div class="alert alert-fill-danger" role="alert">
+                        @ViewBag.Alert
+                    </div>
+                }
+                <form asp-controller="Question" asp-action="Edit">
+                    <div class="form-group">
+                        <label for="exampleInputUsername1">عنوان سوال</label>
+                        <input type="text" asp-for="QuestionTitle" class="form-control" id="exampleInputUsername1" autocomplete="off" placeholder="عنوان سوال">
+                        <span class="text-danger" asp-validation-for="QuestionTitle"></span>
+                    </div><input type="hidden" asp-for="QuestionId"/>
+                    <div class="form-group">
+                        <label for="exampleInputUsername1">پاسخ سوال</label>
+                        <textarea id="maxlength-textarea" asp-for="QuestionAnswer" class="form-control" maxlength="900" rows="8" placeholder="پاسخ سوال"></textarea>
+                        <span class="text-danger" asp-validation-for="QuestionAnswer"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary ml-2">ثبت</button>
+                    <a role="button" href="/Admin/Questions" class="btn btn-light">لغو</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section Footer{
+    <partial name="_ValidationScriptsPartial" />
+}
