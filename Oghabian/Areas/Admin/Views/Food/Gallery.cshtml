@@ -1,0 +1,70 @@
+﻿@model List<ImageViewModel>
+@{
+    ViewData["Title"] = "گالری تصاویر";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<nav class="page-breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/Admin">پیشخوان</a></li>
+        <li class="breadcrumb-item " aria-current="page"><a asp-controller="Food" asp-action="Index">لیست  پک های غذایی</a></li>
+        <li class="breadcrumb-item active" aria-current="page">گالری تصاویر</li>
+    </ol>
+</nav>
+
+
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="card-title">گالری تصاویر</h6>
+                <div>
+                    <div id="dataTableExample_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-4">
+                                <div class="dataTables_length" id="dataTableExample_length">
+                                    <label><a role="button" asp-controller="Food" asp-action="CreateImage" asp-route-id="@ViewBag.Food" class="btn btn-outline-success">افزودن تصویر </a></label>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table id="dataTableExample" class="table dataTable no-footer" role="grid" aria-describedby="dataTableExample_info">
+                                    <thead>
+                                        <tr role="row">
+                                            <th>تصویر</th>
+                                            <th>نشانی تصویر</th>
+                                            <th>عملیات</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach (var item in Model)
+                                        {
+                                        <tr role="row" id="item_@item.ImageId">
+
+                                            <td>
+                                                <img src="~/Images/@item.ImagePath" class="img-fluid rounded img-thumbnail" width="150" height="120" />
+                                            </td>
+                                            <td>
+                                                <p>~/Images/@item.ImageName</p>
+                                            </td>
+
+                                            <td>
+                                                <button onclick="DeleteImage('@item.ImageId')" class="btn btn-outline-danger">پاک کردن</button>
+                                            </td>
+
+                                        </tr>
+                                        }
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

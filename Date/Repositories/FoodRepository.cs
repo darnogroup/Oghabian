@@ -43,7 +43,7 @@ namespace Date.Repositories
 
         public void DeleteFood(FoodEntity food)
         {
-            _context.Food.Remove(food);
+            _context.Food.Remove(food);Save();
         }
 
         public int CountFood()

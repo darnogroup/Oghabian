@@ -43,6 +43,9 @@ namespace Ioc
             service.AddScoped<ICategoryService, CategoryService>();
             service.AddScoped<IArticleService, ArticleService>();
             service.AddScoped<IQuestionService, QuestionService>();
+            service.AddScoped<IFoodService, FoodService>();
+            service.AddScoped<IPropertyService, PropertyService>();
+            service.AddScoped<IGalleryService, GalleryService>();
         }
     }
 }

@@ -1,0 +1,47 @@
+﻿@model InsertImageViewModel
+@{
+    ViewData["Title"] = "افزودن تصویر";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+<nav class="page-breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/Admin">پیشخوان</a></li>
+        <li class="breadcrumb-item " aria-current="page"><a asp-controller="Food" asp-action="Index">لیست  پک های غذایی</a></li>
+        <li class="breadcrumb-item " aria-current="page"><a asp-controller="Food" asp-action="Gallery" asp-route-id="@ViewBag.Food">گالری تصاویر</a></li>
+        <li class="breadcrumb-item active" aria-current="page">افزودن تصویر  پک غذایی</li>
+    </ol>
+</nav>
+
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="card-title">افزودن تصویر </h6>
+                @if (ViewBag.Alert != null)
+                {
+                    <div class="alert alert-fill-danger" role="alert">
+                        @ViewBag.Alert
+                    </div>
+                }
+                <form asp-controller="Food" asp-action="CreateImage" enctype="multipart/form-data">
+                    <img src="/Images/notFound.png" id="image" class="mb-3 " width="150" height="90" /><br />
+                    <div class="row">
+                        <div class="form-group col-3">
+                            <label>آپلود تصویر</label>
+                            <input type="file" id="imagePath" onchange="ChangeImage(this)" asp-for="Image" class="form-control" />
+                            <span class="text-danger" asp-validation-for="Image"></span>
+                        </div><input type="hidden" asp-for="FoodId" value="@ViewBag.Food"/>
+                    </div>
+                    <button type="submit" class="btn btn-primary ml-2">ثبت</button>
+                    <a role="button" asp-controller="Food" asp-action="Gallery" asp-route-id="@ViewBag.Food" class="btn btn-light">لغو</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section Footer{
+    <partial name="_ValidationScriptsPartial"/>
+}

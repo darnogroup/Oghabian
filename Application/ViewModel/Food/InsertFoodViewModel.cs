@@ -23,7 +23,7 @@ namespace Application.ViewModel.Food
         public string FoodTags { set; get; }
         [Required(ErrorMessage = "توصیحات جامع غذا الزامی است")]
         public string FoodDescription { set; get; }
-        [Required(ErrorMessage = "توضیح مختصر غذا الزامی است")]
+        [Required(ErrorMessage = "توضیح کوتاه غذا الزامی است")]
         public string FoodSummary { set; get; }
         [Required(ErrorMessage = "کالری غذا الزامی است")]
         public string FoodCalories { set; get; }

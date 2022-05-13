@@ -1,0 +1,66 @@
+﻿@model List<PropertyViewModel>
+@{
+    ViewData["Title"] = "ویژگی ها";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<nav class="page-breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/Admin">پیشخوان</a></li>
+        <li class="breadcrumb-item " aria-current="page"><a asp-controller="Food" asp-action="Index">لیست  پک های غذایی</a></li>
+        <li class="breadcrumb-item active" aria-current="page">ویژگی های پک غذایی</li>
+    </ol>
+</nav>
+
+
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="card-title">لیست  ویژگی پک  غذایی  </h6>
+                <div>
+                    <div id="dataTableExample_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-4">
+                                <div class="dataTables_length" id="dataTableExample_length">
+                                    <label><a role="button" asp-controller="Food" asp-action="CreateProperty" asp-route-id="@ViewBag.Food" class="btn btn-outline-success">افزودن ویژگی </a></label>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table id="dataTableExample" class="table dataTable no-footer" role="grid" aria-describedby="dataTableExample_info">
+                                    <thead>
+                                        <tr role="row">
+                                            <th>عنوان وِیژگی</th>
+                                            <th>مقدار ویژگی</th>
+                                            <th>عملیات</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr role="row" id="item_@item.PropertyId">
+                                            
+                                                <td>@item.PropertyTitle</td>
+                                                <td>@item.PropertyValue</td>
+                                             
+                                                <td>
+                                                   <button onclick="DeleteProperty('@item.PropertyId')" class="btn btn-outline-danger">پاک کردن</button>
+                                                </td>
+
+                                            </tr>
+                                        }
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
