@@ -1,0 +1,91 @@
+﻿@model SeoViewModel
+@{
+    ViewData["Title"] = "بهینه سازی";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<nav class="page-breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/Admin">پیشخوان</a></li>
+        <li class="breadcrumb-item " aria-current="page">بهینه سازی</li>
+    </ol>
+</nav>
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="card-title">بهینه سازی</h6>
+                <form asp-controller="Seo" asp-action="Seo" enctype="multipart/form-data">
+                    <input type="hidden" asp-for="GraphImagePath" />
+                    <img src="/Images/@Model.GraphImagePath" id="image" class="mb-3 " width="150" height="90" /><br />
+                    <div class="row">
+
+
+                        <div class="form-group  col-12">
+                            <label>عنوان</label>
+                            <input type="text" asp-for="GraphTitle" class="form-control" autocomplete="off" placeholder="عنوان">
+
+                        </div>
+                        <div class="form-group  col-12">
+                            <label>لینک</label>
+                            <input type="text" asp-for="GraphUrl" class="form-control" autocomplete="off" placeholder="لینک">
+
+                        </div>
+                        <div class="form-group  col-12">
+                            <label> نام سایت</label>
+                            <input type="text" asp-for="GraphSiteName" class="form-control" autocomplete="off" placeholder="نام سایت">
+
+                        </div>
+                        <div class="form-group col-3">
+                            <label>آپلود تصویر</label>
+                            <input type="file" id="imagePath" onchange="ChangeImage(this)" asp-for="GraphImage" class="form-control" />
+
+                        </div>
+
+                        <div class="form-group col-12">
+                            <label>توضیحات</label>
+                            <textarea id="maxlength-textarea" asp-for="GraphDescription" class="form-control"  rows="8" placeholder="توضیحات"></textarea>
+
+                        </div>
+                        <hr />
+                        <input type="hidden" asp-for="TwitterImagePath" />
+                        <img src="/Images/@Model.TwitterImagePath" id="imageTwo" class="mb-3 " width="150" height="90" /><br />
+                        <div class="form-group  col-12">
+                            <label>عنوان توئیتر</label>
+                            <input type="text" asp-for="TwitterTitle" class="form-control" autocomplete="off" placeholder="عنوان توئیتر">
+
+                        </div>
+
+
+                        <div class="form-group col-12">
+                            <label>توضیحات توئیتر</label>
+                            <textarea id="maxlength-textarea" asp-for="TwitterDescription" class="form-control" rows="8" placeholder="توضیحات توئیتر"></textarea>
+
+                        </div>
+                        <div class="form-group col-3">
+                            <label>آپلود تصویر</label>
+                            <input type="file" id="imagePathTwo" onchange="ChangeImageTwo(this)" asp-for="TwitterImage" class="form-control" />
+
+                        </div>
+
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="exampleInputUsername1">سربرگ</label>
+                        <textarea id="maxlength-textarea" asp-for="Header" class="form-control" rows="8" placeholder="سربرگ"></textarea>
+
+                    </div>  <div class="form-group">
+                        <label for="exampleInputUsername1">پابرگ</label>
+                        <textarea id="maxlength-textarea" asp-for="Footer" class="form-control" rows="8" placeholder="پابرگ"></textarea>
+
+                    </div>
+                    <button type="submit" class="btn btn-primary ml-2">ثبت</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section Footer{
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -18,9 +18,9 @@ namespace Date.Repositories
         {
             _context = context;
         }
-        public async Task<IEnumerable<SliderEntity>> GetSliders(int skip)
+        public async Task<IEnumerable<SliderEntity>> GetSliders()
         {
-            return await _context.Slider.Skip(skip).Take(10).ToListAsync();
+            return await _context.Slider.ToListAsync();
         }
 
         public async Task<SliderEntity> GetSliderById(string id)
@@ -39,10 +39,6 @@ namespace Date.Repositories
             _context.Slider.Remove(slider);Save();
         }
 
-        public int CountSlider()
-        {
-            return _context.Slider.Count();
-        }
 
         public void Save()
         {

@@ -17,6 +17,7 @@ namespace Domin.Entities
         public string FaceBook { set; get; }
         public string Number { set; get; }
         public string Mail { set; get; }
+        public string Bank { set; get; }
         public string ApiSms { set; get; }
         public string ApiNumber { set; get; }
         public string Address { set; get; }

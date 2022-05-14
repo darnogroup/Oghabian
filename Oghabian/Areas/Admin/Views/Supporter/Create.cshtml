@@ -1,0 +1,80 @@
+﻿@model InsertSupporterViewModel
+@{
+    ViewData["Title"] = "افزودن شریک تجاری";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<nav class="page-breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/Admin">پیشخوان</a></li>
+        <li class="breadcrumb-item " aria-current="page"><a asp-controller="Supporter" asp-action="Index">شرکای  تجاری</a></li>
+        <li class="breadcrumb-item active" aria-current="page">افزودن شریک تجاری </li>
+    </ol>
+</nav>
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="card-title">افزودن شریک تجاری</h6>
+                @if (ViewBag.Alert != null)
+                {
+                    <div class="alert alert-fill-danger" role="alert">
+                        @ViewBag.Alert
+                    </div>
+                }
+                <form asp-controller="Supporter" asp-action="Create" enctype="multipart/form-data">
+
+                    <img src="/Images/notFound.png" id="image" class="mb-3 " width="150" height="90" /><br />
+                    <div class="row">
+
+
+                        <div class="form-group  col-12">
+                            <label>نام شریک تجاری</label>
+                            <input type="text" asp-for="SupporterName" class="form-control" autocomplete="off" placeholder="نام شریک تجاری">
+                            <span class="text-danger" asp-validation-for="SupporterName"></span>
+                        </div>
+
+                        <div class="form-group col-12">
+                            <label>پست الکترونیک </label>
+                            <input type="email" asp-for="SupporterMail" class="form-control" autocomplete="off" placeholder="پست الکترونیک">
+                            <span class="text-danger" asp-validation-for="SupporterMail"></span>
+                        </div> <div class="form-group col-12">
+                            <label>شماره تماس </label>
+                            <input type="number" asp-for="SupporterNumber" class="form-control" autocomplete="off" placeholder="شماره تماس">
+                            <span class="text-danger" asp-validation-for="SupporterNumber"></span>
+                        </div><div class="form-group col-12">
+                            <label>مدت زمان فعالیت </label>
+                            <input type="text" asp-for="SupporterActivity" class="form-control" autocomplete="off" placeholder="مدت زمان فعالیت">
+                            <span class="text-danger" asp-validation-for="SupporterActivity"></span>
+                        </div>
+                        <div class="form-group  col-12">
+                            <label>توضیحات</label>
+                            <textarea id="maxlength-textarea" asp-for="SupporterDescription" class="form-control ckeditor" rows="15" style="height: 150px !important;" placeholder="توضیحات"></textarea>
+                            <span class="text-danger" asp-validation-for="SupporterDescription"></span>
+                        </div>
+                        <div class="form-group col-12">
+                            <label>نشانی</label>
+                            <textarea id="maxlength-textarea" asp-for="SupporterAddress" class="form-control"  rows="8" placeholder="نشانی"></textarea>
+
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="form-group col-3">
+                            <label>آپلود تصویر</label>
+                            <input type="file" id="imagePath" onchange="ChangeImage(this)" asp-for="SupporterImage" class="form-control" />
+                            <span class="text-danger" asp-validation-for="SupporterImage"></span>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary ml-2">ثبت</button>
+                    <a role="button" href="/Admin/Supporters" class="btn btn-light">لغو</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section Footer{
+    <partial name="_ValidationScriptsPartial" />
+    <script src="https://cdn.ckeditor.com/4.18.0/full/ckeditor.js"></script>
+}

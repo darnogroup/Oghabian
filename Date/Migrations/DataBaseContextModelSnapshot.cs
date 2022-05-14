@@ -489,6 +489,9 @@ namespace Date.Migrations
                     b.Property<string>("ApiSms")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Bank")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("FaceBook")
                         .HasColumnType("nvarchar(max)");
 
@@ -540,6 +543,9 @@ namespace Date.Migrations
                 {
                     b.Property<string>("SliderId")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("SliderAlt")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SliderImagePath")
                         .IsRequired()

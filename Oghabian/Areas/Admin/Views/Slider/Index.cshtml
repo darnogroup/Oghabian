@@ -1,0 +1,67 @@
+﻿@model List<SliderViewModel>
+@{
+    ViewData["Title"] = "اسلایدر";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<nav class="page-breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/Admin">پیشخوان</a></li>
+        <li class="breadcrumb-item " aria-current="page">اسلایدر</li>
+    </ol>
+</nav>
+
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="card-title">اسلایدر</h6>
+                <div>
+                    <div id="dataTableExample_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-4">
+                                <div class="dataTables_length" id="dataTableExample_length">
+                                    <label><a role="button" asp-controller="Slider" asp-action="Create" class="btn btn-outline-success">افزودن تصویر</a></label>
+
+                                </div>
+                            </div>
+                       
+                        </div><div class="row">
+                            <div class="col-sm-12 table-responsive">
+                                <table id="dataTableExample" class="table dataTable no-footer" role="grid" aria-describedby="dataTableExample_info">
+                                    <thead>
+                                        <tr role="row">
+                                            <th>تصویر</th>
+                                            <th>متن جایگزین</th>
+
+                                            <th>عملیات</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr role="row" id="item_@item.SliderId">
+
+                                                <td>
+                                                    <img src="~/Images/@item.SliderImagePath" class="img-fluid rounded img-thumbnail" width="100" height="70" />
+                                                </td>
+                                                <td>@item.SliderAlt</td>
+
+                                                <td>
+                                               <button onclick="DeleteSlider('@item.SliderId')" class="btn btn-outline-danger">پاک کردن</button>
+                                                </td>
+
+                                            </tr>
+                                        }
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

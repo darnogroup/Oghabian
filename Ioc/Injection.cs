@@ -35,6 +35,7 @@ namespace Ioc
             service.AddScoped<IStateInterface, StateRepository>();
             service.AddScoped<ICityInterface, CityRepository>();
             service.AddScoped<IGeneralInterface,GeneralRepository>();
+            service.AddScoped<ISupporterInterface,SupporterRepository>();
             //Services
             service.AddScoped<IMealService, MealService>();
             service.AddScoped<ISicknessService, SicknessService>();
@@ -46,6 +47,11 @@ namespace Ioc
             service.AddScoped<IFoodService, FoodService>();
             service.AddScoped<IPropertyService, PropertyService>();
             service.AddScoped<IGalleryService, GalleryService>();
+            service.AddScoped<IAdsService, AdsService>();
+            service.AddScoped<ISeoService, SeoService>();
+            service.AddScoped<ISettingService, SettingService>();
+            service.AddScoped<ISliderService, SliderService>();
+            service.AddScoped<ISupporterService, SupporterService>();
         }
     }
 }

@@ -1,0 +1,100 @@
+﻿@model AdsViewModel
+@{
+    ViewData["Title"] = "تبلیغات";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<nav class="page-breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/Admin">پیشخوان</a></li>
+        <li class="breadcrumb-item active" aria-current="page">تبلیغات</li>
+    </ol>
+</nav>
+
+
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="card-title">تبلیغات</h6>
+                @if (ViewBag.Alert != null)
+                {
+                    <div class="alert alert-fill-danger" role="alert">
+                        @ViewBag.Alert
+                    </div>
+                }
+            <form asp-controller="Ads" asp-action="Ads" enctype="multipart/form-data">
+
+                <input type="hidden" asp-for="ImageTwo" />
+                <input type="hidden" asp-for="ImageOne" />
+                <input type="hidden" asp-for="ImageSidebar" />
+                <img src="/Images/@Model.ImageOne" id="image" class="mb-3 " width="150" height="90" /><br />
+                <h4>تصویر صفحه اصلی بخش بالا</h4>
+                <div class="row">
+                    <div class="form-group  col-4">
+                        <label>لینک تصویر</label>
+                        <input type="text" asp-for="ImageOneLink" class="form-control" autocomplete="off" placeholder="لینک تصویر">
+                        <span class="text-danger" asp-validation-for="ImageOneLink"></span>
+                    </div>
+                    <div class="form-group  col-4">
+                        <label>متن جایگزین تصویر</label>
+                        <input type="text" asp-for="ImageOneAlt" class="form-control" autocomplete="off" placeholder="متن جایگزین تصویر">
+                        <span class="text-danger" asp-validation-for="ImageOneAlt"></span>
+                    </div>
+                    <div class="form-group col-4">
+                        <label>آپلود تصویر</label>
+                        <input type="file" id="imagePath" onchange="ChangeImage(this)" asp-for="ImageOneFile" class="form-control" />
+                        <span class="text-danger" asp-validation-for="ImageOneFile"></span>
+                    </div>
+                </div>
+                <hr />
+
+                <img src="/Images/@Model.ImageTwo" id="imageTwo" class="mb-3 " width="150" height="90" /><br />           <h4>تصویر صفحه اصلی بخش پائین</h4>
+                <div class="row">
+                    <div class="form-group  col-4">
+                        <label>لینک تصویر</label>
+                        <input type="text" asp-for="ImageTwoLink" class="form-control" autocomplete="off" placeholder="لینک تصویر">
+                        <span class="text-danger" asp-validation-for="ImageTwoLink"></span>
+                    </div>
+                    <div class="form-group  col-4">
+                        <label>متن جایگزین تصویر</label>
+                        <input type="text" asp-for="ImageTwoAlt" class="form-control" autocomplete="off" placeholder="متن جایگزین تصویر">
+                        <span class="text-danger" asp-validation-for="ImageTwoAlt"></span>
+                    </div>
+                    <div class="form-group col-4">
+                        <label>آپلود تصویر</label>
+                        <input type="file" id="imagePathTwo" onchange="ChangeImageTwo(this)" asp-for="ImageTwoFile" class="form-control" />
+                        <span class="text-danger" asp-validation-for="ImageTwoFile"></span>
+                    </div>
+                </div>
+                <hr />
+
+                <img src="/Images/@Model.ImageSidebar" id="imageThree" class="mb-3 " width="150" height="90" /><br />   <h4>تصویر بخش کناری</h4>
+                <div class="row">
+                    <div class="form-group  col-4">
+                        <label>لینک تصویر</label>
+                        <input type="text" asp-for="ImageSidebarLink" class="form-control" autocomplete="off" placeholder="لینک تصویر">
+                        <span class="text-danger" asp-validation-for="ImageSidebarLink"></span>
+                    </div>
+                    <div class="form-group  col-4">
+                        <label>متن جایگزین تصویر</label>
+                        <input type="text" asp-for="ImageSidebarAlt" class="form-control" autocomplete="off" placeholder="متن جایگزین تصویر">
+                        <span class="text-danger" asp-validation-for="ImageSidebarAlt"></span>
+                    </div>
+                    <div class="form-group col-4">
+                        <label>آپلود تصویر</label>
+                        <input type="file" id="imagePathThree" onchange="ChangeImageThree(this)" asp-for="ImageSidebarFile" class="form-control" />
+                        <span class="text-danger" asp-validation-for="ImageSidebarFile"></span>
+                    </div>
+                </div>
+                <hr />
+                <button type="submit" class="btn btn-primary ml-2">ثبت</button>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section Footer{
+    <partial name="_ValidationScriptsPartial" />
+    <script src="https://cdn.ckeditor.com/4.18.0/full/ckeditor.js"></script>
+}

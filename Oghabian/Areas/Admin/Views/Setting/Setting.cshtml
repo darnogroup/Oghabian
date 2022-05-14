@@ -1,0 +1,96 @@
+﻿@model SettingViewModel
+@{
+    ViewData["Title"] = "تنظیمات";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<nav class="page-breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/Admin">پیشخوان</a></li>
+        <li class="breadcrumb-item " aria-current="page">تنظیمات </li>
+    </ol>
+</nav>
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="card-title">تنظیمات عمومی</h6>
+                <form asp-controller="Setting" asp-action="Setting" enctype="multipart/form-data">
+                    <input type="hidden" asp-for="LogoPath" />               
+
+                    <img src="/Images/@Model.LogoPath" id="image" class="mb-3 " width="90" height="90" /><br />
+                 
+                    <div class="row">
+
+
+                        <div class="form-group  col-12">
+                            <label>عنوان سایت</label>
+                            <input type="text" asp-for="TitleSite" class="form-control" autocomplete="off" placeholder="عنوان سایت">
+
+                        </div>  <div class="form-group  col-12">
+                            <label>اینستاگرام</label>
+                            <input type="text" asp-for="Instagram" class="form-control" autocomplete="off" placeholder="اینستاگرام">
+
+                        </div>
+                        <div class="form-group  col-12">
+                            <label>واتساپ</label>
+                            <input type="text" asp-for="WhatsApp" class="form-control" autocomplete="off" placeholder="واتساپ">
+
+                        </div>
+                        <div class="form-group  col-12">
+                            <label>لینکدین</label>
+                            <input type="text" asp-for="Linkdin" class="form-control" autocomplete="off" placeholder="لینکدین">
+
+                        </div>
+                        <div class="form-group  col-12">
+                            <label>فیسبوک</label>
+                            <input type="text" asp-for="FaceBook" class="form-control" autocomplete="off" placeholder="فیسبوک">
+
+                        </div>  <div class="form-group  col-12">
+                            <label>کد درگاه بانکی</label>
+                            <input type="text" asp-for="Bank" class="form-control" autocomplete="off" placeholder="درگاه بانکی">
+
+                        </div>
+                        <div class="form-group  col-12">
+                            <label>شماره تماس</label>
+                            <input type="number" asp-for="Number" class="form-control" autocomplete="off" placeholder="شماره تماس">
+                        </div>
+                        <div class="form-group  col-12">
+                            <label>پست الکترونیک</label>
+                            <input type="email" asp-for="Mail" class="form-control" autocomplete="off" placeholder="پست الکترونیک">
+
+                        </div>
+                        
+                            <div class="form-group col-12">
+                                <label for="exampleInputUsername1">شماره سامانه</label>
+                                <input type="number" asp-for="ApiNumber" class="form-control" id="exampleInputUsername1" autocomplete="off" placeholder="شماره سامانه">
+                            </div>
+                            <div class="form-group col-12">
+                                <label>کد سامانه</label>
+                                <textarea id="maxlength-textarea" asp-for="ApiSms" class="form-control" maxlength="400" rows="8" placeholder="کد سامانه"></textarea>
+                            </div>
+                        
+                        <div class="form-group col-12">
+                            <label for="exampleInputUsername1">نشانی</label>
+                            <textarea id="maxlength-textarea" asp-for="Address" class="form-control" maxlength="400" rows="8" placeholder="توضیح دسته بندی"></textarea>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-3">
+                            <label>آپلود لوگو</label>
+                            <input type="file" id="imagePath" onchange="ChangeImage(this)" asp-for="Logo" class="form-control" />
+
+                        </div>
+
+                    </div>
+
+                    <button type="submit" class="btn btn-primary ml-2">ثبت</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section Footer{
+    <partial name="_ValidationScriptsPartial" />
+}

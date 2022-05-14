@@ -10,5 +10,6 @@ namespace Domin.Entities
     {
         public string SliderId { set; get; } = Guid.NewGuid().ToString();
         public string SliderImagePath { set; get; }
+        public string SliderAlt { set; get; }
     }
 }

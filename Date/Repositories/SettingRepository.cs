@@ -30,7 +30,7 @@ namespace Date.Repositories
 
         public void Insert(SettingEntity model)
         {
-            _context.Setting.Add(model);
+            _context.Setting.Add(model); Save();
         }
 
         public void Save()
