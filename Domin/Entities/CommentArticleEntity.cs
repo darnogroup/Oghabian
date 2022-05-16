@@ -10,6 +10,7 @@ namespace Domin.Entities
     {
         public string CommentId { set; get; } = Guid.NewGuid().ToString();
         public string CommentBody { set; get; }
+        public bool Show { set; get; }
         public DateTime CreateTime { set; get; }=DateTime.Now;
         public string ArticleId { set; get; }
         public ArticleEntity Article { set; get; }

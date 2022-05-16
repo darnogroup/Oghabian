@@ -17,5 +17,7 @@ namespace Application.Service.Interface
         bool DeleteFood(string id);
         Task<List<SelectViewModel>> GetMeals();
         Task<List<SelectViewModel>> GetSickness();
+        Task<FoodSeoViewModel> GetSeoViewModel(string id);
+        void ChangeSeo(FoodSeoViewModel model);
     }
 }

@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewData["Title"] = "فعالسازی حساب کاربری";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section class="error-part">
+    <div class="container" style="margin-top: 90px;">
+      @if (ViewBag.Sucess != null)
+      {
+          <h3 class="text-success">@ViewBag.Sucess</h3>
+          <p>هم اکنون می توانید وارد بهین فود شوید</p>
+          <a href="/signin">ورود به سایت</a>
+      } 
+      @if (ViewBag.Danger != null)
+      {
+          <h3 class="text-danger">@ViewBag.Sucess</h3>
+          <p>مشکلی در فعال سازی حساب شما وجود دارد با مدیر ارتباط بگیرید</p>
+          <a href="/">بازگشت به صفحه اصلی</a>
+      }
+    </div>
+</section>

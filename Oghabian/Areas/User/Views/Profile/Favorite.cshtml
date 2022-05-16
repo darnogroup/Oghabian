@@ -1,0 +1,48 @@
+﻿@model List<FavoriteViewModel>
+@{
+    ViewData["Title"] = "علاقه مندی";
+    Layout = "~/Areas/User/Views/Shared/_UserLayout.cshtml";
+}
+<section class="inner-section wishlist-part mt-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="table-scroll">
+                    <table class="table-list">
+                        <thead>
+                            <tr>
+                             
+                                <th scope="col">تصویر</th>
+                                <th scope="col">عنوان</th>
+                                <th scope="col">کربوهیدرات</th>
+                                <th scope="col">کالری</th>
+                                <th scope="col">پروتئین</th>
+                                <th scope="col">چربی</th>   
+                                <th scope="col">عملیات</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr id="item_@item.FavoriteId">
+                   
+                                <td class="table-image"><img src="~/Images/@item.Image" width="150" height="150" alt="@item.Title"></td>
+                                <td class="table-name"><h6>@item.Title</h6></td>
+                                <td class="table-name"><h6>@item.FoodCarbohydrate</h6></td>
+                                <td class="table-name"><h6>@item.FoodCalories</h6></td>
+                                <td class="table-name"><h6>@item.FoodProtein</h6></td>
+                                <td class="table-name"><h6>@item.FoodFat</h6></td>
+      
+                                <td class="table-action">
+                                    <a class="wish" asp-controller="Food" asp-action="FoodDetail" asp-route-id="@item.FoodId" ><i class="far fa-eye"></i></a>
+                                    <a class="wish" onclick="RemoveFavorite('@item.FavoriteId')" ><i class="far fa-trash"></i></a>
+                                </td>
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

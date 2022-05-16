@@ -52,6 +52,7 @@ namespace Application.Service.Repository
             UpdateArticleViewModel article=new UpdateArticleViewModel();
             article.CategoryId = result.CategoryId;
             article.ArticleId = result.ArticleId;
+            article.Summary = result.Summary;
             article.ArticleImagePath = result.ArticleImage;
             article.ArticleBody = result.ArticleBody;
             article.ArticleTags = result.ArticleTags;
@@ -66,6 +67,7 @@ namespace Application.Service.Repository
             article.CategoryId = model.CategoryId;
             article.ArticleBody = model.ArticleBody;
             article.ArticleTags = model.ArticleTags;
+            article.Summary = model.Summary;
             article.ArticleTitle = model.ArticleTitle;
             article.TimeStudy = model.TimeStudy;
             article.CreatedTime=DateTime.Now;
@@ -89,6 +91,18 @@ namespace Application.Service.Repository
             try
             {
                 _article.InsertArticle(article);
+                ArticleSeoEntity entity = new ArticleSeoEntity();
+                entity.ArticleId = article.ArticleId;
+                entity.Description = "";
+                entity.GraphDescription = "";
+                entity.GraphSiteName = "";
+                entity.GraphTitle = "";
+                entity.GraphUrl = "";
+                entity.TwitterDescription = "";
+                entity.TwitterTitle = "";
+                entity.GraphImage= "noImage.jpg";
+                entity.TwitterImage= "noImage.jpg";
+                _article.Insert(entity);
                 return true;
             }
             catch
@@ -104,6 +118,7 @@ namespace Application.Service.Repository
             article.ArticleBody = model.ArticleBody;
             article.ArticleTags = model.ArticleTags;
             article.ArticleTitle = model.ArticleTitle;
+            article.Summary = model.Summary;
             article.TimeStudy = model.TimeStudy;
             if (model.ArticleImage != null)
             {
@@ -140,6 +155,8 @@ namespace Application.Service.Repository
                     ImageProcessing.RemoveImage(article.ArticleImage);
                 }
 
+                var seo = _article.GetSeo(id).Result;
+                _article.DeleteSeoArticle(seo);
                 return true;
             }
             catch 
@@ -163,5 +180,68 @@ namespace Application.Service.Repository
 
             return select;
         }
+
+        public async Task<ArticleSeoViewModel> GetSeoViewModel(string id)
+        {
+            var seo = await _article.GetSeo(id);
+            ArticleSeoViewModel model = new ArticleSeoViewModel();
+         
+                model.ArticleId = seo.ArticleId;
+                model.GraphDescription = seo.GraphDescription;
+                model.GraphSiteName = seo.GraphSiteName;
+                model.GraphImagePath = seo.GraphImage;
+                model.GraphTitle = seo.GraphTitle;
+                model.GraphUrl = seo.GraphUrl;
+                model.TwitterDescription = seo.TwitterDescription;
+                model.TwitterImagePath = seo.TwitterImage;
+                model.TwitterTitle = seo.TwitterTitle;
+                model.Description = seo.Description;
+
+            return model;
+        }
+
+        public void ChangeSeo(ArticleSeoViewModel model)
+        {
+            var seo = _article.GetSeo(model.ArticleId).Result;
+          
+                seo.Description = model.Description;
+                seo.GraphDescription = model.GraphDescription;
+                seo.GraphSiteName = model.GraphSiteName;
+                seo.GraphImage = model.GraphImagePath;
+                seo.GraphTitle = model.GraphTitle;
+                seo.GraphUrl = model.GraphUrl;
+                seo.TwitterDescription = model.TwitterDescription;
+                seo.TwitterImage = model.TwitterImagePath;
+                seo.TwitterTitle = model.TwitterTitle;
+                if (model.GraphImage != null)
+                {
+                    var checkImage = model.GraphImage.IsImage();
+                    if (checkImage)
+                    {
+                        seo.GraphImage = ImageProcessing.SaveImage(model.GraphImage);
+                        if (model.GraphImagePath != "noImage.jpg")
+                        {
+                            ImageProcessing.RemoveImage(model.GraphImagePath);
+                        }
+
+                    }
+                }
+
+                if (model.TwitterImage != null)
+                {
+                    var checkImage = model.TwitterImage.IsImage();
+                    if (checkImage)
+                    {
+                        seo.TwitterImage = ImageProcessing.SaveImage(model.TwitterImage);
+                        if (model.TwitterImagePath != "noImage.jpg")
+                        {
+                            ImageProcessing.RemoveImage(model.TwitterImagePath);
+                        }
+
+                    }
+                }
+
+                _article.Update(seo);
+            }
     }
 }

@@ -45,9 +45,30 @@ namespace Date.Repositories
         {
             _context.Article.Remove(article);Save();
         }
+
+        public void DeleteSeoArticle(ArticleSeoEntity article)
+        {
+            _context.ArticleSeo.Remove(article);Save();
+        }
+
         public int CountArticle()
         {
             return _context.Article.Count();
+        }
+
+        public async Task<ArticleSeoEntity> GetSeo(string article)
+        {
+            return await _context.ArticleSeo.SingleOrDefaultAsync(s => s.ArticleId == article);
+        }
+
+        public void Update(ArticleSeoEntity model)
+        {
+            _context.Update(model);Save();
+        }
+
+        public void Insert(ArticleSeoEntity model)
+        {
+            _context.ArticleSeo.Add(model);Save();
         }
 
         public void Save()

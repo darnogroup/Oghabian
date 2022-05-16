@@ -204,6 +204,21 @@ namespace Oghabian.Areas.Admin.Controllers
         {
             return _property.DeleteProperty(id);
         }
+
+        [HttpGet]
+        [Route("/Admin/Food/Seo/{id}")]
+        public IActionResult Seo(string id)
+        {
+            var pageModel = _food.GetSeoViewModel(id).Result;
+            return View(pageModel);
+        }
+        [HttpPost]
+        [Route("/Admin/Food/Seo/{id}")]
+        public IActionResult Seo(FoodSeoViewModel model)
+        {
+            _food.ChangeSeo(model);
+            return RedirectToAction(nameof(Seo), new { id = model.FoodId });
+        }
         public void Sickness(string selectId = "")
         {
             var result = _food.GetSickness().Result;

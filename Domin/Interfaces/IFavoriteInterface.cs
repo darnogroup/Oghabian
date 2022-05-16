@@ -15,5 +15,6 @@ namespace Domin.Interfaces
         void UpdateFavorite(FavoriteEntity favorite);
         void DeleteFavorite(FavoriteEntity favorite);
         int CountFavorite();
+
     }
 }

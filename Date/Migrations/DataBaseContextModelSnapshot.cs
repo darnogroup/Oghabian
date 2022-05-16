@@ -60,6 +60,33 @@ namespace Date.Migrations
                     b.Property<string>("AdsId")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("ImageHomeOne")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageHomeOneAlt")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageHomeOneLink")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageHomeThree")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageHomeThreeAlt")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageHomeThreeLink")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageHomeTwo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageHomeTwoAlt")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageHomeTwoLink")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ImageOne")
                         .HasColumnType("nvarchar(max)");
 
@@ -125,6 +152,10 @@ namespace Date.Migrations
                     b.Property<DateTime>("CreatedTime")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Summary")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("TimeStudy")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -139,6 +170,55 @@ namespace Date.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Article");
+                });
+
+            modelBuilder.Entity("Domin.Entities.ArticleSeoEntity", b =>
+                {
+                    b.Property<int>("SeoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ArticleId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("GraphDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("GraphImage")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("GraphSiteName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("GraphTitle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("GraphType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("GraphUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TwitterDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TwitterImage")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TwitterTitle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("SeoId");
+
+                    b.HasIndex("ArticleId")
+                        .IsUnique()
+                        .HasFilter("[ArticleId] IS NOT NULL");
+
+                    b.ToTable("ArticleSeo");
                 });
 
             modelBuilder.Entity("Domin.Entities.CategoryEntity", b =>
@@ -188,6 +268,9 @@ namespace Date.Migrations
                     b.Property<DateTime>("CreateTime")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool>("Show")
+                        .HasColumnType("bit");
+
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
@@ -205,9 +288,6 @@ namespace Date.Migrations
                     b.Property<string>("CommentId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("CommentStar")
-                        .HasColumnType("int");
-
                     b.Property<string>("CommentText")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -217,6 +297,9 @@ namespace Date.Migrations
 
                     b.Property<string>("FoodId")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<bool>("Show")
+                        .HasColumnType("bit");
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
@@ -263,6 +346,9 @@ namespace Date.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("FoodCode")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("FoodCount")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -271,8 +357,8 @@ namespace Date.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("FoodDiscountPrice")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("FoodDiscountPrice")
+                        .HasColumnType("int");
 
                     b.Property<string>("FoodFat")
                         .IsRequired()
@@ -286,9 +372,8 @@ namespace Date.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("FoodPrice")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("FoodPrice")
+                        .HasColumnType("int");
 
                     b.Property<string>("FoodProtein")
                         .IsRequired()
@@ -309,6 +394,9 @@ namespace Date.Migrations
                     b.Property<string>("MealId")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<int>("Rate")
+                        .HasColumnType("int");
+
                     b.Property<string>("SicknessId")
                         .HasColumnType("nvarchar(450)");
 
@@ -322,6 +410,55 @@ namespace Date.Migrations
                     b.HasIndex("SicknessId");
 
                     b.ToTable("Food");
+                });
+
+            modelBuilder.Entity("Domin.Entities.FoodSeoEntity", b =>
+                {
+                    b.Property<int>("SeoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FoodId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("GraphDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("GraphImage")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("GraphSiteName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("GraphTitle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("GraphType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("GraphUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TwitterDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TwitterImage")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TwitterTitle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("SeoId");
+
+                    b.HasIndex("FoodId")
+                        .IsUnique()
+                        .HasFilter("[FoodId] IS NOT NULL");
+
+                    b.ToTable("FoodSeo");
                 });
 
             modelBuilder.Entity("Domin.Entities.GalleryEntity", b =>
@@ -357,6 +494,58 @@ namespace Date.Migrations
                     b.ToTable("Meal");
                 });
 
+            modelBuilder.Entity("Domin.Entities.MedicalInformationEntity", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("MedicalRecords")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SicknessId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("UserAge")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserCalories")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserCarbohydrate")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserFat")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserGender")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserHeight")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("UserProtein")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserWeight")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SicknessId");
+
+                    b.HasIndex("UserId")
+                        .IsUnique()
+                        .HasFilter("[UserId] IS NOT NULL");
+
+                    b.ToTable("MedicalInformation");
+                });
+
             modelBuilder.Entity("Domin.Entities.MessageEntity", b =>
                 {
                     b.Property<string>("MessageId")
@@ -385,6 +574,60 @@ namespace Date.Migrations
                     b.HasKey("MessageId");
 
                     b.ToTable("Message");
+                });
+
+            modelBuilder.Entity("Domin.Entities.OrderDetailEntity", b =>
+                {
+                    b.Property<string>("OrderDetailId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FoodId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("OrderId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("Price")
+                        .HasColumnType("int");
+
+                    b.HasKey("OrderDetailId");
+
+                    b.HasIndex("FoodId");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("OrderDetail");
+                });
+
+            modelBuilder.Entity("Domin.Entities.OrderEntity", b =>
+                {
+                    b.Property<string>("OrderId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<bool>("Close")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Condition")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("OrderId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Order");
                 });
 
             modelBuilder.Entity("Domin.Entities.PropertyEntity", b =>
@@ -492,10 +735,16 @@ namespace Date.Migrations
                     b.Property<string>("Bank")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("FaceBook")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Instagram")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Law")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Linkdin")
@@ -508,6 +757,9 @@ namespace Date.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Number")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SendPrice")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TitleSite")
@@ -641,6 +893,9 @@ namespace Date.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("MedicalRecords")
+                        .HasColumnType("bit");
+
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -679,17 +934,9 @@ namespace Date.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserHeight")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("UserName")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("UserWeight")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -869,6 +1116,16 @@ namespace Date.Migrations
                     b.Navigation("Category");
                 });
 
+            modelBuilder.Entity("Domin.Entities.ArticleSeoEntity", b =>
+                {
+                    b.HasOne("Domin.Entities.ArticleEntity", "Article")
+                        .WithOne("Seo")
+                        .HasForeignKey("Domin.Entities.ArticleSeoEntity", "ArticleId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.Navigation("Article");
+                });
+
             modelBuilder.Entity("Domin.Entities.CityEntity", b =>
                 {
                     b.HasOne("Domin.Entities.StateEntity", "State")
@@ -947,6 +1204,16 @@ namespace Date.Migrations
                     b.Navigation("Sickness");
                 });
 
+            modelBuilder.Entity("Domin.Entities.FoodSeoEntity", b =>
+                {
+                    b.HasOne("Domin.Entities.FoodEntity", "Food")
+                        .WithOne("Seo")
+                        .HasForeignKey("Domin.Entities.FoodSeoEntity", "FoodId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.Navigation("Food");
+                });
+
             modelBuilder.Entity("Domin.Entities.GalleryEntity", b =>
                 {
                     b.HasOne("Domin.Entities.FoodEntity", "Food")
@@ -955,6 +1222,50 @@ namespace Date.Migrations
                         .OnDelete(DeleteBehavior.SetNull);
 
                     b.Navigation("Food");
+                });
+
+            modelBuilder.Entity("Domin.Entities.MedicalInformationEntity", b =>
+                {
+                    b.HasOne("Domin.Entities.SicknessEntity", "Sickness")
+                        .WithMany("MedicalInformation")
+                        .HasForeignKey("SicknessId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.HasOne("Domin.Entities.UserEntity", "User")
+                        .WithOne("MedicalInformation")
+                        .HasForeignKey("Domin.Entities.MedicalInformationEntity", "UserId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.Navigation("Sickness");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Domin.Entities.OrderDetailEntity", b =>
+                {
+                    b.HasOne("Domin.Entities.FoodEntity", "Food")
+                        .WithMany("OrderDetail")
+                        .HasForeignKey("FoodId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.HasOne("Domin.Entities.OrderEntity", "Order")
+                        .WithMany("Detail")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.Navigation("Food");
+
+                    b.Navigation("Order");
+                });
+
+            modelBuilder.Entity("Domin.Entities.OrderEntity", b =>
+                {
+                    b.HasOne("Domin.Entities.UserEntity", "User")
+                        .WithMany("Order")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Domin.Entities.PropertyEntity", b =>
@@ -1021,6 +1332,8 @@ namespace Date.Migrations
             modelBuilder.Entity("Domin.Entities.ArticleEntity", b =>
                 {
                     b.Navigation("Comments");
+
+                    b.Navigation("Seo");
                 });
 
             modelBuilder.Entity("Domin.Entities.CategoryEntity", b =>
@@ -1041,7 +1354,11 @@ namespace Date.Migrations
 
                     b.Navigation("Gallery");
 
+                    b.Navigation("OrderDetail");
+
                     b.Navigation("Properties");
+
+                    b.Navigation("Seo");
                 });
 
             modelBuilder.Entity("Domin.Entities.MealEntity", b =>
@@ -1049,9 +1366,16 @@ namespace Date.Migrations
                     b.Navigation("Food");
                 });
 
+            modelBuilder.Entity("Domin.Entities.OrderEntity", b =>
+                {
+                    b.Navigation("Detail");
+                });
+
             modelBuilder.Entity("Domin.Entities.SicknessEntity", b =>
                 {
                     b.Navigation("Food");
+
+                    b.Navigation("MedicalInformation");
                 });
 
             modelBuilder.Entity("Domin.Entities.StateEntity", b =>
@@ -1070,6 +1394,10 @@ namespace Date.Migrations
                     b.Navigation("CommentFood");
 
                     b.Navigation("Favorite");
+
+                    b.Navigation("MedicalInformation");
+
+                    b.Navigation("Order");
                 });
 #pragma warning restore 612, 618
         }

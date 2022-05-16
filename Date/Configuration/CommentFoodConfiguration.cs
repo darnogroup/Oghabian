@@ -14,7 +14,7 @@ namespace Date.Configuration
         public void Configure(EntityTypeBuilder<CommentFoodEntity> builder)
         {
             builder.HasKey(k => k.CommentId);
-            builder.Property(p => p.CommentStar).IsRequired();
+          
             builder.Property(p => p.CommentText).IsRequired();
         }
     }

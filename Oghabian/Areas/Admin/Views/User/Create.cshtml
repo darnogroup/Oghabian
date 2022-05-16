@@ -1,0 +1,98 @@
+﻿@using Application.Other
+@model InsertUserViewModel
+@{
+    ViewData["Title"] = "افزودن کاربر";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<nav class="page-breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/Admin">پیشخوان</a></li>
+        <li class="breadcrumb-item " aria-current="page"><a asp-controller="User" asp-action="Index">لیست  کاربران</a></li>
+        <li class="breadcrumb-item active" aria-current="page">افزودن کاربر</li>
+    </ol>
+</nav>
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="card-title">افزودن کاربر</h6>
+                @if (ViewBag.Alert != null)
+                {
+                    <div class="alert alert-fill-danger" role="alert">
+                        @ViewBag.Alert
+                    </div>
+                }
+                <form asp-controller="User" asp-action="Create" enctype="multipart/form-data">
+
+                    <img src="/Images/notFound.png" id="image" class="mb-3 " width="150" height="90" /><br />
+                    <div class="row">
+
+
+                        <div class="form-group  col-12">
+                            <label>نام و نام خانوادگی</label>
+                            <input type="text" asp-for="UserFullName" class="form-control" autocomplete="off" placeholder="نام و نام خانوادگی">
+                            <span class="text-danger" asp-validation-for="UserFullName"></span>
+                        </div>
+
+                        <div class="form-group col-12">
+                            <label>پست الکترونیک</label>
+                            <input type="email" asp-for="UserMail" class="form-control" autocomplete="off" placeholder="پست الکترونیک">
+                            <span class="text-danger" asp-validation-for="UserMail"></span>
+                        </div>
+                         <div class="form-group col-12">
+                            <label>شماره تماس </label>
+                            <input type="number" asp-for="UserNumber" class="form-control" autocomplete="off" placeholder="شماره تماس">
+                            <span class="text-danger" asp-validation-for="UserNumber"></span>
+                        </div>
+                        
+                    </div>
+                   
+                    <div class="row">
+                        <div class="form-group col-4">
+                            <label>انتخاب نقش</label>
+                            <select class="form-control"  asp-for="Role" asp-items="@ViewBag.Roles">
+                                <option selected="" disabled="">یک  گزینه را انتخاب کنید</option>
+                            </select>   <span class="text-danger" asp-validation-for="Role"></span>
+                        </div>
+                     
+                 
+                        <div class="form-group col-4">
+                            <label>آپلود تصویر پروفایل</label>
+                            <input type="file" id="imagePath" onchange="ChangeImage(this)" asp-for="UserAvatar" class="form-control" />
+                            <span class="text-danger" asp-validation-for="UserAvatar"></span>
+                        </div>
+                        <div class="form-group col-4">
+                            <label>گذر واژه</label>
+                            <input type="password"  asp-for="UserPassword" class="form-control" autocomplete="off" placeholder="گذر واژه کاربر">
+                            <span class="text-info" >گذر واژه باید دارای یک حروف بزرگ یا کوچک باشد</span>      <span class="text-danger" asp-validation-for="UserPassword"></span>
+                        </div>
+                        <div class="form-check form-check-flat form-check-primary col-4">
+                            <label class="form-check-label">
+                                <input type="checkbox" asp-for="ActiveMail"  class="form-check-input">
+                                فعال سازی ایمیل
+                                <i class="input-frame"></i></label>
+                        </div>
+                        <div class="form-check form-check-flat form-check-primary col-4">
+                            <label class="form-check-label">
+                                <input type="checkbox" asp-for="ActiveNumber"  class="form-check-input">
+                                فعال سازی شماره تماس
+                                <i class="input-frame"></i></label>
+                        </div>     <div class="form-check form-check-flat form-check-primary col-4">
+                            <label class="form-check-label">
+                                <input type="checkbox" asp-for="MedicalRecords"  class="form-check-input">
+                            فعالسازی اطلاعات پزشکی
+                                <i class="input-frame"></i></label>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary ml-2">ثبت</button>
+                    <a role="button" href="/Admin/Users" class="btn btn-light">لغو</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section Footer{
+    <partial name="_ValidationScriptsPartial" />
+    <script src="https://cdn.ckeditor.com/4.18.0/full/ckeditor.js"></script>
+}

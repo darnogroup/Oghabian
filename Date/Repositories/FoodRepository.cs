@@ -46,9 +46,29 @@ namespace Date.Repositories
             _context.Food.Remove(food);Save();
         }
 
+        public void DeleteSeo(FoodSeoEntity food)
+        {
+            _context.FoodSeo.Remove(food);Save();
+        }
+
         public int CountFood()
         {
             return _context.Food.Count();
+        }
+
+        public async Task<FoodSeoEntity> GetSeo(string food)
+        {
+            return await _context.FoodSeo.SingleOrDefaultAsync(s => s.FoodId == food);
+        }
+
+        public void Update(FoodSeoEntity model)
+        {
+            _context.Update(model);Save();
+        }
+
+        public void Insert(FoodSeoEntity model)
+        {
+            _context.FoodSeo.Add(model);Save();
         }
 
         public void Save()

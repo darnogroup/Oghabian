@@ -15,10 +15,10 @@
             <div class="card-body">
                 <h6 class="card-title">تنظیمات عمومی</h6>
                 <form asp-controller="Setting" asp-action="Setting" enctype="multipart/form-data">
-                    <input type="hidden" asp-for="LogoPath" />               
+                    <input type="hidden" asp-for="LogoPath" />
 
                     <img src="/Images/@Model.LogoPath" id="image" class="mb-3 " width="90" height="90" /><br />
-                 
+
                     <div class="row">
 
 
@@ -50,6 +50,15 @@
                             <input type="text" asp-for="Bank" class="form-control" autocomplete="off" placeholder="درگاه بانکی">
 
                         </div>
+
+                        <div class="form-group  col-12">
+                            <label>هزینه ارسال</label>
+                            <input type="number" asp-for="SendPrice" class="form-control" autocomplete="off" placeholder="هزینه ارسال">
+
+                        </div>
+
+
+
                         <div class="form-group  col-12">
                             <label>شماره تماس</label>
                             <input type="number" asp-for="Number" class="form-control" autocomplete="off" placeholder="شماره تماس">
@@ -59,20 +68,31 @@
                             <input type="email" asp-for="Mail" class="form-control" autocomplete="off" placeholder="پست الکترونیک">
 
                         </div>
-                        
-                            <div class="form-group col-12">
-                                <label for="exampleInputUsername1">شماره سامانه</label>
-                                <input type="number" asp-for="ApiNumber" class="form-control" id="exampleInputUsername1" autocomplete="off" placeholder="شماره سامانه">
-                            </div>
-                            <div class="form-group col-12">
-                                <label>کد سامانه</label>
-                                <textarea id="maxlength-textarea" asp-for="ApiSms" class="form-control" maxlength="400" rows="8" placeholder="کد سامانه"></textarea>
-                            </div>
-                        
+
+                        <div class="form-group col-12">
+                            <label for="exampleInputUsername1">شماره سامانه</label>
+                            <input type="number" asp-for="ApiNumber" class="form-control" id="exampleInputUsername1" autocomplete="off" placeholder="شماره سامانه">
+                        </div>
+                        <div class="form-group col-12">
+                            <label>کد سامانه</label>
+                            <textarea id="maxlength-textarea" asp-for="ApiSms" class="form-control" rows="8" placeholder="کد سامانه"></textarea>
+                        </div>
+                        <div class="form-group col-12">
+                            <label>
+                                توضیحات
+                            </label>
+                            <textarea id="maxlength-textarea" asp-for="Description" class="form-control" rows="8" placeholder="توضیحات"></textarea>
+                        </div>
+
                         <div class="form-group col-12">
                             <label for="exampleInputUsername1">نشانی</label>
-                            <textarea id="maxlength-textarea" asp-for="Address" class="form-control" maxlength="400" rows="8" placeholder="توضیح دسته بندی"></textarea>
+                            <textarea id="maxlength-textarea" asp-for="Address" class="form-control" rows="8" placeholder="توضیح دسته بندی"></textarea>
 
+                        </div>
+                        <div class="form-group  col-12">
+                            <label>قوانین و مقررات</label>
+                            <textarea id="maxlength-textarea" asp-for="Law" class="form-control ckeditor"  rows="15" style="height: 150px !important;"  placeholder=""></textarea>
+                            <span class="text-danger" asp-validation-for="Law"></span>
                         </div>
                     </div>
                     <div class="row">
@@ -92,5 +112,6 @@
     </div>
 </div>
 @section Footer{
+    <script src="https://cdn.ckeditor.com/4.18.0/full/ckeditor.js"></script>
     <partial name="_ValidationScriptsPartial" />
 }

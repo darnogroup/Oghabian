@@ -1,0 +1,22 @@
+﻿@model SeoFoodViewModel
+@{
+    var site = Context.Request.Scheme + "://" + Context.Request.Host + Context.Request.PathBase + "/Images/";
+}
+
+<meta charset="UTF-8">
+<meta name="description" content="@Html.Raw(Model.Description)">
+<meta property="og:site_name" value="@Html.Raw(Model.GraphSiteName)">
+<meta property="og:brand" content="@Html.Raw(Model.GraphSiteName)" />
+<meta property="og:title" content="@Html.Raw(Model.GraphTitle)">
+<meta property="og:url" content="@Model.GraphUrl">
+<meta property="og:image" content="@(site+Model.GraphImagePath)">
+<meta property="og:image:url" content="@(site+Model.GraphImagePath)">
+<meta property="og:image:type" content=image/jpeg>
+<meta property="og:description" content="@Html.Raw(Model.GraphDescription)">
+<meta property="og:price:currency" content="IRR">
+<meta property="og:locale" content="ir_FA">
+<meta name="twitter:title" content="@Html.Raw(Model.TwitterTitle)">
+<meta name="twitter:description" content="@Html.Raw(Model.TwitterDescription)">
+<meta name="twitter:image" content="@(site+@Model.TwitterImagePath)">
+<meta name="twitter:card" content=summary>
+

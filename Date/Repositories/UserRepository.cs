@@ -47,6 +47,22 @@ namespace Date.Repositories
             _context.Update(user);Save();
         }
 
+        public async Task<MedicalInformationEntity> GetMedicalInformation(string id)
+        {
+            return await _context.MedicalInformation.Where(w => w.UserId == id)
+                .SingleOrDefaultAsync();
+        }
+
+        public void Update(MedicalInformationEntity model)
+        {
+            _context.Update(model);Save();
+        }
+
+        public void Insert(MedicalInformationEntity model)
+        {
+            _context.MedicalInformation.Add(model);Save();
+        }
+
         public void Save()
         {
             _context.SaveChanges();

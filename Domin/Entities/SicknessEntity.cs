@@ -12,5 +12,6 @@ namespace Domin.Entities
         public string SicknessTitle { set; get; }
         public string SicknessImagePath { set; get; }
         public IEnumerable<FoodEntity> Food { set; get; }
+        public IEnumerable<MedicalInformationEntity> MedicalInformation { set; get; }
     }
 }

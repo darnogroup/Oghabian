@@ -1,0 +1,19 @@
+﻿@model List<CommentArticleViewModel>
+
+    <div class="blog-details-comment">
+        <h3 class="comment-title">دیدگاه کاربران</h3>
+        <ul class="comment-list">
+            @foreach (var  item in Model)
+            {
+                <li class="comment-item">
+                    <div class="comment-media">
+                        <a class="comment-avatar"><img width="150" height="60"  src="~/Images/@item.Avatar" alt="@item.Name"></a>
+                        <h6 class="comment-meta"><a >@item.Name </a><span>@item.Time</span></h6>
+                    </div>
+                    <p class="comment-desc">
+        @item.Body
+                        </p>
+                </li>
+            }
+        </ul>
+    </div>

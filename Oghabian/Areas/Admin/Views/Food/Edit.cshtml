@@ -31,20 +31,29 @@
 
                     <img src="/Images/@Model.FoodImagePath" id="image" class="mb-3 " width="150" height="90" /><br />
                     <div class="row">
-                        <div class="form-group  col-12">
+                        <div class="form-group  col-8">
                             <label>عنوان پک غذایی </label>
                             <input type="text" asp-for="FoodTitle" class="form-control" autocomplete="off" placeholder="عنوان پک غذایی">
                             <span class="text-danger" asp-validation-for="FoodTitle"></span>
+                        </div> 
+                        <div class="form-group  col-4">
+                            <label>شناسه محصول </label>
+                            <input type="number" asp-for="FoodCode" class="form-control" autocomplete="off" placeholder="شناسه محصول">
+                            <span class="text-danger" asp-validation-for="FoodCode"></span>
                         </div>
                         <div class="row col-12">
-                            <div class="form-group col-6">
+                            <div class="form-group col-4">
                                 <label>قیمت پک غذایی </label>
                                 <input type="number" asp-for="FoodPrice" class="form-control" autocomplete="off" placeholder="قیمت را به تومان وارد کنبد ">
                                 <span class="text-danger" asp-validation-for="FoodPrice"></span>
                             </div>
-                            <div class="form-group col-6">
+                            <div class="form-group col-4">
                                 <label>قیمت با تخفیف خورده </label>
                                 <input type="text" asp-for="FoodDiscountPrice" class="form-control" autocomplete="off" placeholder="قیمت را به تومان وارد کنبد ">
+                            </div>  
+                            <div class="form-group col-4">
+                                <label>امتیاز </label>
+                                <input type="range" min="1" max="5" asp-for="Rate" class="form-control" autocomplete="off" >
                             </div>
 
 

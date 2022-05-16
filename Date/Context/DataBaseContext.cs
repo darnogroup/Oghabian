@@ -38,7 +38,11 @@ namespace Date.Context
         public virtual DbSet<SupporterEntity>Supporter { set; get; }
         public virtual DbSet<FavoriteEntity>Favorite { set; get; }
         public virtual DbSet<GalleryEntity>Gallery { set; get; }
-        
+        public virtual DbSet<MedicalInformationEntity>MedicalInformation { set; get; }
+        public virtual DbSet<FoodSeoEntity>FoodSeo { set; get; }
+        public virtual DbSet<ArticleSeoEntity>ArticleSeo { set; get; }
+        public virtual DbSet<OrderDetailEntity>OrderDetail { set; get; }
+        public virtual DbSet<OrderEntity>Order { set; get; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             foreach (var mutableForeignKey in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
@@ -46,6 +50,8 @@ namespace Date.Context
                 mutableForeignKey.DeleteBehavior = DeleteBehavior.SetNull;
             }
 
+            modelBuilder.Entity<FoodSeoEntity>().HasKey(k => k.SeoId);
+            modelBuilder.Entity<ArticleSeoEntity>().HasKey(k => k.SeoId);
             modelBuilder.Entity<SettingEntity>().HasKey(k => k.Id);
             modelBuilder.Entity<SeoEntity>().HasKey(k => k.SeoId);
             Configuration(modelBuilder);
@@ -74,6 +80,9 @@ namespace Date.Context
             builder.ApplyConfiguration(new CityConfiguration());
             builder.ApplyConfiguration(new SupporterConfiguration());
             builder.ApplyConfiguration(new UserConfiguration());
+            builder.ApplyConfiguration(new MedicalInformationConfiguration());
+            builder.ApplyConfiguration(new OrderConfiguration());
+            builder.ApplyConfiguration(new OrderDetailConfiguration());
         }
     }
 }

@@ -1,0 +1,58 @@
+﻿@model AddressViewModel
+@{
+    ViewData["Title"] = "نشانی";
+    Layout = "~/Areas/User/Views/Shared/_UserLayout.cshtml";
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+
+        <div class="user-form-card mt-5 col-xl-6 col-lg-6 col-md-12 col-sm-12">
+            <div class="user-form-title">
+            
+                <h2>نشانی</h2>
+                <p>برای ارسال پک های غذایی نشانی خود را ثبت کنید</p>
+                @if (ViewBag.Alert != null)
+                {
+                    <div class="alert alert-warning p-3 rounded-3">
+                        @ViewBag.Alert
+                    </div>
+                }
+            </div>
+            <form asp-controller="Profile" asp-action="Address" class="user-form">
+                
+                
+                <div class="form-group">
+                    <label class="form-label">استان</label><br />
+                    <select class="form-select" id="State" asp-for="StateId" asp-items="@ViewBag.States">
+                        <option selected="" disabled="">یک  گزینه را انتخاب کنید</option>
+                    </select><br /><span class="text-danger" asp-validation-for="StateId"></span>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">شهر</label><br />
+                    <select class="form-select" id="City" asp-for="CityId" asp-items="@ViewBag.Cities">
+                        <option selected="" disabled="">یک  گزینه را انتخاب کنید</option>
+                    </select><br /><span class="text-danger" asp-validation-for="CityId"></span>
+                </div><input type="hidden" asp-for="UserId"/>
+                <div class="form-group">
+                    <label>کد پستی</label>
+                    <input type="text" class="form-control" asp-for="AddressCode" placeholder="کد پستی را وارد کنید">
+                    <span class="text-danger" asp-validation-for="AddressCode"></span>
+                </div>
+                <div class="form-group">
+                    <textarea  class="form-control bg-white" asp-for="AddressText" placeholder="نشانی خود را بنویسید"></textarea>
+                    <span class="text-danger" asp-validation-for="AddressText"></span>
+                </div>
+
+                <div class="form-button">
+                    <button type="submit">ثبت نشانی</button>
+
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+@section Footer{
+    <partial name="_ValidationScriptsPartial" />
+}

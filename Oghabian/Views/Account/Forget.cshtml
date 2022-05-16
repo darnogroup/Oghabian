@@ -1,0 +1,45 @@
+﻿@model ForgetViewModel
+@{
+    ViewData["Title"] = "فراموشی گذر واژه";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section class="user-form-part">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-sm-10 col-md-8 col-lg-5 col-xl-5">
+
+                <div class="user-form-card">
+                    <div class="user-form-title">
+                        <h2>رمز فراموش شده</h2>
+                        <p>ایمیل معتبر خود را وارد کنید</p>
+                        @if (ViewBag.Alert != null)
+                        {
+                            <div class="alert alert-warning p-3 rounded-3">
+                                @ViewBag.Alert
+                            </div>
+                        }
+                    </div>
+                    <form class="user-form" asp-controller="Account" asp-action="Forget">
+                        <div class="form-group">
+                            <label>پست الکترونیک</label>
+                            <input type="email" class="form-control" asp-for="Mail" placeholder="پست الکترونیک  خود را وارد کنید">
+                        </div>
+                        <span class="text-danger" asp-validation-for="Mail"></span>
+                        <div class="form-button">
+                            <button type="submit">ارسال لینک بازیابی</button>
+                            <p>حساب ندارید؟ <a href="/SignUp">ثبت نام.</a></p>
+                        </div>
+                    </form>
+                </div>
+                <div class="user-form-footer">
+                    <p>طراحی و توسعه  <a href="https://darnogroup.ir/">گروه فنی و مهندسی دارنو</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Footer{
+    <partial name="_ValidationScriptsPartial" />
+
+}

@@ -8,10 +8,10 @@ namespace Domin.Entities
 {
     public class CommentFoodEntity
     {
+        public bool Show { set; get; }
         public string CommentId { set; get; } = Guid.NewGuid().ToString();
         public string CommentText { set; get; }
         public DateTime CreateTime { set; get; }=DateTime.Now;
-        public int CommentStar { set; get; }
         public string FoodId { set; get; }
         public FoodEntity Food { set; get; }
         public string UserId { set; get; }

@@ -1,0 +1,13 @@
+﻿@model List<LastArticleViewModel>
+<div class="blog-widget">
+    <h3 class="blog-widget-title">آخرین مقالات</h3>
+    <ul class="blog-widget-feed">
+        @foreach (var item in Model)
+        {
+            <li>
+                <a class="blog-widget-media" asp-controller="Article" asp-action="BlogDetail" asp-route-id="@item.ArticleId"><img src="~/Images/@item.ArticlePath" alt="@item.ArticleTitle"></a>
+                <h6 class="blog-widget-text"><a asp-controller="Article" asp-action="BlogDetail" asp-route-id="@item.ArticleId">@item.ArticleTitle </a><span>@item.CreateTime</span></h6>
+            </li>
+        }
+    </ul>
+</div>

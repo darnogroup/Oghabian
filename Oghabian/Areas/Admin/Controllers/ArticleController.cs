@@ -103,6 +103,21 @@ namespace Oghabian.Areas.Admin.Controllers
         {
             return _article.DeleteArticle(id);
         }
+
+        [HttpGet]
+        [Route("/Admin/Article/Seo/{id}")]
+        public IActionResult Seo(string id)
+        {
+            var pageModel = _article.GetSeoViewModel(id).Result;
+            return View(pageModel);
+        }
+        [HttpPost]
+        [Route("/Admin/Article/Seo/{id}")]
+        public IActionResult Seo(ArticleSeoViewModel model)
+        {
+           _article.ChangeSeo(model);
+           return RedirectToAction(nameof(Seo), new {id = model.ArticleId});
+        }
         public void Category(string selected = "")
         { 
             var result = _article.GetCategories().Result;

@@ -1,0 +1,84 @@
+﻿@model Tuple<List<BlogViewModel>, int, int>
+@{
+    ViewData["Title"] = "مقالات";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section class="inner-section blog-standard mt-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                @foreach (var item in Model.Item1)
+                {
+                    <div class="blog-card">
+                        <div class="blog-media">
+                            <a class="blog-img" asp-controller="Article" asp-action="BlogDetail" asp-route-id="@item.BlogId">
+                                <img src="~/Images/@item.ImagePath" height="300" alt="@item.Title">
+                            </a>
+                        </div>
+                        <div class="blog-content">
+                            <ul class="blog-meta">
+                                <li><i class="far fa-calendar"></i><span>@item.CreateTime</span></li>
+                                <li><i class="fa fa-alarm-clock"></i><span>زمان مطالعه:@item.Time</span></li>
+                                <li><i class="fa fa-eye"></i><span>بازدید:@item.Visit</span></li>
+                                <li><i class="fa fa-book"></i><span>دسته بندی:@item.Category</span></li>
+                            </ul>
+                            <h4 class="blog-title"><a asp-controller="Article" asp-action="BlogDetail" asp-route-id="@item.BlogId">@item.Title</a></h4>
+                            <p class="blog-desc">
+                          @item.Summary
+                            </p>
+                            <a class="blog-btn" asp-controller="Article" asp-action="BlogDetail" asp-route-id="@item.BlogId"><span> ادامه مطلب </span><i class="far fa-long-arrow-left"></i></a>
+                        </div>
+                    </div>
+                }
+
+
+
+
+
+            @if (Model.Item2 > 1)
+            {
+                <ul class="pagination">
+                    <li class="page-item @((Model.Item3-1 == 0) ? "disabled" :"")">
+                        <a class="page-link" href="/Blogs?category=@ViewBag.Category&page=@(Model.Item3-1)&search=@ViewBag.Search"><i class="far fa-long-arrow-right"></i></a>
+                    </li>
+                @for (int i = 1; i <= (Model.Item2); i++)
+                {
+                    <li class="page-item "><a class="page-link @(Model.Item3 == i ? "active" : "")" href="/Blogs?category=@ViewBag.Category&page=@i&search=@ViewBag.Search">@i</a></li>
+                }
+                    <li class="page-item @((Model.Item3 + 1 > Model.Item2) ? "disabled" : "")">
+                        <a class="page-link" href="/Blogs?category=@ViewBag.Category&page=@(Model.Item3+1)&search=@ViewBag.Search"><i class="far fa-long-arrow-left"></i></a>
+                    </li>
+                </ul>
+            }
+            </div>
+
+
+
+
+
+
+
+
+
+
+            <div class="col-md-7 col-lg-4">
+                <div class="blog-widget">
+                    <h3 class="blog-widget-title">جستجو کردن</h3>
+                    <form href="/Blogs" class="blog-widget-form">
+                        <input type="text" name="search" placeholder="جستجو کردن...">
+                        <input type="hidden" name="category" value="@ViewBag.Category">
+                        <button type="submit" class="far fa-search"></button>
+                    </form>
+                </div>
+
+                @await Component.InvokeAsync("LastArticleComponent")
+                @await Component.InvokeAsync("ArticleCategoryComponent")
+                @await Component.InvokeAsync("SocialComponent")
+                @await Component.InvokeAsync("SaidBarAdsComponent")
+
+
+
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,18 @@
+﻿@model List<SectionCategoryViewModel>
+
+    <div class="shop-widget mt-3">
+        <h6 class="shop-widget-title">دسته بندی</h6>
+        <ul class="shop-widget-list shop-widget-scroll">
+            @foreach (var item in Model)
+            {
+                <li>
+                    <div class="shop-widget-content">
+                        <div class="form-check">
+                            <a href="/Foods?calories=@ViewBag.calories&carbohydrate=@ViewBag.carbohydrate&fat=@ViewBag.fat&protein=@ViewBag.protein&meal=@ViewBag.meal&sickness=@item.SectionId" class="form-check-label" for="cate5">@item.SectionTitle</a>
+                        </div>
+                    </div>
+                    <span class="shop-widget-number">@item.SectionCount</span>
+                </li>
+            }
+        </ul>
+    </div>

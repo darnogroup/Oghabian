@@ -1,0 +1,283 @@
+﻿@model Tuple<FoodDetailViewModel, List<FoodImageViewModel>, List<FoodPropertyViewModel>>
+@{
+    ViewData["Title"] = Model.Item1.Title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="inner-section mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5">
+                <div class="details-gallery">
+                    <div class="details-label-group"><label class="details-label new">@Model.Item1.Category</label></div>
+                    <ul class="details-preview">
+                        @foreach (var item in Model.Item2)
+                        {
+                            <li><img src="~/images/@item.ImagePath" alt="@Model.Item1.Title"></li>
+                        }
+
+                    </ul>
+                    <ul class="details-thumb">
+                        @foreach (var item in Model.Item2)
+                        {
+                            <li><img src="~/images/@item.ImagePath" alt="@Model.Item1.Title"></li>
+                        }
+                    </ul>
+                </div>
+            </div>
+
+
+
+            <div class="col-lg-7">
+                <div class="details-content">
+                    <h3 class="details-name"><a>@Model.Item1.Title</a></h3>
+                    <div class="details-meta">
+                        <p>کد محصول: <span>@Model.Item1.Code</span></p>
+
+                    </div>
+                    <div class="details-rating">
+
+                        @switch (Model.Item1.Rate)
+                        {
+                            case 1:
+                                <i class="active fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                break;
+                            case 2:
+                                <i class="active fas fa-star"></i>
+                                <i class="active fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                break;
+                            case 3:
+                                <i class="active fas fa-star"></i>
+                                <i class="active fas fa-star"></i>
+                                <i class="active fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                break;
+                            case 4:
+                                <i class="active fas fa-star"></i>
+                                <i class="active fas fa-star"></i>
+                                <i class="active fas fa-star"></i>
+                                <i class="active fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                break;
+                            case 5:
+                                <i class="active fas fa-star"></i>
+                                <i class="active fas fa-star"></i>
+                                <i class="active fas fa-star"></i>
+                                <i class="active fas fa-star"></i>
+                                <i class="active fas fa-star"></i>
+
+                                break;
+                        }
+                    </div>
+                    <h3 class="details-price">
+                        @if (!string.IsNullOrEmpty(Model.Item1.DiscountPrice))
+                        {
+                            <del>@Model.Item1.Price تومان</del><span>@Model.Item1.DiscountPrice تومان  </span>
+                        }
+                        else
+                        {
+                            <span> @Model.Item1.Price تومان </span>
+                        }
+                    </h3>
+                    <p class="details-desc">@Model.Item1.Summary</p>
+                    <div class="details-list-group">
+                        <label class="details-list-title">برچسب ها:</label>
+                        <ul class="details-tag-list">
+                            @{
+                                string[] tags = Model.Item1.Tags.Split("-");
+                                ViewBag.tags = tags;
+                            }
+                            @if (ViewBag.tags != null)
+                            {
+                                @foreach (var tag in ViewBag.tags)
+                                {
+                                    <li><a>@Html.Raw(tag)</a></li>
+                                }
+                            }
+                        </ul>
+                    </div>
+                    <div class="details-list-group">
+                        <label class="details-list-title">تعدا د پک های موجود:</label>
+                        <div>@Model.Item1.Count</div>
+                    </div>
+
+                    <div class="details-list-group">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">کربوهیدرات</th>
+                                    <th scope="col">کالری</th>
+                                    <th scope="col">پروتئین</th>
+                                    <th scope="col">چربی</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+
+                                    <td class="table-primary">@Model.Item1.FoodCarbohydrate</td>
+                                    <td class="table-success">@Model.Item1.FoodCalories</td>
+                                    <td class="table-warning">@Model.Item1.FoodProtein</td>
+                                    <td class="table-danger">@Model.Item1.FoodFat</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                    <div class="details-action-group">
+                             @if (User.Identity != null && User.Identity.IsAuthenticated)
+                        {
+                            <a class="view-compare text-white bg-primary" onclick="AddToCart('@Model.Item1.Id')"><i class="far fa-shopping-cart text-white"></i><span>افزودن به سبد خرید</span></a>
+                            <a class="view-wish wish" onclick="AddFavorite('@Model.Item1.Id')" title="لیست علاقه مندی های خود را اضافه کنید"><i class="far fa-heart"></i><span>به آرزو اضافه کردن</span></a>
+                 
+                        }
+                        else
+                        {
+                            <a class="view-compare text-white bg-primary" onclick="LoginError()"><i class="far fa-shopping-cart text-white"></i><span>افزودن به سبد خرید</span></a>
+                            <a class="view-wish wish" onclick="LoginError()" title="لیست علاقه مندی های خود را اضافه کنید"><i class="far fa-heart"></i><span>به آرزو اضافه کردن</span></a>
+                 
+                        }
+                        
+                        
+                    </div>
+                    <div class="details-list-group mt-4">
+                        <label class="details-list-title">اشتراک گذاری:</label>
+                        <ul class="details-share-list">
+                            <li><a href="https://www.facebook.com/sharer/sharer.php?u=@Url.Action("FoodDetail","Food",new{id=Model.Item1.Id})" class="fab fa-facebook-f"></a></li>
+                            <li><a href="https://twitter.com/intent/tweet?url=@(Url.Action("FoodDetail","Food",new{id=Model.Item1.Id}))" class="fab fa-twitter"></a></li>
+                            <li><a href="https://t.me/share/url?url=@(Url.Action("FoodDetail","Food",new{id=Model.Item1.Id}))" class="fab fa-telegram"></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="inner-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <ul class="nav nav-tabs">
+                    <li><a href="#tab-desc" class="tab-link active" data-bs-toggle="tab">توصیفات</a></li>
+                    <li><a href="#tab-spec" class="tab-link" data-bs-toggle="tab">اطلاعات اضافی</a></li>
+                    <li><a href="#tab-reve" class="tab-link" data-bs-toggle="tab">نظرات</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="tab-pane active" id="tab-desc">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="product-details-frame product-details">
+                        <div class="tab-descrip">
+
+                            @Html.Raw(Model.Item1.Body)
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="product-details-frame">
+                        <div class="tab-descrip">
+                            <style>
+                                .h_iframe-aparat_embed_frame {
+                                    position: relative;
+                                }
+
+                                    .h_iframe-aparat_embed_frame .ratio {
+                                        display: block;
+                                        width: 100%;
+                                        height: auto;
+                                    }
+
+                                    .h_iframe-aparat_embed_frame iframe {
+                                        position: absolute;
+                                        top: 0;
+                                        left: 0;
+                                        width: 100%;
+                                        height: 100%;
+                                    }
+                            </style><div class="h_iframe-aparat_embed_frame"><span style="display: block;padding-top: 57%"></span><iframe src="@Model.Item1.Link" allowFullScreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane" id="tab-spec">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="product-details-frame">
+                        <table class="table table-bordered">
+                            <tbody>
+                                @foreach (var item in Model.Item3)
+                                {
+                                    <tr>
+                                        <th scope="row">@item.Title</th>
+                                        <td>@item.Value</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane" id="tab-reve">
+            <div class="row">
+                <div class="col-lg-12">
+
+
+                    @await Component.InvokeAsync("CommentFoodComponent", @Model.Item1.Id)
+                    <div class="product-details-frame p-5">
+                        <h3 class="frame-title">بررسی خود را اضافه کنید</h3>
+                        <input type="hidden" id="food" value="@Model.Item1.Id" />
+                        <div class="row">
+
+
+                            <div class="col-lg-12">
+                                <div class="form-group bg-white"><textarea class="form-control" id="text" placeholder="دیدگاه خود را بنویسید..."></textarea></div>
+                            </div>
+                            
+                            
+                            
+                            
+                            @{
+                                System.Diagnostics.Debug.Assert(User.Identity != null, "User.Identity != null");
+                            }
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                               
+                                <div class="col-lg-12">
+                                    <button onclick="CommentFood()" class="btn btn-inline"><i class="far fa-paper-plane"></i><span>ثبت دیدگاه</span></button>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="col-lg-12">
+                                    <button onclick="LoginError()" class="form-btn">ارسال نظر</button>          </div>
+                              
+                            }
+                            
+                            
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@section Header{
+    @await Component.InvokeAsync("SeoFoodComponent", Model.Item1.Id)
+}

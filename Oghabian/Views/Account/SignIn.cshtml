@@ -1,0 +1,60 @@
+﻿@model SignInViewModel
+@{
+    ViewData["Title"] = "ورود به سایت";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section class="user-form-part">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-sm-10 col-md-8 col-lg-5 col-xl-5">
+
+                <div class="user-form-card">
+                    <div class="user-form-title">
+                        <h2>خوش آمدید!</h2>
+                        <p>حساب خود را با ایمیل و رمز ورود وارد کنید</p>
+                        @if (ViewBag.Alert != null)
+                        {
+                            <div class="alert alert-warning p-3 rounded-3">
+                                @ViewBag.Alert
+                            </div>
+                        }
+                    </div>
+                    <form class="user-form" asp-controller="Account" asp-action="SignIn">
+                        <div class="form-group">
+                            <label>پست الکترونیک</label>
+                            <input type="email" asp-for="Mail" class="form-control" placeholder="پست الکترونیک خود را وارد کنید">
+                        </div><span class="text-danger" asp-validation-for="Mail"></span>
+                        <div class="form-group">
+                            <label>گذر واژه</label>
+                            <input type="password" asp-for="Password" class="form-control" placeholder="گذر واژه خود را وارد کنید">
+                        </div><span class="text-danger" asp-validation-for="Password"></span>
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" asp-for="SaveInfo">
+                                    <label class="form-check-label" for="remember">
+                                        مرا به خاطر بسپار
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-6 text-end">
+                                <a href="/forget" class="forgot-pass">رمز عبور خود را فراموش کرده اید؟</a>
+                            </div>
+                        </div>
+                        <div class="form-button">
+                            <button type="submit">ورود</button>
+                            <p>حساب ندارید؟ <a href="/signup">ثبت نام.</a></p>
+                        </div>
+                    </form>
+                </div>
+                <div class="user-form-footer">
+                    <p>طراحی و توسعه  <a href="https://darnogroup.ir/">گروه فنی و مهندسی دارنو</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@section Footer{
+    <partial name="_ValidationScriptsPartial" />
+
+}

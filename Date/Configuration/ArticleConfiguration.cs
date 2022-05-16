@@ -18,11 +18,15 @@ namespace Date.Configuration
             builder.Property(p => p.ArticleBody).IsRequired();
             builder.Property(p => p.ArticleTitle).IsRequired();
             builder.Property(p => p.CreatedTime).IsRequired();
+            builder.Property(p => p.Summary).IsRequired();
             builder.Property(p => p.TimeStudy).IsRequired();
             builder.Property(p => p.ArticleImage).IsRequired();
             builder.HasMany(m => m.Comments)
                 .WithOne(o => o.Article)
                 .HasForeignKey(f => f.ArticleId);
+            builder.HasOne(o => o.Seo)
+                .WithOne(o => o.Article)
+                .HasForeignKey<ArticleSeoEntity>(f => f.ArticleId);
         }
     }
 }

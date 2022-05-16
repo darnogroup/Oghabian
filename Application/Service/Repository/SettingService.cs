@@ -25,6 +25,7 @@ namespace Application.Service.Repository
             SettingViewModel model = new SettingViewModel();
             if (setting != null)
             {
+                model.Description = setting.Description;
                 model.Instagram = setting.Instagram;
                 model.Linkdin = setting.Linkdin;
                 model.Mail = setting.Mail;
@@ -37,9 +38,14 @@ namespace Application.Service.Repository
                 model.Bank = setting.Bank;
                 model.ApiNumber = setting.ApiNumber;
                 model.ApiSms = setting.ApiSms;
+                model.SendPrice = setting.SendPrice;
+                model.Law = setting.Law;
             }
             else
             {
+                model.SendPrice = "";
+                model.Law = "";
+                model.Description = "";
                 model.TitleSite = "";
                 model.ApiNumber = "";
                 model.ApiSms = "";
@@ -73,7 +79,9 @@ namespace Application.Service.Repository
                 entity.ApiSms = model.ApiSms;
                 entity.ApiNumber = model.ApiNumber;
                 entity.Bank = model.Bank;
-                
+                entity.Description = model.Description;
+                entity.SendPrice = model.SendPrice;
+                entity.Law = model.Law;
                 if (model.Logo != null)
                 {
                     var checkImage = model.Logo.IsImage();
@@ -97,6 +105,7 @@ namespace Application.Service.Repository
 
                     }
                 }
+                setting.Description = model.Description;
                 setting.ApiSms = model.ApiSms;
                 setting.ApiNumber = model.ApiNumber;
                 setting.Bank = model.Bank;
@@ -105,6 +114,8 @@ namespace Application.Service.Repository
                 setting.Mail = model.Mail;
                 setting.TitleSite = model.TitleSite;
                 setting.Number = model.Number;
+                setting.SendPrice = model.SendPrice;
+                setting.Law = model.Law;
                 setting.WhatsApp = model.WhatsApp;
                 setting.FaceBook = model.FaceBook;
                 setting.Address = model.Address;

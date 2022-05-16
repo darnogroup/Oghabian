@@ -1,0 +1,31 @@
+﻿@model Tuple<List<SectionTwoRightViewModel>, SectionOneLeftViewModel>
+   
+<section class="banner-part ">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mb-4">
+                <div class="home-grid-slider slider-arrow slider-dots">
+                 @foreach (var item in Model.Item1)
+                 {
+                     <a href="/"><img src="~/Images/@item.SliderPath" alt="@item.SliderAlt"></a>
+         
+                 }
+                        </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="row">
+                    <div class="col-sm-6 col-lg-12">
+                        <div class="home-grid-promo">
+                            <a href="@Model.Item2.ImageOneLink"><img src="~/Images/@Model.Item2.ImageOne" alt="@Model.Item2.ImageOneAlt"></a>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-12 mt-3">
+                        <div class="home-grid-promo">
+                            <a href="@Model.Item2.ImageTwoLink"><img src="~/Images/@Model.Item2.ImageTwo" alt="@Model.Item2.ImageTwoAlt"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -13,11 +13,9 @@ namespace Date.Configuration
     {
         public void Configure(EntityTypeBuilder<UserEntity> builder)
         {
-            builder.Property(p => p.UserWeight).IsRequired();
             builder.Property(p => p.LoginCode).IsRequired();
             builder.Property(p => p.UserAvatar).IsRequired();
             builder.Property(p => p.UserFullName).IsRequired();
-            builder.Property(p => p.UserHeight).IsRequired();
             builder.Property(p => p.LoginKey).IsRequired();
             builder.Property(p => p.Role).IsRequired();
             builder.HasOne(o => o.Address)
@@ -27,6 +25,13 @@ namespace Date.Configuration
                 .WithOne(o => o.User)
                 .HasForeignKey(f => f.UserId);    
             builder.HasMany(m => m.CommentFood)
+                .WithOne(o => o.User)
+                .HasForeignKey(f => f.UserId);
+            builder.HasOne(o => o.MedicalInformation)
+                .WithOne(o => o.User)
+                .HasForeignKey<MedicalInformationEntity>(m => m.UserId);
+
+            builder.HasMany(m => m.Order)
                 .WithOne(o => o.User)
                 .HasForeignKey(f => f.UserId);
         }

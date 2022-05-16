@@ -1,0 +1,17 @@
+﻿@model List<SectionCategoryViewModel>
+<section class="section suggest-part ">
+    <div class="container">
+        <ul class="suggest-slider slider-arrow">
+            @foreach (var item in Model)
+            {
+                <li>
+                    <a class="suggest-card" href="/Foods?sickness=@item.SectionId">
+                        <img src="~/Images/@item.SectionPath" alt="@item.SectionTitle" height="120" width="200">
+                        <h5>@item.SectionTitle <span>@item.SectionCount مورد</span></h5>
+                    </a>
+                </li>
+            }
+        </ul>
+    </div>
+</section>
+

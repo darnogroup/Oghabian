@@ -1,0 +1,70 @@
+﻿@model SignUpViewModel
+@{
+    ViewData["Title"] = "ثبت نام ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section class="user-form-part">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-sm-10 col-md-8 col-lg-5 col-xl-5">
+            
+                <div class="user-form-card">
+                    <div class="user-form-title">
+                        <h2>ایجاد حساب!</h2>
+                        <p>حساب خود را ثبت کنید و از امکانات سایت استفاده کنید</p>
+                        @if (ViewBag.Alert != null)
+                        {
+                            <div class="alert alert-warning p-3 rounded-3">
+                                @ViewBag.Alert
+                            </div>
+                        }
+                    </div>
+                    <form class="user-form" asp-controller="Account" asp-action="SignUp">
+                        <div class="form-group">
+                            <label>نام و نام خانوادگی</label>
+                            <input type="text" asp-for="FullName" class="form-control" placeholder="نام و نام خانوادگی">
+                        </div>
+                        <span class="text-danger" asp-validation-for="FullName"></span>
+                        <div class="form-group">
+                            <label>پست الکترونیک</label>
+                            <input type="email" asp-for="Mail" class="form-control" placeholder="پست الکترونیک">
+                        </div>
+                        <span class="text-danger" asp-validation-for="Mail"></span>
+                        <div class="form-group">
+                            <label>شماره تماس</label>
+                            <input type="number" asp-for="PhoneNumber" class="form-control" placeholder="شماره تماس">
+                        </div>
+                        <span class="text-danger" asp-validation-for="PhoneNumber"></span>
+                        <div class="form-group">
+                            <label>گذر واژه</label>
+                            <input type="password" asp-for="Password" class="form-control" placeholder="گذر واژه">
+                        </div>
+                        <span class="text-danger" asp-validation-for="Password"></span>
+                        <div class="form-group">
+                            <label>تکرار گذر واژه</label>
+                            <input type="password" asp-for="ComparePassword" class="form-control" placeholder="تکرار گذر واژه">
+                        </div>
+                        <span class="text-danger" asp-validation-for="ComparePassword"></span>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" asp-for="Accept" type="checkbox"  required="" >
+                            <label class="form-check-label" for="agree">
+                                من با <a href="#" class="text-success">شرایط و ضوابط</a> موافقم <a href="#" class="text-success">.</a>
+                            </label>
+                        </div>
+                        <div class="form-button">
+                            <button type="submit">ایجاد حساب کاربری</button>
+                            <p>قبلاً حساب دارید؟ <a href="/SignIn">ورود</a></p>
+                        </div>
+                    </form>
+                </div>
+                <div class="user-form-footer">
+                    <p>طراحی و توسعه  <a href="https://darnogroup.ir/">گروه فنی و مهندسی دارنو</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@section Footer{
+    <partial name="_ValidationScriptsPartial" />
+  
+}

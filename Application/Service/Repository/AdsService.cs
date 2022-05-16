@@ -21,7 +21,7 @@ namespace Application.Service.Repository
         }
         public async Task<AdsViewModel> GetAdsViewModel()
         {
-            AdsViewModel ads=new AdsViewModel();
+            AdsViewModel ads = new AdsViewModel();
             var result = await _ads.GetAds();
             if (result != null)
             {
@@ -51,9 +51,9 @@ namespace Application.Service.Repository
             return ads;
         }
 
-        public void  ChangeAds(AdsViewModel model)
+        public void ChangeAds(AdsViewModel model)
         {
-            var result =  _ads.GetAds().Result;
+            var result = _ads.GetAds().Result;
 
             if (result != null)
             {
@@ -99,23 +99,77 @@ namespace Application.Service.Repository
                         }
                         result.ImageSidebar = ImageProcessing.SaveImage(model.ImageSidebarFile);
                     }
-                }   _ads.Update(result);
+                }
+                _ads.Update(result);
             }
             else
             {
-                AdsEntity ads=new AdsEntity();
-                ads.ImageOneAlt = model.ImageOneAlt;
-                ads.ImageOneLink = model.ImageOneLink;
-                ads.ImageTwoAlt = model.ImageTwoAlt;
-                ads.ImageTwoLink = model.ImageTwoLink;
-                ads.ImageSidebarAlt = model.ImageSidebarAlt;
-                ads.ImageSidebarLink = model.ImageSidebarLink;
+                AdsEntity ads = new AdsEntity();
+
+
+                if (!String.IsNullOrEmpty(model.ImageOneAlt))
+                {
+                    ads.ImageOneAlt = model.ImageOneAlt;
+                }
+                else
+                {
+                    ads.ImageOneAlt = "#";
+                }
+                if (!String.IsNullOrEmpty(model.ImageOneLink))
+                {
+                    ads.ImageOneLink = model.ImageOneLink;
+                }
+                else
+                {
+                    ads.ImageOneLink = "#";
+                }
+
+                if (!String.IsNullOrEmpty(model.ImageTwoAlt))
+                {
+                    ads.ImageTwoAlt = model.ImageTwoAlt;
+                }
+                else
+                {
+                    ads.ImageTwoAlt = "#";
+                }
+                if (!String.IsNullOrEmpty(model.ImageTwoLink))
+                {
+                    ads.ImageTwoLink = model.ImageTwoLink;
+                }
+                else
+                {
+                    ads.ImageTwoLink = "#";
+                }
+
+
+
+
+
+
+                if (!String.IsNullOrEmpty(model.ImageSidebarAlt))
+                {
+                    ads.ImageSidebarAlt = model.ImageSidebarAlt;
+                }
+                else
+                {
+                    ads.ImageSidebarAlt = "#";
+                }
+                if (!String.IsNullOrEmpty(model.ImageSidebarLink))
+                {
+                    ads.ImageSidebarLink = model.ImageSidebarLink;
+                }
+                else
+                {
+                    ads.ImageSidebarLink = "#";
+                }
+
+
                 if (model.ImageOneFile != null)
                 {
                     var check = model.ImageOneFile.IsImage();
                     if (check)
                     {
-                      
+
                         ads.ImageOne = ImageProcessing.SaveImage(model.ImageOneFile);
                     }
                 }
@@ -128,7 +182,7 @@ namespace Application.Service.Repository
                     var check = model.ImageTwoFile.IsImage();
                     if (check)
                     {
-                    
+
                         ads.ImageTwo = ImageProcessing.SaveImage(model.ImageTwoFile);
                     }
                 }
@@ -141,7 +195,7 @@ namespace Application.Service.Repository
                     var check = model.ImageSidebarFile.IsImage();
                     if (check)
                     {
-                     
+
                         ads.ImageSidebar = ImageProcessing.SaveImage(model.ImageSidebarFile);
                     }
                 }
@@ -151,7 +205,7 @@ namespace Application.Service.Repository
                 }
                 _ads.Insert(ads);
             }
-         
+
         }
     }
 }

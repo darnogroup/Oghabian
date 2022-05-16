@@ -26,6 +26,8 @@ namespace Application.ViewModel.Food
         public string FoodDescription { set; get; }
         [Required(ErrorMessage = "توضیح مختصر غذا الزامی است")]
         public string FoodSummary { set; get; }
+        [Required(ErrorMessage = " کد غذا الزامی است")]
+        public string FoodCode { set; get; }
         [Required(ErrorMessage = "کالری غذا الزامی است")]
         public string FoodCalories { set; get; }
         [Required(ErrorMessage = "کربوهیدرات غذا الزامی است")]
@@ -40,5 +42,6 @@ namespace Application.ViewModel.Food
         public string MealId { set; get; }
         [Required(ErrorMessage = "بیماری غذا الزامی است")]
         public string SicknessId { set; get; }
+        public int Rate { set; get; }
     }
 }

@@ -1,0 +1,18 @@
+﻿@model LocationViewModel
+<div class="col-lg-6">
+    <div class="account-card">
+        <div class="account-title">
+            <h4>نشانی</h4>
+            <a asp-controller="Profile" asp-action="Address"><i class="fal fa-location"></i> ویرایش نشانی</a>
+        </div>
+        <div class="account-content">
+            <div class="row">
+                <label>استان:@Model.State</label>
+                <label>شهر:@Model.City</label> 
+                <label>کد پستی:@Model.Code</label>
+                <label>نشانی:</label>
+                <p>@Model.Address</p>
+            </div>
+        </div>
+    </div>
+</div>

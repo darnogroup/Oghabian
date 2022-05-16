@@ -63,6 +63,7 @@
                                                 <td>@item.CreateTime</td>
 
                                                 <td>
+                                                    <a role="button" asp-controller="Article" asp-action="Seo" asp-route-id="@item.ArticleId" class="btn btn-outline-primary">بهینه سازی</a>
                                                     <a role="button" asp-controller="Article" asp-action="Edit" asp-route-id="@item.ArticleId" class="btn btn-outline-warning">ویرایش</a>
                                                     <button onclick="DeleteArticle('@item.ArticleId')" class="btn btn-outline-danger">پاک کردن</button>
                                                 </td>

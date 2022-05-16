@@ -1,0 +1,118 @@
+﻿@model MedicalInformationViewModel
+@{
+    ViewData["Title"] = "اطلاعات پزشکی";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<nav class="page-breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/Admin">پیشخوان</a></li>
+        <li class="breadcrumb-item " aria-current="page"><a asp-controller="User" asp-action="Index">لیست  کاربران</a></li>
+        <li class="breadcrumb-item active" aria-current="page">اطلاعات پزشکی</li>
+    </ol>
+</nav>
+
+
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="card-title">اطلاعات پزشکی</h6>
+                @if (ViewBag.Alert != null)
+                {
+                    <div class="alert alert-fill-danger" role="alert">
+                        @ViewBag.Alert
+                    </div>
+                }
+                <form asp-controller="User" asp-action="Medical" enctype="multipart/form-data">
+                    <input type="hidden" asp-for="MedicalId"/>
+                    <input type="hidden" asp-for="UserId"/>
+
+                    <div class="row">
+                            <div class="form-group col-4">
+                                <label>وزن</label>
+                                <input type="number" asp-for="UserWeight" class="form-control" autocomplete="off" placeholder="وزن ">
+                                <span class="text-danger" asp-validation-for="UserWeight"></span>
+                            </div>
+                            <div class="form-group col-4">
+                                <label>قد</label>
+                                <input type="number" asp-for="UserHeight" class="form-control" autocomplete="off" placeholder="قد ">
+                                <span class="text-danger" asp-validation-for="UserHeight"></span>
+                            </div>
+                            <div class="form-group col-4">
+                                <label>سن</label>
+                                <input type="number" asp-for="UserAge" class="form-control" autocomplete="off" placeholder=" سن">
+                                <span class="text-danger" asp-validation-for="UserAge"></span>
+                            </div>
+                    </div> 
+                    
+                    
+                    
+                    
+                    <div class="row">
+                            <div class="form-group col-3">
+                                <label>کالری</label>
+                                <input type="number" asp-for="UserCalories" class="form-control" autocomplete="off" placeholder="کالری">
+                               
+                            </div>
+                            <div class="form-group col-3">
+                                <label>کربوهیدرات</label>
+                                <input type="number" asp-for="UserCarbohydrate" class="form-control" autocomplete="off" placeholder="کربوهیدرات ">
+                              
+                            </div>
+                        <div class="form-group col-3">
+                            <label>چربی</label>
+                            <input type="number" asp-for="UserFat" class="form-control" autocomplete="off" placeholder=" چربی">
+                          
+                        </div>
+                        <div class="form-group col-3">
+                                <label>پروتئین</label>
+                                <input type="number" asp-for="UserProtein" class="form-control" autocomplete="off" placeholder=" پروتئین">
+                              
+                            </div>
+                        </div>
+                    <div class="row">
+                      
+                        <div class="form-group col-6">
+                                <label>انتخاب بیماری</label>
+                                <select class="form-control"  asp-for="SicknessId" asp-items="@ViewBag.Sickness">
+                                    <option selected="" disabled="">یک  گزینه را انتخاب کنید</option>
+                                </select>   <span class="text-danger" asp-validation-for="SicknessId"></span>
+                            </div>
+                                  <div class="form-group col-6">
+                                      <label>جنسیت</label>
+                                      <select class="form-control" asp-items="Html.GetEnumSelectList<GenderEnumViewModel>()" asp-for="Gender">
+                                          <option selected="" disabled="">یک  گزینه را انتخاب کنید</option>
+                                      </select>   <span class="text-danger" asp-validation-for="Gender"></span>
+                                  </div>
+                
+                        <input type="hidden" asp-for="UserFileDownload" class="form-control"  />
+                  
+                        <div class="form-group col-4">
+                                <label>پرونده پزشکی</label>
+                                <input type="file" asp-for="UserFile" class="form-control" accept=".jpg,.png,.pdf" />
+
+                            </div>        <div class="form-group col-8">
+                            <label>پرونده پزشکی</label><br/>
+                         @if (!string.IsNullOrEmpty(Model.UserFileDownload))
+                         {
+                             <p class="mt-2">برای مشاهده و دانلود پرونده پزشکی اینجا کلیک کنید:<a href="~/File/@Model.UserFileDownload">دانلود پرونده پزشکی</a></p>
+                         }
+                         else
+                         {
+                             <p class="mt-2">برای مشاهده و دانلود پرونده پزشکی اینجا کلیک کنید:<a class="text-danger">فایلی آپلود نشده</a></p>
+                         }
+                            </div>
+                 
+                    </div>
+                    <button type="submit" class="btn btn-primary ml-2">ثبت</button>
+                    <a role="button" href="/Admin/Users" class="btn btn-light">لغو</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section Footer{
+    <partial name="_ValidationScriptsPartial" />
+    <script src="https://cdn.ckeditor.com/4.18.0/full/ckeditor.js"></script>
+}

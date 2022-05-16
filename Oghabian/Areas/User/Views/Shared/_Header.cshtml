@@ -1,0 +1,34 @@
+﻿@using System.Security.Claims
+<div class="header-part">
+    <div class="container">
+        <div class="header-content-group">
+            <div class="header-widget-group left">
+                <button class="header-widget header-user" title="حساب من"><img src="~/assets/img/us2er.jpg" alt="کاربر"></button>
+                <a class="header-logo" href="index.html"><img src="~/assets/img/logo.png" alt="لوگو"></a>
+                <button class="header-widget header-src" title="نوار جستجو"><i class="far fa-search"></i></button>
+                <button class="header-widget header-cate" title="لیست دسته بندی"><i class="flaticon-menu-1"></i></button>
+            </div>
+            <form class="header-form">
+                <input type="text" placeholder="مورد خود را در اینجا جستجو کنید ..."><button><i class="far fa-search"></i></button>
+            </form>
+            <div class="header-widget-group right">
+              
+               
+                
+               
+                @if (User.Identity != null && User.Identity.IsAuthenticated)
+                {
+                    <a class="header-widget" href="login.html" title="حساب من"><img src="~/Images/@User.Claims.FirstOrDefault(c=>c.Type=="Avatar").Value" alt="کاربر"></a>
+                    <a class="header-widget" href="wishlist.html" title="لیست علاقه مندیها"><i class="far fa-heart"></i><sup>3</sup></a>
+                    <button class="header-widget header-cart" title="سبد خرید"><i class="far fa-shopping-cart"></i><sup>5</sup></button>
+          
+                }
+                else
+                {
+                    <a class="header-widget" href="/SignUp" title="ثبت نام"><i class="far fa-user-plus"></i></a> 
+                    <a class="header-widget" href="/SignIn" title="ورود به سایت"><i class="far fa-user"></i></a> 
+                }
+                  </div>
+        </div>
+    </div>
+</div>

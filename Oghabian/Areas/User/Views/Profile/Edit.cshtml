@@ -1,0 +1,51 @@
+﻿@model EditProfileViewModel
+@{
+    ViewData["Title"] = "ویرایش پروفایل";
+    Layout = "~/Areas/User/Views/Shared/_UserLayout.cshtml";
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+        
+        <div class="user-form-card mt-5 col-xl-6 col-lg-6 col-md-12 col-sm-12">
+            <div class="user-form-title">
+                <img src="~/Images/@Model.ImagePath" id="image"  width="200" height="200">
+                <h2>ویرایش پروفایل</h2>
+                <p>گذر واژه و آواتار خود را ویرایش کنید</p>
+                @if (ViewBag.Alert != null)
+                {
+                    <div class="alert alert-warning p-3 rounded-3">
+                        @ViewBag.Alert
+                    </div>
+                }
+            </div>
+            <form asp-controller="Profile" asp-action="Edit" class="user-form" enctype="multipart/form-data">
+                <div class="form-group"><input type="hidden" asp-for="ImagePath"/>
+                    <label>رمز عبور قدیمی</label>
+                    <input type="password" class="form-control" asp-for="OldPassword" placeholder="رمز ورود قدیمی را وارد کنید">
+                </div>
+                <div class="form-group">
+                    <label>رمز عبور جدید</label>
+                    <input type="password" class="form-control" asp-for="Password" placeholder="گذرواژه جدید وارد کنید">
+                </div>
+                <div class="form-group">
+                    <label>رمز ورود را تأیید کنید</label>
+                    <input type="password" class="form-control" asp-for="ComparePassword" placeholder="رمز ورود را تأیید کنید">
+                </div>
+                <div class="form-group col-4">
+                    <label>آپلود تصویر پروفایل</label>
+                    <input type="file" id="imagePath" onchange="ChangeImage(this)" asp-for="Image" class="form-control " />
+          
+                </div>
+                <div class="form-button">
+                    <button type="submit">ثبت تغییرات</button>
+
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+@section Footer{
+    <partial name="_ValidationScriptsPartial" />
+}

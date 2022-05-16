@@ -16,5 +16,7 @@ namespace Application.Service.Interface
         bool UpdateArticle(UpdateArticleViewModel model);
         bool DeleteArticle(string id);
         Task<List<SelectViewModel>> GetCategories();
+        Task<ArticleSeoViewModel> GetSeoViewModel(string id);
+        void ChangeSeo(ArticleSeoViewModel model);
     }
 }

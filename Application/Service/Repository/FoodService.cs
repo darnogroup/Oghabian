@@ -19,10 +19,13 @@ namespace Application.Service.Repository
 
         private readonly IGeneralInterface _general;
 
-        public FoodService(IFoodInterface food, IGeneralInterface general)
+        private readonly IGalleryInterface _gallery;
+
+        public FoodService(IFoodInterface food, IGeneralInterface general, IGalleryInterface gallery)
         {
             _food = food;
             _general = general;
+            _gallery = gallery;
         }
         public Tuple<List<FoodViewModel>, int, int> GetFoods(int page, string search = "")
         {
@@ -36,7 +39,7 @@ namespace Application.Service.Repository
             {
                 food.Add(new FoodViewModel()
                 {
-                    FoodPrice = item.FoodPrice,
+                    FoodPrice = item.FoodPrice.ToString("#,0"),
                     FoodTitle = item.FoodTitle,
                     FoodImage = item.FoodImage,
                     FoodCount = item.FoodCount,
@@ -52,13 +55,15 @@ namespace Application.Service.Repository
             UpdateFoodViewModel food = new UpdateFoodViewModel();
             food.SicknessId = result.SicknessId;
             food.MealId = result.MealId;
-            food.FoodPrice = result.FoodPrice;
+            food.FoodPrice = result.FoodPrice.ToString();
             food.FoodTitle = result.FoodTitle;
             food.FoodImagePath = result.FoodImage;
             food.FoodCount = result.FoodCount;
             food.FoodSummary = result.FoodSummary;
             food.FoodLink = result.FoodLink;
-            food.FoodDiscountPrice = result.FoodDiscountPrice;
+            food.Rate = result.Rate;
+            food.FoodCode = result.FoodCode;
+            food.FoodDiscountPrice = result.FoodDiscountPrice.ToString();
             food.FoodCalories = result.FoodCalories;
             food.FoodCarbohydrate = result.FoodCarbohydrate;
             food.FoodDescription = result.FoodDescription;
@@ -75,16 +80,17 @@ namespace Application.Service.Repository
             food.Time = DateTime.Now;
             food.SicknessId = model.SicknessId;
             food.MealId = model.MealId;
-            food.FoodPrice = model.FoodPrice;
+            food.FoodPrice = Convert.ToInt32(model.FoodPrice);
             food.FoodTitle = model.FoodTitle;
             food.FoodCount = model.FoodCount;
             food.FoodSummary = model.FoodSummary;
             food.FoodLink = model.FoodLink;
-            food.FoodDiscountPrice = model.FoodDiscountPrice;
+            food.Rate = model.Rate;
+            food.FoodDiscountPrice =Convert.ToInt32(model.FoodDiscountPrice);
             food.FoodCalories = model.FoodCalories;
             food.FoodCarbohydrate = model.FoodCarbohydrate;
             food.FoodDescription = model.FoodDescription;
-            food.FoodFat = model.FoodFat;
+            food.FoodFat = model.FoodFat; food.FoodCode = model.FoodCode;
             food.FoodTags = model.FoodTags;
             food.FoodProtein = model.FoodProtein;
             if (model.FoodImage != null)
@@ -103,10 +109,23 @@ namespace Application.Service.Repository
             {
                 food.FoodImage = "notFound.png";
             }
-
+         
             try
             {
                 _food.InsertFood(food);
+
+                FoodSeoEntity entity = new FoodSeoEntity();
+                entity.FoodId = food.FoodId;
+                entity.Description = "";
+                entity.GraphDescription = "";
+                entity.GraphSiteName = "";
+                entity.GraphTitle = "";
+                entity.GraphUrl = "";
+                entity.TwitterDescription = "";
+                entity.TwitterTitle = "";
+                entity.GraphImage = "noImage.jpg";
+                entity.TwitterImage = "noImage.jpg";
+                _food.Insert(entity);
                 return true;
             }
             catch
@@ -120,16 +139,16 @@ namespace Application.Service.Repository
             var food = _food.GetFoodById(model.FoodId).Result;
             food.SicknessId = model.SicknessId;
             food.MealId = model.MealId;
-            food.FoodPrice = model.FoodPrice;
+            food.FoodPrice = Convert.ToInt32(model.FoodPrice);
             food.FoodTitle = model.FoodTitle;
             food.FoodCount = model.FoodCount;
-            food.FoodSummary = model.FoodSummary;
+            food.FoodSummary = model.FoodSummary; food.FoodCode = model.FoodCode;
             food.FoodLink = model.FoodLink;
-            food.FoodDiscountPrice = model.FoodDiscountPrice;
+            food.FoodDiscountPrice = Convert.ToInt32(model.FoodDiscountPrice);
             food.FoodCalories = model.FoodCalories;
             food.FoodCarbohydrate = model.FoodCarbohydrate;
             food.FoodDescription = model.FoodDescription;
-            food.FoodFat = model.FoodFat;
+            food.FoodFat = model.FoodFat; food.Rate = model.Rate;
             food.FoodTags = model.FoodTags;
             food.FoodProtein = model.FoodProtein;
             if (model.FoodImage != null)
@@ -167,6 +186,14 @@ namespace Application.Service.Repository
                     ImageProcessing.RemoveImage(model.FoodImage);
                 }
 
+                var gallery = _gallery.GetGalleries(id).Result;
+                foreach (var image in gallery)
+                {
+                    _gallery.DeleteGallery(image);
+                }
+
+                var seo = _food.GetSeo(id).Result;
+                _food.DeleteSeo(seo);
                 return true;
             }
             catch
@@ -205,6 +232,67 @@ namespace Application.Service.Repository
             }
 
             return select;
+        }
+
+        public async Task<FoodSeoViewModel> GetSeoViewModel(string id)
+        {
+            var seo = await _food.GetSeo(id);
+            FoodSeoViewModel model = new FoodSeoViewModel();
+            model.FoodId = seo.FoodId;
+                model.GraphDescription = seo.GraphDescription;
+                model.GraphSiteName = seo.GraphSiteName;
+                model.GraphImagePath = seo.GraphImage;
+                model.GraphTitle = seo.GraphTitle;
+                model.GraphUrl = seo.GraphUrl;
+                model.TwitterDescription = seo.TwitterDescription;
+                model.TwitterImagePath = seo.TwitterImage;
+                model.TwitterTitle = seo.TwitterTitle;
+                model.Description = seo.Description;
+                return model;
+        }
+
+        public void ChangeSeo(FoodSeoViewModel model)
+        {
+            var seo = _food.GetSeo(model.FoodId).Result;
+          
+                seo.FoodId = model.FoodId;
+                seo.Description = model.Description;
+                seo.GraphDescription = model.GraphDescription;
+                seo.GraphSiteName = model.GraphSiteName;
+                seo.GraphImage = model.GraphImagePath;
+                seo.GraphTitle = model.GraphTitle;
+                seo.GraphUrl = model.GraphUrl;
+                seo.TwitterDescription = model.TwitterDescription;
+                seo.TwitterImage = model.TwitterImagePath;
+                seo.TwitterTitle = model.TwitterTitle;
+                if (model.GraphImage != null)
+                {
+                    var checkImage = model.GraphImage.IsImage();
+                    if (checkImage)
+                    {
+                        seo.GraphImage = ImageProcessing.SaveImage(model.GraphImage);
+                        if (model.GraphImagePath != "noImage.jpg")
+                        {
+                            ImageProcessing.RemoveImage(model.GraphImagePath);
+                        }
+
+                    }
+                }
+
+                if (model.TwitterImage != null)
+                {
+                    var checkImage = model.TwitterImage.IsImage();
+                    if (checkImage)
+                    {
+                        seo.TwitterImage = ImageProcessing.SaveImage(model.TwitterImage);
+                        if (model.TwitterImagePath != "noImage.jpg")
+                        {
+                            ImageProcessing.RemoveImage(model.TwitterImagePath);
+                        }
+
+                    }
+                }
+                _food.Update(seo);
         }
     }
 }

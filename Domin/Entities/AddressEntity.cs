@@ -8,7 +8,7 @@ namespace Domin.Entities
 {
     public class AddressEntity
     {
-        public string AddressId { set; get; }
+        public string AddressId { set; get; } = Guid.NewGuid().ToString();
         public string AddressText { set; get; }
         public string AddressCode { set; get; }
         public string StateId { set; get; }

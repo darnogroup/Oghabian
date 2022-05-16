@@ -14,6 +14,11 @@ namespace Domin.Interfaces
         void InsertArticle(ArticleEntity article);
         void UpdateArticle(ArticleEntity article);
         void DeleteArticle(ArticleEntity article);
+        void DeleteSeoArticle(ArticleSeoEntity article);
         int CountArticle();
+  
+     Task<ArticleSeoEntity> GetSeo( string article);
+        void Update(ArticleSeoEntity model);
+        void Insert(ArticleSeoEntity model);
     }
 }

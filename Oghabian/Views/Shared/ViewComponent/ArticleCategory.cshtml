@@ -1,0 +1,14 @@
+﻿@model List<CategoryViewModel>
+<div class="blog-widget">
+    <h3 class="blog-widget-title">دسته بندی</h3>
+    <ul class="blog-widget-category">
+        @foreach (var item in Model)
+        {
+            <li>
+                <a 
+                    asp-controller="Article" asp-action="Blogs" asp-route-category="@item.CategoryId" asp-route-search="@ViewBag.Search"
+                    >@item.CategoryTitle<span>@item.Count</span></a>
+            </li>
+        }
+    </ul>
+</div>

@@ -1,0 +1,13 @@
+﻿@model List<MealViewModel>
+
+<div class="blog-widget">
+    <h3 class="blog-widget-title">وعده های غذایی</h3>
+    <ul class="blog-widget-category">
+      @foreach (var item in Model)
+      {
+          <li>
+              <a href="/Foods?calories=@ViewBag.calories&carbohydrate=@ViewBag.carbohydrate&fat=@ViewBag.fat&protein=@ViewBag.protein&meal=@item.MealId&sickness=@ViewBag.section">@item.MealTitle<span>@item.MealCount</span></a>
+          </li>
+      }
+    </ul>
+</div>

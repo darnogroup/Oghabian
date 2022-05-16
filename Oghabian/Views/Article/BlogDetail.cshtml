@@ -1,0 +1,100 @@
+﻿@model BlogDetailViewModel
+@{
+    ViewData["Title"] = Model.Title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section class="inner-section blog-details-part mt-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <article class="blog-details">
+                    <a class="blog-details-thumb"><img src="~/Images/@Model.ImagePath" alt="@Model.Title"></a>
+                    <div class="blog-details-content">
+                        <ul class="blog-details-meta">
+                            <li><i class="far fa-calendar"></i><span>@Model.CreateTime</span></li>
+                            <li><i class="fa fa-alarm-clock"></i><span>زمان مطالعه:@Model.Time</span></li>
+                            <li><i class="fa fa-eye"></i><span>بازدید:@Model.Visit</span></li>
+                            <li><i class="fa fa-book"></i><span>دسته بندی:@Model.Category</span></li>
+                        </ul>
+                        <h2 class="blog-details-title">@Model.Title</h2>
+                        <p class="blog-details-desc">
+                            @Html.Raw(Model.Body)
+                        </p>
+
+                        <div class="blog-details-footer">
+                            <ul class="blog-details-share">
+                                <h4>اشتراک گذاری:</h4>
+                                <li><a href="https://www.facebook.com/sharer/sharer.php?u=@Url.Action("BlogDetail","Article",new{id=Model.BlogId})" class="fab fa-facebook-f"></a></li>
+                                <li><a href="https://twitter.com/intent/tweet?url=@(Url.Action("BlogDetail","Article",new{id=Model.BlogId}))" class="fab fa-twitter"></a></li>
+                                <li><a href="https://t.me/share/url?url=@(Url.Action("BlogDetail","Article",new{id=Model.BlogId}))" class="fab fa-telegram"></a></li>
+                            </ul>
+                            <ul class="blog-details-tag">
+                                <h4>برچسب ها:</h4>
+                                @{
+                                    string[] tags = Model.Tags.Split("-");
+                                    ViewBag.tags = tags;
+                                }
+                                @if (ViewBag.tags != null)
+                                {
+                                    @foreach (var tag in ViewBag.tags)
+                                    {
+                                        <li><a>@Html.Raw(tag)</a></li>
+                                    }
+                                }
+
+
+
+
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+
+                @await Component.InvokeAsync("CommentArticleComponent",Model.BlogId)
+
+                <h3 class="details-form-title">ارسال نظر</h3>
+                <div class="row">
+                    <input type="hidden" asp-for="BlogId" id="article" />
+                    <div class="col-lg-12">
+                        <div class="form-group"><textarea id="text" class="form-control bg-white" placeholder="نظر خود را بنویسید"></textarea></div>
+                    </div>
+                </div>
+
+
+                @{
+                    System.Diagnostics.Debug.Assert(User.Identity != null, "User.Identity != null");
+                }
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <button onclick="CommentArticle()" class="form-btn">ارسال نظر</button>
+                }
+                else
+                {
+                    <button onclick="LoginError()" class="form-btn">ارسال نظر</button>
+                }
+            </div>
+
+
+
+            <div class="col-lg-4">
+                <div class="blog-widget">
+                    <h3 class="blog-widget-title">جستجو کردن</h3>
+                    <form href="/Blogs" class="blog-widget-form">
+                        <input type="text" name="search" placeholder="جستجو کردن...">
+                        <button type="submit" class="far fa-search"></button>
+                    </form>
+                </div>
+
+                @await Component.InvokeAsync("LastArticleComponent")
+                @await Component.InvokeAsync("ArticleCategoryComponent")
+                @await Component.InvokeAsync("SocialComponent")
+                @await Component.InvokeAsync("SaidBarAdsComponent")
+
+
+            </div>
+        </div>
+    </div>
+</section>
+@section Header{
+    @await Component.InvokeAsync("SeoArticleComponent",Model.BlogId)
+}

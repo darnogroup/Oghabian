@@ -19,6 +19,9 @@ namespace Date.Configuration
             builder.HasMany(m => m.Food)
                 .WithOne(o => o.Sickness)
                 .HasForeignKey(f => f.SicknessId);
+           builder.HasMany(m=>m.MedicalInformation)
+               .WithOne(o=>o.Sickness)
+               .HasForeignKey(f=>f.SicknessId);
 
         }
     }

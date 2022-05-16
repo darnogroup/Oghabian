@@ -16,9 +16,10 @@ namespace Domin.Entities
         public string ArticleTags { set; get; }
         public DateTime CreatedTime { set; get; } = DateTime.Now;
         public string TimeStudy { set; get; }
-        
+        public string Summary { set; get; }
         public string CategoryId { set; get; }
         public CategoryEntity Category { set; get; }
         public IEnumerable<CommentArticleEntity> Comments { set; get; }
+        public ArticleSeoEntity Seo { set; get; }
     }
 }

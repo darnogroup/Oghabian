@@ -1,0 +1,17 @@
+﻿@model List<CommentFoodViewModel>
+    <div class="product-details-frame">
+        <ul class="review-list">
+          @foreach (var item in Model)
+          {
+              <li class="review-item">
+                  <div class="review-media">
+                      <a class="review-avatar"><img  width="150" height="60"  src="~/Images/@item.Avatar" alt="@item.Name"></a>
+                      <h5 class="review-meta"><a>@item.Name </a><span>@item.Time</span></h5>
+</div>
+                  <p class="review-desc">
+                      @item.Body
+                      </p>
+              </li>
+          }
+        </ul>
+    </div>

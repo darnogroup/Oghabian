@@ -10,8 +10,9 @@ namespace Domin.Entities
     {
         public string FoodId { set; get; } = Guid.NewGuid().ToString();
         public string FoodTitle { set; get; }
-        public string FoodPrice { set; get; }
-        public string FoodDiscountPrice { set; get; }
+        public int FoodPrice { set; get; }
+        public int Rate { set; get; }
+        public int FoodDiscountPrice { set; get; }
         public string FoodImage { set; get; }
         public string FoodCount { set; get; }
         public string FoodTags { set; get; }
@@ -20,6 +21,7 @@ namespace Domin.Entities
         public string FoodCalories { set; get; }
         public string FoodCarbohydrate { set; get; }
         public string FoodFat { set; get; }
+        public string FoodCode { set; get; }
         public string FoodProtein { set; get; }
         public string FoodLink { set; get; }
         public DateTime Time { set; get; }
@@ -31,5 +33,7 @@ namespace Domin.Entities
         public IEnumerable<GalleryEntity>Gallery { set; get; }
         public IEnumerable<FavoriteEntity>Favorite { set; get; }
         public IEnumerable<CommentFoodEntity>Comment { set; get; }
+        public FoodSeoEntity Seo { set; get; }
+        public IEnumerable<OrderDetailEntity> OrderDetail { set; get; }
     }
 }

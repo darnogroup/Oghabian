@@ -37,8 +37,14 @@ namespace Date.Configuration
                 .HasForeignKey(f => f.FoodId);      
             builder.HasMany(m => m.Comment)
                 .WithOne(o => o.Food)
-                .HasForeignKey(f => f.FoodId);        
-          
+                .HasForeignKey(f => f.FoodId);
+            builder.HasOne(o => o.Seo)
+                .WithOne(o => o.Food)
+                .HasForeignKey<FoodSeoEntity>(f => f.FoodId);
+
+            builder.HasMany(m => m.OrderDetail)
+                .WithOne(o => o.Food)
+                .HasForeignKey(f => f.FoodId);
         }
     }
 }

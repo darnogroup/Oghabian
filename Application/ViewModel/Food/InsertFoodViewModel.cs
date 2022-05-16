@@ -39,5 +39,8 @@ namespace Application.ViewModel.Food
         public string MealId { set; get; }
         [Required(ErrorMessage = "بیماری غذا الزامی است")]
         public string SicknessId { set; get; }
+        public int Rate { set; get; }
+        [Required(ErrorMessage = " کد غذا الزامی است")]
+        public string FoodCode { set; get; }
     }
 }

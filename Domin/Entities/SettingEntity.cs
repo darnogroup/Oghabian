@@ -21,5 +21,8 @@ namespace Domin.Entities
         public string ApiSms { set; get; }
         public string ApiNumber { set; get; }
         public string Address { set; get; }
+        public string Description { set; get; }
+        public string Law { set; get; }
+        public string SendPrice { set; get; }
     }
 }

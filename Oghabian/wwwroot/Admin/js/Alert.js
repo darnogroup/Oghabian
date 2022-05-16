@@ -526,3 +526,84 @@ function DeleteSlider(id) {
         }
     });
 }
+
+function DeleteRole(id) {
+    Swal.fire({
+        title: 'آیا نقش پاک شود؟',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'بله پاک شود',
+        cancelButtonText: 'انصراف'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            var check = $.get("/Admin/Role/Delete/" + id);
+            if (check) {
+                $("#item_" + id).hide('slow');
+
+                Swal.fire({
+                    title: 'عملیات موفقیت آمیز بود',
+                    icon: 'success',
+
+                    confirmButtonColor: '#3085d6',
+
+                    confirmButtonText: 'تائید',
+
+                });
+            } else {
+
+
+                Swal.fire({
+                    title: 'عملیات انجام نشد',
+                    icon: 'error',
+
+                    confirmButtonColor: '#3085d6',
+
+                    confirmButtonText: 'تائید',
+
+                });
+            }
+        }
+    });
+}
+function DeleteUser(id) {
+    Swal.fire({
+        title: 'آیا کاربر  پاک شود؟',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'بله پاک شود',
+        cancelButtonText: 'انصراف'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            var check = $.get("/Admin/User/Delete/" + id);
+            if (check) {
+                $("#item_" + id).hide('slow');
+
+                Swal.fire({
+                    title: 'عملیات موفقیت آمیز بود',
+                    icon: 'success',
+
+                    confirmButtonColor: '#3085d6',
+
+                    confirmButtonText: 'تائید',
+
+                });
+            } else {
+
+
+                Swal.fire({
+                    title: 'عملیات انجام نشد',
+                    icon: 'error',
+
+                    confirmButtonColor: '#3085d6',
+
+                    confirmButtonText: 'تائید',
+
+                });
+            }
+        }
+    });
+}

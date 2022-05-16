@@ -1,0 +1,96 @@
+﻿@model ProfileViewModel
+@{
+    ViewData["Title"] = "حساب کاربری";
+    Layout = "~/Areas/User/Views/Shared/_UserLayout.cshtml";
+}
+
+<section class="inner-section profile-part mt-5">
+    <div class="container">
+        <div class="row">
+
+            <div class="account-card p-4 text-center">
+                <a href="/Profile/Medical" class="btn-btn-sm btn-primary p-2 rounded-3 col-xl-2 col-lg-2 col-md-6 col-sm-12 mt-1">اطلاعات پزشکی</a>
+                <a class="btn-btn-sm btn-primary p-2 rounded-3 col-xl-2 col-lg-2 col-md-6 col-sm-12 mt-1"> ویرایش نمایه</a>
+                <a class="btn-btn-sm btn-primary p-2 rounded-3 col-xl-2 col-lg-2 col-md-6 col-sm-12 mt-1"> ویرایش نمایه</a>
+                <a class="btn-btn-sm btn-primary p-2 rounded-3 col-xl-2 col-lg-2 col-md-6 col-sm-12 mt-1"> ویرایش نمایه</a>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="account-card">
+                    <div class="account-title">
+                        <h4>مشخصات شما</h4>
+                        <a asp-controller="Profile" asp-action="Edit"><i class="fal fa-edit"></i> ویرایش نمایه</a>
+                    </div>
+                    <div class="account-content">
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <div class="profile-image">
+                                    <a><img src="~/Images/@Model.Avatar" alt="@Model.Name"></a>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-5">
+                                <div class="form-group"><label class="form-label">نام</label><input class="form-control" disabled="disabled" type="text" value="@Model.Name"></div>
+                            </div>
+                            <div class="col-md-6 col-lg-5">
+                                <div class="form-group"><label class="form-label">پست الکترونیک</label><input class="form-control" disabled="disabled" type="email" value="@Model.Mail"></div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            @await Component.InvokeAsync("LocationComponent",Model.Id)
+
+
+            <div class="col-lg-12">
+
+                <div class="account-card p-2">
+                    <div class="account-title">
+                        <h4>مشخصات شما</h4>
+
+                    </div>
+                    <div class="table-scroll ">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">First</th>
+                                    <th scope="col">Last</th>
+                                    <th scope="col">Handle</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>mdo</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td>Jacob</td>
+                                    <td>Thornton</td>
+                                    <td>fat</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td>Larry</td>
+                                    <td>the Bird</td>
+                                    <td>twitter</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

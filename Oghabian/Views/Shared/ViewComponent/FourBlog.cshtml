@@ -1,0 +1,33 @@
+﻿@model List<BlogViewModel>
+
+<section class="section blog-part">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-heading"><h2>آخرین مقالات</h2></div>
+            </div>
+        </div>
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-4 col-sm-6">
+                    <div class="blog-card">
+                        <div class="blog-media">
+                            <a class="blog-img" asp-controller="Article" asp-action="BlogDetail" asp-route-id="@item.BlogId"><img src="~/Images/@item.ImagePath" alt="@item.Title"></a>
+                            <div class="blog-calender w-50"><span class="blog-date">@item.CreateTime</span></div>
+                        </div>
+                        <div class="blog-content">
+                            <ul class="blog-meta">
+                                <li><i class="fa fa-alarm-clock"></i><span>زمان مطالعه:@item.Time</span></li>
+                                <li><i class="fa fa-eye"></i><span>بازدید:@item.Visit</span></li>
+                                <li><i class="fa fa-book"></i><span>دسته بندی:@item.Category</span></li>
+                            </ul>
+                            <h4 class="blog-title"><a asp-controller="Article" asp-action="BlogDetail" asp-route-id="@item.BlogId">@item.Title</a></h4>
+                            <a class="blog-btn" asp-controller="Article" asp-action="BlogDetail" asp-route-id="@item.BlogId"><span> ادامه مطلب </span> <i class="far fa-long-arrow-left"></i></a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>

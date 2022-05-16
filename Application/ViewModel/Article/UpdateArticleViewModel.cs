@@ -28,5 +28,7 @@ namespace Application.ViewModel.Article
         [Required(ErrorMessage = "دسته بندی  مقاله انتخاب  نشده است")]
         public string CategoryId { set; get; }
         public string ArticleId { set; get; }
+        [Required(ErrorMessage = "خلاصه  مقاله انتخاب  نشده است")]
+        public string Summary { set; get; }
     }
 }

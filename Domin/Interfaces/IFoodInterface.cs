@@ -14,6 +14,10 @@ namespace Domin.Interfaces
         void InsertFood(FoodEntity food);
         void UpdateFood(FoodEntity food);
         void DeleteFood(FoodEntity food);
+        void DeleteSeo(FoodSeoEntity food);
         int CountFood();
+        Task<FoodSeoEntity> GetSeo(string food);
+        void Update(FoodSeoEntity model);
+        void Insert(FoodSeoEntity model);
     }
 }
