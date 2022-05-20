@@ -1,0 +1,136 @@
+﻿@using Domin.Enum
+@model Tuple<List<TicketViewModel>, int, int>
+@{
+    ViewData["Title"] = "لیست تیکت ها";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<nav class="page-breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/Admin">پیشخوان</a></li>
+        <li class="breadcrumb-item " aria-current="page">لیست تیکت ها</li>
+    </ol>
+</nav>
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-12 email-content">
+                            <div class="email-inbox-header">
+                                <div class="row align-items-center">
+                                    <div class="col-lg-6">
+                                        <div class="email-title mb-2 mb-md-0">
+                                            <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-inbox"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"></polyline><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"></path></svg></span>
+                                            صندوق دریافت
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="email-search">
+                                            <form class="row" href="/Admin/tickets">
+
+                                                <input type="text" name="search" class="form-control col-md-5  w-50" placeholder="جستجو" aria-controls="dataTableExample">
+                                                <button type="submit" class="mr-2 btn btn-outline-warning">
+                                                    فیلتر
+                                                </button>
+                                                <a role="button" class="mr-2 btn btn-outline-info" href="/Admin/tickets">تازه سازی</a>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div><hr>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                              تصویر
+                                            </th>
+                                            <th>
+                                          نام و نام خانوادگی
+                                            </th>
+                                            <th>
+                                                عنوان
+                                            </th>
+                                            <th>
+                                                تاریخ
+                                            </th>
+                                            <th>
+                                               وضعیت
+                                            </th>  <th>
+                                               عملیات
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                      @foreach (var item in Model.Item1)
+                                      {
+                                          <tr>
+                                              <td class="py-1">
+                                                  <img src="~/Images/@item.Avatar" >
+                                              </td>
+                                              <td>
+                                                 @item.UserName
+                                              </td>
+                                              <td>
+                                                @item.TicketTitle
+                                              </td>
+                                              <td>
+                                                 @item.TicketTime
+                                              </td>
+                                              <td>
+                                                  @switch (item.Status)
+                                                  {
+                                                      case MessageStatus.Wait:
+                                                       <span class="badge badge-warning">ارسال پیام از کاربر</span>
+                                                          break;
+                                                      case MessageStatus.Close:
+                                                          <span class="badge badge-dark">بسته شده</span>
+                                                          break;
+                                                      case MessageStatus.Send:
+                                                          <span class="badge badge-success">ارسال پیام برای کاربر</span>
+                                                          break;
+                                              
+                                                  }
+                                              </td> 
+                                              <td>
+                                                 <a asp-controller="Ticket" asp-action="Show" asp-route-id="@item.TicketId" class="text-white btn btn-sm btn-primary">پیام ها</a>
+                                              </td>
+                                          </tr>
+                                      }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        @if (Model.Item2 > 1)
+                        {
+                            <div class="col-sm-12 col-md-12">
+                                <div class="dataTables_paginate paging_simple_numbers" id="dataTableExample_paginate">
+                                    <ul class="pagination">
+                                        <li class="paginate_button page-item previous  @((Model.Item3-1 == 0) ? "disabled" :"")" id="dataTableExample_previous">
+                                            <a href="/Admin/Tickets?page=@(Model.Item3-1)&search=@ViewBag.Search" aria-controls="dataTableExample" data-dt-idx="0" tabindex="0" class="page-link">قبلی</a>
+                                        </li>
+                                        @for (int i = 1; i <= (Model.Item2); i++)
+                                        {
+                                            <li class="paginate_button page-item active @(Model.Item3 == i ? "active" : "")">
+                                                <a href="/Admin/Tickets?page=@i&search=@ViewBag.Search" aria-controls="dataTableExample" data-dt-idx="1" tabindex="0" class="page-link">@i</a>
+                                            </li>
+                                        }
+                                        <li class="paginate_button page-item next @((Model.Item3 + 1 > Model.Item2) ? "disabled" : "")" id="dataTableExample_next">
+                                            <a href="/Admin/Tickets?page=@(Model.Item3+1)&search=@ViewBag.Search" aria-controls="dataTableExample" data-dt-idx="2" tabindex="0" class="page-link">بعدی</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

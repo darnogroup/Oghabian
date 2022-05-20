@@ -9,6 +9,7 @@ using Application.ViewModel.Home.Profile;
 using Application.ViewModel.Selection;
 using Application.ViewModel.User;
 using Domin.Entities;
+using Domin.Enum;
 using Domin.Interfaces;
 
 namespace Application.Service.Repository
@@ -17,11 +18,15 @@ namespace Application.Service.Repository
     {
         private readonly IProfileInterface _profile;
         private readonly IUserInterface _user;
+        private readonly IOrderInterface _order;
+        private readonly ITicketInterface _ticket;
 
-        public ProfileService(IProfileInterface profile, IUserInterface user)
+        public ProfileService(IProfileInterface profile, IUserInterface user, IOrderInterface order, ITicketInterface ticket)
         {
             _profile = profile;
             _user = user;
+            _order = order;
+            _ticket = ticket;
         }
         public async Task<List<SelectViewModel>> GetState()
         {
@@ -140,6 +145,121 @@ namespace Application.Service.Repository
             var model = _profile.GetFavoriteById(favoriteId).Result;
             _profile.DeleteFavorite(model);
         }
-      
+
+        public async Task<List<OrderHistoryViewModel>> OrderHistory(string user)
+        {
+            var orders = await _order.GetUserOrders(user);
+            List<OrderHistoryViewModel>history=new List<OrderHistoryViewModel>();
+            foreach (var item in orders)
+            {
+               history.Add(new OrderHistoryViewModel()
+               {
+                   Condition = ConvertEnum.ConditionToViewModel(item.Condition),
+                   Code = item.Code,
+                   Id = item.OrderId,
+                   Time = item.DateTime.SolarYear()
+               }); 
+            }
+
+            return history;
+        }
+
+        public async Task<List<DetailHistoryViewModel>> GetDetail(string id)
+        {
+            var detail = await _order.GetDetailById(id);
+            List<DetailHistoryViewModel>history=new List<DetailHistoryViewModel>();
+            foreach (var item in detail)
+            {
+                history.Add(new DetailHistoryViewModel()
+                {
+                     Count = item.Count.ToString(),
+                     Image = item.Food.FoodImage,
+                     Price = item.Price.ToString("#,0"),
+                     Title = item.Food.FoodTitle
+                });
+            }
+
+            return history;
+        }
+
+        public void AddTicket(AddTicketViewModel model)
+        {
+            TicketEntity ticket=new TicketEntity();
+            ticket.UserId = model.UserId;
+            ticket.TicketTitle = model.TicketTitle;
+            ticket.Status = MessageStatus.Wait;
+            ticket.CreateTime=DateTime.Now;
+            _ticket.Create(ticket);
+            TicketDetailEntity detail=new TicketDetailEntity();
+            detail.Time=DateTime.Now;
+            detail.UserId = model.UserId;
+            detail.Text = model.TicketBody;
+            detail.TicketId = ticket.TicketId;
+            if (detail.File != null)
+            {
+                var check = model.TicketFile.IsImage();
+                if (check)
+                {
+                    detail.File = ImageProcessing.SaveImage(model.TicketFile);
+                }
+            }
+            _ticket.CreateSub(detail);
+        }
+
+        public async Task<List<TicketsViewModel>> GetUserTicket(string user)
+        {
+            List<TicketsViewModel>tickets=new List<TicketsViewModel>();
+            var result = await _ticket.GetUserTickets(user);
+            foreach (var item in result)
+            {
+                tickets.Add(new TicketsViewModel()
+                {
+                    TicketTitle = item.TicketTitle,
+                    Status = item.Status,
+                    TicketId = item.TicketId,
+                    TicketTime = item.CreateTime.SolarYear()
+                });
+            }
+
+            return tickets;
+        }
+
+        public async Task<List<TicketMessageViewModel>> GetMessages(string ticket)
+        {
+            var result = await _ticket.GetSubTicket(ticket);
+            var list = result.OrderByDescending(o => o.Time).ToList();
+            List<TicketMessageViewModel>message=new List<TicketMessageViewModel>();
+            foreach (var item in list)
+            {
+                message.Add(new TicketMessageViewModel()
+                {
+                    Path = item.File,
+                    Text = item.Text,
+                    UserId = item.UserId
+                });
+            }
+
+            return message;
+        }
+
+        public void AddNewTicket(AddNewTicketViewModel model)
+        {
+       TicketDetailEntity detail = new TicketDetailEntity();
+            detail.Time = DateTime.Now;
+            detail.UserId = model.UserId;
+            detail.Text = model.TicketBody;
+            detail.TicketId = model.Id;
+            if (model.TicketFile != null)
+            {
+                var check = model.TicketFile.IsImage();
+                if (check)
+                {
+                    detail.File = ImageProcessing.SaveImage(model.TicketFile);
+                }
+            }
+
+            _ticket.CreateSub(detail);
+
+        }
     }
 }

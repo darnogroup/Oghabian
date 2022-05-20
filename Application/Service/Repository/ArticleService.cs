@@ -18,11 +18,13 @@ namespace Application.Service.Repository
     {
         private readonly IArticleInterface _article;
         private readonly IGeneralInterface _general;
+        private readonly ICommentArticleInterface _comment;
 
-        public ArticleService(IArticleInterface article, IGeneralInterface general)
+        public ArticleService(IArticleInterface article, IGeneralInterface general, ICommentArticleInterface comment)
         {
             _article = article;
             _general = general;
+            _comment = comment;
         }
         public Tuple<List<ArticleViewModel>, int, int> GetArticles(int page, string search = "")
         {
@@ -243,5 +245,53 @@ namespace Application.Service.Repository
 
                 _article.Update(seo);
             }
+
+        public Tuple<List<CommentArticleViewModel>, int, int> GetComment(string id, int page = 1, string search = "")
+        {
+            int pageSelected = page;
+            int count = _comment.CountCommentArticle(id).PageCount(10);
+            int pageSkip = (page - 1) * 10;
+            var list = _comment.GetCommentArticles(id, search, pageSkip).Result;
+            List<CommentArticleViewModel> comment = new List<CommentArticleViewModel>();
+
+            foreach (var item in list)
+            {
+                comment.Add(new CommentArticleViewModel()
+                {
+                 Time = item.CreateTime.SolarYear(),
+                 Avatar = item.User.UserAvatar,
+                 FullName = item.User.UserFullName,
+                 Id = item.CommentId
+                });
+            }
+            return Tuple.Create(comment, count, pageSelected);
+        }
+
+        public async Task<CommentArticleDetailViewModel> GetCommentArticleDetail(string id)
+        {
+            var result = await _comment.GetCommentArticleById(id);
+            CommentArticleDetailViewModel comment=new CommentArticleDetailViewModel();
+            comment.Time = result.CreateTime.SolarYear();
+            comment.Avatar = result.User.UserAvatar;
+            comment.Id = result.CommentId;
+            comment.ParentId = result.ArticleId;
+            comment.Body = result.CommentBody;
+            comment.Show = result.Show;
+            comment.Name = result.User.UserFullName;
+            return comment;
+        }
+
+        public void UpdateComment(CommentArticleDetailViewModel model)
+        {
+            var result = _comment.GetCommentArticleById(model.Id).Result;
+            result.Show = model.Show;
+            _comment.UpdateCommentArticle(result);
+        }
+
+        public void DeleteComment(string id)
+        {
+            var result = _comment.GetCommentArticleById(id).Result;
+            _comment.DeleteCommentArticle(result);
+        }
     }
 }

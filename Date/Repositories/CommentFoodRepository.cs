@@ -20,7 +20,7 @@ namespace Date.Repositories
         }
         public async Task<IEnumerable<CommentFoodEntity>> GetCommentFoods(string parentId, string search, int skip)
         {
-            return await _context.CommentFood.OrderByDescending(o => o.CreateTime)
+            return await _context.CommentFood.OrderByDescending(o => o.CreateTime).Include(i=>i.User)
                 .Where(w => w.CommentText.ToLower().Contains(search) && w.FoodId == parentId).Skip(skip)
                 .Take(10).ToListAsync();
         }
@@ -28,7 +28,7 @@ namespace Date.Repositories
 
         public async Task<CommentFoodEntity> GetCommentFoodById(string id)
         {
-            return await _context.CommentFood.FindAsync(id);
+            return await _context.CommentFood.Include(i => i.User).SingleOrDefaultAsync(s => s.CommentId == id);
         }
 
         public void InsertCommentFood(CommentFoodEntity commentFood)
@@ -46,9 +46,9 @@ namespace Date.Repositories
             _context.CommentFood.Remove(commentFood); Save();
         }
 
-        public int CountCommentFood()
+        public int CountCommentFood(string id)
         {
-            return _context.CommentFood.Count();
+            return _context.CommentFood.Count(c=>c.FoodId==id);
         }
 
         public void Save()

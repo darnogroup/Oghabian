@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Application.Other;
 using Application.Service.Interface;
+using Application.ViewModel.Home;
 using Application.ViewModel.Home.Blogs;
 using Application.ViewModel.Home.Component;
 using Application.ViewModel.Home.Foods;
@@ -18,12 +19,14 @@ namespace Application.Service.Repository
         private readonly IComponentInterface _component;
         private readonly IHomeInterface _home;
         private readonly IProfileInterface _profile;
+        private readonly ISeoInterface _seo;
 
-        public ComponentService(IComponentInterface component, IHomeInterface home, IProfileInterface profile)
+        public ComponentService(IComponentInterface component, IHomeInterface home, IProfileInterface profile, ISeoInterface seo)
         {
             _component = component;
             _home = home;
             _profile = profile;
+            _seo = seo;
         }
         public Tuple<List<SectionTwoRightViewModel>, SectionOneLeftViewModel> GetSectionOne()
         {
@@ -233,6 +236,40 @@ namespace Application.Service.Repository
             }
 
             return model;
+        }
+
+        public  async Task<ThreeBannerViewModel> GetThreeBanner()
+        {
+            var result = await _component.GetAds();
+            ThreeBannerViewModel ads=new ThreeBannerViewModel();
+            ads.ImageHomeOne = result.ImageHomeOne;
+            ads.ImageHomeOneAlt = result.ImageHomeOneAlt;
+            ads.ImageHomeOneLink = result.ImageHomeOneLink;
+
+            ads.ImageHomeTwo = result.ImageHomeTwo;
+            ads.ImageHomeTwoAlt = result.ImageHomeTwoAlt;
+            ads.ImageHomeTwoLink = result.ImageHomeTwoLink;
+
+            ads.ImageHomeThree = result.ImageHomeThree;
+            ads.ImageHomeThreeAlt = result.ImageHomeThreeAlt;
+            ads.ImageHomeThreeLink = result.ImageHomeThreeLink;
+            return ads;
+        }
+
+        public async Task<SiteSeoViewModel> GetSeoSite()
+        {
+            var result = await _seo.GetSeo();
+            SiteSeoViewModel seo = new SiteSeoViewModel();
+            seo.GraphUrl = result.GraphUrl;
+            seo.GraphType = result.GraphType;
+            seo.GraphDescription = result.GraphDescription;
+            seo.GraphImagePath = result.GraphImage;
+            seo.GraphTitle = result.GraphTitle;
+            seo.GraphSiteName = result.GraphSiteName;
+            seo.TwitterDescription = result.TwitterDescription;
+            seo.TwitterImagePath = result.TwitterImage;
+            seo.TwitterTitle = result.TwitterTitle;
+            return seo;
         }
     }
 }

@@ -43,6 +43,13 @@ namespace Date.Context
         public virtual DbSet<ArticleSeoEntity>ArticleSeo { set; get; }
         public virtual DbSet<OrderDetailEntity>OrderDetail { set; get; }
         public virtual DbSet<OrderEntity>Order { set; get; }
+        public virtual DbSet<TicketEntity>Ticket { set; get; }
+        public virtual DbSet<TicketDetailEntity>TicketDetail { set; get; }
+        public virtual DbSet<UserQuestionEntity>UserQuestion { set; get; }
+        public virtual DbSet<UserAnswerEntity>UserAnswer { set; get; }
+        public virtual DbSet<RowEntity>Row { set; get; }
+        public virtual DbSet<ColumnEntity>Column { set; get; }
+        public virtual DbSet<ContactEntity>Contact { set; get; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             foreach (var mutableForeignKey in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
@@ -83,6 +90,13 @@ namespace Date.Context
             builder.ApplyConfiguration(new MedicalInformationConfiguration());
             builder.ApplyConfiguration(new OrderConfiguration());
             builder.ApplyConfiguration(new OrderDetailConfiguration());
+            builder.ApplyConfiguration(new TicketConfiguration());
+            builder.ApplyConfiguration(new TicketDetailConfiguration());
+            builder.ApplyConfiguration(new UserQuestionConfiguration());
+            builder.ApplyConfiguration(new UserAnswerConfiguration());
+            builder.ApplyConfiguration(new RowConfiguration());
+            builder.ApplyConfiguration(new ColumnConfiguration());
+            builder.ApplyConfiguration(new ContactConfiguration());
         }
     }
 }

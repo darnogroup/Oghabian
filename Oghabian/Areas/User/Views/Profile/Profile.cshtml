@@ -10,9 +10,9 @@
 
             <div class="account-card p-4 text-center">
                 <a href="/Profile/Medical" class="btn-btn-sm btn-primary p-2 rounded-3 col-xl-2 col-lg-2 col-md-6 col-sm-12 mt-1">اطلاعات پزشکی</a>
-                <a class="btn-btn-sm btn-primary p-2 rounded-3 col-xl-2 col-lg-2 col-md-6 col-sm-12 mt-1"> ویرایش نمایه</a>
-                <a class="btn-btn-sm btn-primary p-2 rounded-3 col-xl-2 col-lg-2 col-md-6 col-sm-12 mt-1"> ویرایش نمایه</a>
-                <a class="btn-btn-sm btn-primary p-2 rounded-3 col-xl-2 col-lg-2 col-md-6 col-sm-12 mt-1"> ویرایش نمایه</a>
+                <a  href="/Profile/OrderHistory" class="btn-btn-sm btn-primary p-2 rounded-3 col-xl-2 col-lg-2 col-md-6 col-sm-12 mt-1"> تاریخچه سفارشات</a>
+                <a  asp-controller="Ticket" asp-action="Ticket" class="btn-btn-sm btn-primary p-2 rounded-3 col-xl-2 col-lg-2 col-md-6 col-sm-12 mt-1">افزودن تیکت</a>
+                <a href="/Profile/Tickets" class="btn-btn-sm btn-primary p-2 rounded-3 col-xl-2 col-lg-2 col-md-6 col-sm-12 mt-1">لیست تیکت ها</a>
 
             </div>
         </div>
@@ -49,47 +49,7 @@
             @await Component.InvokeAsync("LocationComponent",Model.Id)
 
 
-            <div class="col-lg-12">
-
-                <div class="account-card p-2">
-                    <div class="account-title">
-                        <h4>مشخصات شما</h4>
-
-                    </div>
-                    <div class="table-scroll ">
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">First</th>
-                                    <th scope="col">Last</th>
-                                    <th scope="col">Handle</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>mdo</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>fat</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>Larry</td>
-                                    <td>the Bird</td>
-                                    <td>twitter</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+        
 
         </div>
     </div>

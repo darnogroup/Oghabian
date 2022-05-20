@@ -52,9 +52,9 @@ namespace Date.Repositories
                 .SingleOrDefaultAsync(s => s.ArticleId == id);
         }
 
-        public async Task<IEnumerable<FoodEntity>> GetFoods(int skip)
+        public async Task<IEnumerable<FoodEntity>> GetFoods(string search,int skip)
         {
-            return await _context.Food.Include(i=>i.Sickness).Skip(skip).Take(10).ToListAsync();
+            return await _context.Food.Where(w=>w.FoodTitle.ToLower().Contains(search)).Include(i=>i.Sickness).Skip(skip).Take(10).ToListAsync();
         }
 
         public async Task<IEnumerable<FoodEntity>> GetFoodsWithMeal(string meal, int skip)
@@ -178,6 +178,34 @@ namespace Date.Repositories
         public async Task<List<ArticleEntity>> GetFourArticle()
         {
             return await _context.Article.Include(i=>i.Category).Take(4).ToListAsync();
+        }
+
+        public async Task<List<UserQuestionEntity>> UserQuestions()
+        {
+            return await _context.UserQuestion.OrderByDescending(o=>o.CreateTime).Include(i => i.User)
+                .ToListAsync();
+        }
+
+        public async Task<List<UserAnswerEntity>> GetAnswer(string id)
+        {
+            return await _context.UserAnswer.OrderByDescending(o=>o.Time).Include(i => i.User)
+                .Where(w=>w.QuestionId==id)
+                .ToListAsync();
+        }
+
+        public void InsertQuestion(UserQuestionEntity question)
+        {
+            _context.UserQuestion.Add(question);Save();
+        }
+
+        public void InsertAnswer(UserAnswerEntity answer)
+        {
+            _context.UserAnswer.Add(answer);Save();
+        }
+
+        public void Save()
+        {
+            _context.SaveChanges();
         }
     }
 }

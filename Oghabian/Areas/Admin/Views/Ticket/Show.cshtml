@@ -1,0 +1,66 @@
+﻿@model List<MessageViewModel>
+@{
+    ViewData["Title"] = "لیست پیام ها";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<nav class="page-breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/Admin">پیشخوان</a></li>
+        <li class="breadcrumb-item"><a asp-controller="Ticket" asp-action="Index">لیست تیکت ها</a></li>
+        <li class="breadcrumb-item " aria-current="page">لیست پیام ها</li>
+    </ol>
+</nav>
+<a class="btn btn-sm btn-primary" asp-controller="Ticket" asp-action="CreateSubTicket" asp-route-id="@ViewBag.Id">ثبت پاسخ جدید</a>
+<div class="row">
+    <div class="col-12">
+        <div class="card mx-2 p-2">
+            <table class="col-12 mt-3 p-4">
+                <thead>
+                    <tr class="mt-4 text-center">
+                        <th class="col-6 text-center">
+                            <h4>پیام کاربر</h4>
+                        </th>
+                        <th class="col-6 text-center">
+                            <h4>پیام پشتیبان</h4>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        @if (item.UserId == ViewBag.User)
+                        {
+                            <td></td>
+                            <td class="p-3">
+                                <div class="alert alert-info">
+                                    @item.Text
+                                    @if (!string.IsNullOrEmpty(item.Path))
+                                    {<br />
+                                        <a href="~/Images/@item.Path" class="text-primary">فایل پیوستی</a>
+                                    }
+                                </div>
+                            </td>
+                        }
+                        else
+                        {
+
+                            <td class="p-3">
+                                <div class="alert alert-warning">
+                                    @item.Text
+                                    @if (!string.IsNullOrEmpty(item.Path))
+                                    {<br />
+                                        <a href="~/Images/@item.Path" class="text-primary">فایل پیوستی</a>
+                                    }
+                                </div>
+                            </td>
+                        }
+                        <td></td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

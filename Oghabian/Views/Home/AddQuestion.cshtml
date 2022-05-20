@@ -1,0 +1,45 @@
+﻿@model InsertUserQuestionViewModel
+@{
+    ViewData["Title"] = "افزودن سوال";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+
+        <div class="user-form-card mt-5 col-xl-6 col-lg-6 col-md-12 col-sm-12">
+            <div class="user-form-title">
+             
+                <h2>پرسش سوال</h2>
+                <p>سوالات خود را از متخصصان و سایر کاربران بپرسید</p>
+                @if (ViewBag.Alert != null)
+                {
+                    <div class="alert alert-warning p-3 rounded-3">
+                        @ViewBag.Alert
+                    </div>
+                }
+            </div>
+            <form class="user-form" asp-controller="Home" asp-action="AddQuestion">
+               <input type="hidden" asp-for="UserId" value="@ViewBag.User"/>
+                <div class="form-group">
+                    <label>عنوان سوال</label>
+                    <input type="text" class="form-control" asp-for="Title" >
+                </div>
+                <div class="form-group">
+                    <label>متن سوال</label>
+                    <textarea class="form-control bg-white" asp-for="Body"></textarea>
+                    <span class="text-danger" asp-validation-for="Body"></span>
+                </div>
+                <input type="hidden"/>
+                <div class="form-button">
+                    <button type="submit">ثبت سوال</button>
+
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+@section Footer{
+    <partial name="_ValidationScriptsPartial" />
+}

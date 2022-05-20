@@ -1,0 +1,57 @@
+﻿@model ContactViewModel
+@{
+    ViewData["Title"] = "ارتباط با ما";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+    <div class="row justify-content-center">
+
+        <div class="user-form-card mt-5 col-xl-6 col-lg-6 col-md-12 col-sm-12">
+            <div class="user-form-title">
+
+                <h2>ارتباط با ما</h2>
+                <p>پیام خود را برای ما ثبت کنید</p>
+                @if (ViewBag.Alert != null)
+                {
+                    <div class="alert alert-warning p-3 rounded-3">
+                        @ViewBag.Alert
+                    </div>
+                }
+            </div>
+            <form asp-controller="Home" asp-action="ContactUs" class="user-form">
+
+                <div class="form-group">
+                    <label>نام و نام خانوادگی</label>
+                    <input type="text" class="form-control" asp-for="Name" placeholder="نام و نام خانوادگی">
+                    <span class="text-danger" asp-validation-for="Name"></span>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <label>پست الکترونیک</label>
+                        <input type="text" class="form-control" asp-for="Mail" placeholder="پست الکترونیک">
+                        <span class="text-danger" asp-validation-for="Mail"></span>
+                    </div>  <div class="form-group">
+                        <label>شماره موبایل</label>
+                        <input type="text" class="form-control" asp-for="PhoneNumber" placeholder="شماره موبایل">
+                        <span class="text-danger" asp-validation-for="PhoneNumber"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control bg-white" asp-for="Body" placeholder="متن پیام"></textarea>
+                    <span class="text-danger" asp-validation-for="Body"></span>
+                </div>
+
+                <div class="form-button">
+                    <button type="submit">ثبت پیام</button>
+
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+@section Footer{
+    <partial name="_ValidationScriptsPartial" />
+}

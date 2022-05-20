@@ -20,5 +20,6 @@ namespace Domin.Entities
         public string TwitterImage { set; get; }
         public string Footer { set; get; }
         public string Header { set; get; }
+        public string Description { set; get; }
     }
 }

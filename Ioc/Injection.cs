@@ -40,6 +40,10 @@ namespace Ioc
             service.AddScoped<IHomeInterface,HomeRepository>();
             service.AddScoped<IProfileInterface,ProfileRepository>();
             service.AddScoped<IOrderInterface,OrderRepository>();
+            service.AddScoped<ITicketInterface,TicketRepository>();
+            service.AddScoped<IUserQuestionInterface,UserQuestionRepository>();
+            service.AddScoped<ITableInterface,TableRepository>();
+            service.AddScoped<IContactInterface,ContactRepository>();
             //Services
             service.AddScoped<IMealService, MealService>();
             service.AddScoped<ISicknessService, SicknessService>();
@@ -61,6 +65,10 @@ namespace Ioc
             service.AddScoped<ISenderService, SenderService>();
             service.AddScoped<IHomeService, HomeService>();
             service.AddScoped<IProfileService, ProfileService>();
+            service.AddScoped<ITicketService, TicketService>();
+            service.AddScoped<IUserQuestionService, UserQuestionService>();
+            service.AddScoped<ITableService, TableService>();
+            service.AddScoped<IContactService,ContactService>();
         }
     }
 }

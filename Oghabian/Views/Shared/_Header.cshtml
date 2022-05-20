@@ -17,8 +17,8 @@
                 <button class="header-widget header-src" title="نوار جستجو"><i class="far fa-search"></i></button>
                 <button class="header-widget header-cate" title="لیست دسته بندی"><i class="flaticon-menu-1"></i></button>
             </div>
-            <form class="header-form">
-                <input type="text" placeholder="مورد خود را در اینجا جستجو کنید ..."><button><i class="far fa-search"></i></button>
+            <form class="header-form" asp-controller="Food" asp-action="Foods" method="get">
+                <input type="text" name="search" placeholder="مورد خود را در اینجا جستجو کنید ..."><button type="submit"><i class="far fa-search"></i></button>
             </form>
             <div class="header-widget-group right">
               

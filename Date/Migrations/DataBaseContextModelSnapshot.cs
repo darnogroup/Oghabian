@@ -253,6 +253,25 @@ namespace Date.Migrations
                     b.ToTable("City");
                 });
 
+            modelBuilder.Entity("Domin.Entities.ColumnEntity", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Columns")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RowId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RowId");
+
+                    b.ToTable("Column");
+                });
+
             modelBuilder.Entity("Domin.Entities.CommentArticleEntity", b =>
                 {
                     b.Property<string>("CommentId")
@@ -311,6 +330,35 @@ namespace Date.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("CommentFood");
+                });
+
+            modelBuilder.Entity("Domin.Entities.ContactEntity", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Body")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Mail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Time")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Contact");
                 });
 
             modelBuilder.Entity("Domin.Entities.FavoriteEntity", b =>
@@ -671,12 +719,40 @@ namespace Date.Migrations
                     b.ToTable("Question");
                 });
 
+            modelBuilder.Entity("Domin.Entities.RowEntity", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Rows")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TableName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Row");
+                });
+
             modelBuilder.Entity("Domin.Entities.SeoEntity", b =>
                 {
                     b.Property<int>("SeoId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Footer")
                         .HasColumnType("nvarchar(max)");
@@ -860,6 +936,87 @@ namespace Date.Migrations
                     b.ToTable("Supporter");
                 });
 
+            modelBuilder.Entity("Domin.Entities.TicketDetailEntity", b =>
+                {
+                    b.Property<string>("TicketDetailId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("File")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TicketId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("Time")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("TicketDetailId");
+
+                    b.HasIndex("TicketId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("TicketDetail");
+                });
+
+            modelBuilder.Entity("Domin.Entities.TicketEntity", b =>
+                {
+                    b.Property<string>("TicketId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("CreateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TicketTitle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("TicketId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Ticket");
+                });
+
+            modelBuilder.Entity("Domin.Entities.UserAnswerEntity", b =>
+                {
+                    b.Property<string>("UserAnswerId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("QuestionId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("Time")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserAnswerBody")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("UserAnswerId");
+
+                    b.HasIndex("QuestionId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserAnswer");
+                });
+
             modelBuilder.Entity("Domin.Entities.UserEntity", b =>
                 {
                     b.Property<string>("Id")
@@ -949,6 +1106,35 @@ namespace Date.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("Domin.Entities.UserQuestionEntity", b =>
+                {
+                    b.Property<string>("UserQuestionId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<bool>("Accept")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("CreateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("UserQuestionBody")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserQuestionTitle")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserQuestionId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserQuestion");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -1136,6 +1322,16 @@ namespace Date.Migrations
                     b.Navigation("State");
                 });
 
+            modelBuilder.Entity("Domin.Entities.ColumnEntity", b =>
+                {
+                    b.HasOne("Domin.Entities.RowEntity", "Row")
+                        .WithMany("Columns")
+                        .HasForeignKey("RowId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.Navigation("Row");
+                });
+
             modelBuilder.Entity("Domin.Entities.CommentArticleEntity", b =>
                 {
                     b.HasOne("Domin.Entities.ArticleEntity", "Article")
@@ -1278,6 +1474,60 @@ namespace Date.Migrations
                     b.Navigation("Food");
                 });
 
+            modelBuilder.Entity("Domin.Entities.TicketDetailEntity", b =>
+                {
+                    b.HasOne("Domin.Entities.TicketEntity", "Ticket")
+                        .WithMany("Ticket")
+                        .HasForeignKey("TicketId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.HasOne("Domin.Entities.UserEntity", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.Navigation("Ticket");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Domin.Entities.TicketEntity", b =>
+                {
+                    b.HasOne("Domin.Entities.UserEntity", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Domin.Entities.UserAnswerEntity", b =>
+                {
+                    b.HasOne("Domin.Entities.UserQuestionEntity", "Question")
+                        .WithMany("Answers")
+                        .HasForeignKey("QuestionId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.HasOne("Domin.Entities.UserEntity", "User")
+                        .WithMany("UserAnswer")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.Navigation("Question");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Domin.Entities.UserQuestionEntity", b =>
+                {
+                    b.HasOne("Domin.Entities.UserEntity", "User")
+                        .WithMany("UserQuestion")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -1371,6 +1621,11 @@ namespace Date.Migrations
                     b.Navigation("Detail");
                 });
 
+            modelBuilder.Entity("Domin.Entities.RowEntity", b =>
+                {
+                    b.Navigation("Columns");
+                });
+
             modelBuilder.Entity("Domin.Entities.SicknessEntity", b =>
                 {
                     b.Navigation("Food");
@@ -1383,6 +1638,11 @@ namespace Date.Migrations
                     b.Navigation("Address");
 
                     b.Navigation("Cities");
+                });
+
+            modelBuilder.Entity("Domin.Entities.TicketEntity", b =>
+                {
+                    b.Navigation("Ticket");
                 });
 
             modelBuilder.Entity("Domin.Entities.UserEntity", b =>
@@ -1398,6 +1658,15 @@ namespace Date.Migrations
                     b.Navigation("MedicalInformation");
 
                     b.Navigation("Order");
+
+                    b.Navigation("UserAnswer");
+
+                    b.Navigation("UserQuestion");
+                });
+
+            modelBuilder.Entity("Domin.Entities.UserQuestionEntity", b =>
+                {
+                    b.Navigation("Answers");
                 });
 #pragma warning restore 612, 618
         }

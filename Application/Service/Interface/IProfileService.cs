@@ -18,6 +18,11 @@ namespace Application.Service.Interface
        Task<List<FavoriteViewModel>> GetUserFavorite(string id);
        void AddFavorite(AddFavoriteViewModel model);
        void DeleteFavorite(string favoriteId);
-      
-    }
+       Task<List<OrderHistoryViewModel>> OrderHistory(string user);
+       Task<List<DetailHistoryViewModel>> GetDetail(string id);
+       void AddTicket(AddTicketViewModel model);
+       Task<List<TicketsViewModel>> GetUserTicket(string user);
+       Task<List<TicketMessageViewModel>> GetMessages(string ticket);
+       void AddNewTicket(AddNewTicketViewModel model);
+   }
 }

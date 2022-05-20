@@ -21,5 +21,22 @@ namespace Application.ViewModel.Ads
         public IFormFile ImageSidebarFile { set; get; }
         public string ImageSidebarAlt { set; get; }
         public string ImageSidebarLink { set; get; }
+
+        public string ImageHomeOne { set; get; }
+        public IFormFile ImageHomeOneFile { set; get; }
+        public string ImageHomeOneAlt { set; get; }
+        public string ImageHomeOneLink { set; get; }
+
+
+        public string ImageHomeTwo { set; get; }
+        public IFormFile ImageHomeTwoFile { set; get; }
+        public string ImageHomeTwoAlt { set; get; }
+        public string ImageHomeTwoLink { set; get; }
+
+
+        public string ImageHomeThree { set; get; }
+        public IFormFile ImageHomeThreeFile { set; get; }
+        public string ImageHomeThreeAlt { set; get; }
+        public string ImageHomeThreeLink { set; get; }
     }
 }

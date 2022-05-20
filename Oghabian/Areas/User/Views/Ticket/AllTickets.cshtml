@@ -1,0 +1,66 @@
+﻿@using Domin.Enum
+@model List<TicketsViewModel>
+@{
+    ViewData["Title"] = "تیکت ها";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<section class="inner-section profile-part mt-5">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-12">
+
+                <div class="account-card p-2">
+                    <div class="account-title">
+                        <h4>تاریخچه تیکت ها</h4>
+
+                    </div>
+                    <div class="table-scroll ">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">عنوان تیکت</th>
+                                    <th scope="col">تاریخ تیکت</th>
+                                    <th scope="col">وضعیت </th>
+                                    <th scope="col">عملیات</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <th class="text-center mt-3">@item.TicketTitle</th>
+                                        <td class="mt-3">@item.TicketTime</td>
+                                        <td class="mt-3">
+
+                                            @switch (item.Status)
+                                            {
+                                                case MessageStatus.Wait:
+                                                    <p class="text-warning">در انتظار پاسخ</p>
+                                                    break;
+                                                case MessageStatus.Close:
+                                                    <p class="text-dark">بسته شده</p>
+                                                    break;
+                                                case MessageStatus.Send:
+                                                    <p class="text-success">پاسخ پشتیبان</p>
+                                                    break;
+                                              
+                                            }
+                                        </td>
+                                        <td>
+                                            <a asp-controller="Ticket" asp-action="Messages" asp-route-id="@item.TicketId" class="btn btn-sm btn-info text-white">مشاهده</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

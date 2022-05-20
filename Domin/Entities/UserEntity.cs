@@ -23,5 +23,8 @@ namespace Domin.Entities
        public AddressEntity Address { set; get; }
        public MedicalInformationEntity MedicalInformation { set; get; }
        public IEnumerable<OrderEntity>Order { set; get; }
+       public IEnumerable<UserQuestionEntity>UserQuestion { set; get; }
+       public IEnumerable<UserAnswerEntity>UserAnswer { set; get; }
+
     }
 }

@@ -1,0 +1,39 @@
+﻿@model List<UserQuestionViewModel>
+@{
+    ViewData["Title"] = "پرسش و پاسخ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section class="inner-section faq-part mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="account-card">
+                <div class="account-title">
+                    <h4>پرسش و پاسخ</h4>
+                    <a asp-controller="Home" asp-action="AddQuestion"><i class="fal fa-edit"></i> پرسش سوال جدید</a>
+                </div>
+                <div class="account-content">
+                    <div class="row">
+                        @foreach (var item in Model)
+                        {
+                            <div class="col-lg-10 mx-auto">
+                                <div class="faq-child">
+                                    <div class="faq-que p-3">
+    
+                                        <h4 class="mx-4">@item.UserFullName</h4>
+                               
+                                      <span class="mx-4 text-warning">ثبت شده در تاریخ:@item.Time</span>
+                                        <hr>
+
+                                        <a>@item.Title</a>
+                                        <p>@item.Body</p>
+                                        <a asp-controller="Home" asp-action="Answer" asp-route-id="@item.Id"  class="text-white badge bg-primary ">پاسخ های ثبت شده</a></div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>

@@ -20,12 +20,14 @@ namespace Application.Service.Repository
         private readonly IGeneralInterface _general;
 
         private readonly IGalleryInterface _gallery;
+        private readonly ICommentFoodInterface _comment;
 
-        public FoodService(IFoodInterface food, IGeneralInterface general, IGalleryInterface gallery)
+        public FoodService(IFoodInterface food, IGeneralInterface general, IGalleryInterface gallery, ICommentFoodInterface comment)
         {
             _food = food;
             _general = general;
             _gallery = gallery;
+            _comment = comment;
         }
         public Tuple<List<FoodViewModel>, int, int> GetFoods(int page, string search = "")
         {
@@ -293,6 +295,54 @@ namespace Application.Service.Repository
                     }
                 }
                 _food.Update(seo);
+        }
+
+        public Tuple<List<CommentFoodViewModel>, int, int> GetComment(string id, int page = 1, string search = "")
+        {
+            int pageSelected = page;
+            int count = _comment.CountCommentFood(id).PageCount(10);
+            int pageSkip = (page - 1) * 10;
+            var list = _comment.GetCommentFoods(id, search, pageSkip).Result;
+            List<CommentFoodViewModel> comment = new List<CommentFoodViewModel>();
+
+            foreach (var item in list)
+            {
+                comment.Add(new CommentFoodViewModel()
+                {
+                    Time = item.CreateTime.SolarYear(),
+                    Avatar = item.User.UserAvatar,
+                    FullName = item.User.UserFullName,
+                    Id = item.CommentId
+                });
+            }
+            return Tuple.Create(comment, count, pageSelected);
+        }
+
+        public async Task<CommentFoodDetailViewModel> GetCommentFoodDetail(string id)
+        {
+            var result = await _comment.GetCommentFoodById(id);
+            CommentFoodDetailViewModel comment = new CommentFoodDetailViewModel();
+            comment.Time = result.CreateTime.SolarYear();
+            comment.Avatar = result.User.UserAvatar;
+            comment.ParentId = result.FoodId;
+            comment.Id = result.CommentId;
+            comment.Body = result.CommentText;
+            comment.Show = result.Show;
+            comment.Name = result.User.UserFullName;
+            return comment;
+        }
+
+        public void UpdateComment(CommentFoodDetailViewModel model)
+        {
+            var result = _comment.GetCommentFoodById(model.Id).Result;
+            result.Show = model.Show;
+            _comment.UpdateCommentFood(result);
+        }
+
+        public void DeleteComment(string id)
+        {
+            var result = _comment.GetCommentFoodById(id).Result;
+            _comment.DeleteCommentFood(result);
         }
     }
 }

@@ -34,6 +34,12 @@ namespace Date.Configuration
             builder.HasMany(m => m.Order)
                 .WithOne(o => o.User)
                 .HasForeignKey(f => f.UserId);
+            builder.HasMany(m => m.UserQuestion)
+                .WithOne(o => o.User)
+                .HasForeignKey(f => f.UserId);
+            builder.HasMany(m => m.UserAnswer)
+                .WithOne(o => o.User)
+                .HasForeignKey(f => f.UserId);
         }
     }
 }

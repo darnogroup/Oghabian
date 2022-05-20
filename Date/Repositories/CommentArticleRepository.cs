@@ -21,13 +21,14 @@ namespace Date.Repositories
         public async Task<IEnumerable<CommentArticleEntity>> GetCommentArticles(string parentId,string search, int skip)
         {
             return await _context.CommentArticle.OrderByDescending(o => o.CreateTime)
-                .Where(w => w.CommentBody.ToLower().Contains(search) && w.ArticleId == parentId).Skip(skip)
+                .Where(w => w.CommentBody.ToLower().Contains(search) && w.ArticleId == parentId)
+                .Include(i=>i.User).Skip(skip)
                 .Take(10).ToListAsync();
         }
 
         public async Task<CommentArticleEntity> GetCommentArticleById(string id)
         {
-            return await _context.CommentArticle.FindAsync(id);
+            return await _context.CommentArticle.Include(i=>i.User).SingleOrDefaultAsync(s=>s.CommentId==id);
         }
 
         public void InsertCommentArticle(CommentArticleEntity commentArticle)
@@ -45,9 +46,10 @@ namespace Date.Repositories
             _context.CommentArticle.Remove(commentArticle);Save();
         }
 
-        public int CountCommentArticle()
+   
+        public int CountCommentArticle(string id)
         {
-            return _context.CommentArticle.Count();
+            return _context.CommentArticle.Count(c=>c.ArticleId==id);
         }
 
         public void Save()

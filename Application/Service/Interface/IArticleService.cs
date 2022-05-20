@@ -18,5 +18,9 @@ namespace Application.Service.Interface
         Task<List<SelectViewModel>> GetCategories();
         Task<ArticleSeoViewModel> GetSeoViewModel(string id);
         void ChangeSeo(ArticleSeoViewModel model);
+        Tuple<List<CommentArticleViewModel>, int, int> GetComment(string id, int page = 1, string search = "");
+        Task<CommentArticleDetailViewModel> GetCommentArticleDetail(string id);
+        void UpdateComment(CommentArticleDetailViewModel model);
+        void DeleteComment(string id);
     }
 }

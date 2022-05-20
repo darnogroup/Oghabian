@@ -161,7 +161,7 @@ function AddToCart(id) {
         cancelButtonText: 'انصراف'
     }).then((result) => {
         if (result.isConfirmed) {
-            var check = $.get("/AddToCart/"  + id);
+            var check = $.get("/AddToCart/" + id);
             if (check) {
                 Swal.fire({
                     title: 'به سبد خرید اضافه شد',
@@ -274,3 +274,17 @@ function RemoveFavorite(id) {
     });
 }
 
+
+
+function myFunction(id) {
+ 
+    var check = $.get("/RemoveOrderDetail/" + id);
+    if (check) {
+       
+        var delayInMilliseconds = 1000; //1 second
+
+        setTimeout(function () {
+            location.href = location.href;
+        }, delayInMilliseconds);
+    }
+}

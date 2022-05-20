@@ -22,12 +22,14 @@ namespace Oghabian.Areas.User.Controllers
         private readonly UserManager<UserEntity> _userManager;
         private readonly IProfileService _profile;
         private readonly IUserService _user;
+        private readonly IHomeService _home;
 
-        public ProfileController(UserManager<UserEntity> userManager, IProfileService profile, IUserService user)
+        public ProfileController(UserManager<UserEntity> userManager, IProfileService profile, IUserService user, IHomeService home)
         {
             _userManager = userManager;
             _profile = profile;
             _user = user;
+            _home = home;
         }
 
         [HttpGet]
@@ -221,7 +223,16 @@ namespace Oghabian.Areas.User.Controllers
         [Route("/Profile/Cart")]
         public IActionResult Cart()
         {
-            return View();
+            var pageModel = _home.GetCart(UserId());
+            return View(pageModel);
+        }
+
+        [HttpGet]
+        [Route("/RemoveOrderDetail/{id}")]
+        public void RemoveOrderDetail(string id)
+        {
+            _home.RemoveOrderDetail(id);
+         
         }
     }
 }

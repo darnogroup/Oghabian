@@ -1,0 +1,65 @@
+﻿@model List<OrderHistoryViewModel>
+@{
+    ViewData["Title"] = "تاریخچه سفارشات";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="inner-section profile-part mt-5">
+<div class="container">
+<div class="row">
+    
+    <div class="col-lg-12">
+
+        <div class="account-card p-2">
+            <div class="account-title">
+                <h4>تاریخچه سفارشات</h4>
+
+            </div>
+            <div class="table-scroll ">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">شماره سفارش</th>
+                        <th scope="col">تاریخ سفارش</th>
+                        <th scope="col">وضعیت سفارش</th>
+                        <th scope="col">عملیات</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <th class="text-center mt-3">@item.Code</th>
+                            <td class="mt-3">@item.Time</td>
+                            <td class="mt-3">
+
+                                @switch (item.Condition)
+                                    {
+                                        case ConditionEnumViewModel.Open:
+                                            <p class="text-danger">صورتحساب باز است</p>
+                                                                   break;
+                                        case ConditionEnumViewModel.Delive:
+                                            <p class="text-success">تحویل داده شده</p>
+                                            break;
+                                        case ConditionEnumViewModel.Record:
+                                            <p class="text-primary">ثبت شده</p>
+                                            break;
+                                        case ConditionEnumViewModel.Preparation:
+                                            <p class="text-warning">در حال آماده سازی</p>
+                                            break;
+                                    }
+                            </td>
+                            <td>
+                                <a asp-controller="Order" asp-action="OrderHistoryDetail" asp-route-id="@item.Id" class="btn btn-sm btn-info text-white">مشاهده</a>
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>
+</section>

@@ -25,6 +25,9 @@
                 }
             <form asp-controller="Ads" asp-action="Ads" enctype="multipart/form-data">
 
+                <input type="hidden" asp-for="ImageHomeTwo" />
+                <input type="hidden" asp-for="ImageHomeThree" />
+                <input type="hidden" asp-for="ImageHomeOne" />
                 <input type="hidden" asp-for="ImageTwo" />
                 <input type="hidden" asp-for="ImageOne" />
                 <input type="hidden" asp-for="ImageSidebar" />
@@ -88,6 +91,74 @@
                     </div>
                 </div>
                 <hr />
+                
+                
+                <img src="/Images/@Model.ImageHomeOne" id="imageHomeOne" class="mb-3 " width="150" height="90" /><br />           <h4>تصویر صفحه اصلی سه بخشی</h4>
+                <div class="row">
+                    <div class="form-group  col-4">
+                        <label>لینک تصویر</label>
+                        <input type="text" asp-for="ImageHomeOneLink" class="form-control" autocomplete="off" placeholder="لینک تصویر">
+                        <span class="text-danger" asp-validation-for="ImageHomeOneLink"></span>
+                    </div>
+                    <div class="form-group  col-4">
+                        <label>متن جایگزین تصویر</label>
+                        <input type="text" asp-for="ImageHomeOneAlt" class="form-control" autocomplete="off" placeholder="متن جایگزین تصویر">
+                        <span class="text-danger" asp-validation-for="ImageHomeOneAlt"></span>
+                    </div>
+                    <div class="form-group col-4">
+                        <label>آپلود تصویر</label>
+                        <input type="file" id="imagePathHomeOne" onchange="ChangeImageHomeOne(this)" asp-for="ImageHomeOneFile" class="form-control" />
+                        <span class="text-danger" asp-validation-for="ImageHomeOneFile"></span>
+                    </div>
+                </div>
+                <hr />
+                
+                
+                    <img src="/Images/@Model.ImageHomeTwo" id="imageHomeTwo" class="mb-3 " width="150" height="90" /><br />           <h4>تصویر صفحه اصلی  سه بخشی</h4>
+                <div class="row">
+                    <div class="form-group  col-4">
+                        <label>لینک تصویر</label>
+                        <input type="text" asp-for="ImageHomeTwoLink" class="form-control" autocomplete="off" placeholder="لینک تصویر">
+                        <span class="text-danger" asp-validation-for="ImageHomeTwoLink"></span>
+                    </div>
+                    <div class="form-group  col-4">
+                        <label>متن جایگزین تصویر</label>
+                        <input type="text" asp-for="ImageHomeTwoAlt" class="form-control" autocomplete="off" placeholder="متن جایگزین تصویر">
+                        <span class="text-danger" asp-validation-for="ImageHomeTwoAlt"></span>
+                    </div>
+                    <div class="form-group col-4">
+                        <label>آپلود تصویر</label>
+                        <input type="file" id="imagePathHomeTwo" onchange="ChangeImageHomeTwo(this)" asp-for="ImageHomeTwoFile" class="form-control" />
+                        <span class="text-danger" asp-validation-for="ImageHomeTwoFile"></span>
+                    </div>
+                </div>
+                <hr />
+                
+                
+                <img src="/Images/@Model.ImageHomeThree" id="imageHomeThree" class="mb-3 " width="150" height="90" /><br />           <h4>تصویر صفحه اصلی سه بخشی</h4>
+                <div class="row">
+                    <div class="form-group  col-4">
+                        <label>لینک تصویر</label>
+                        <input type="text" asp-for="ImageHomeThreeLink" class="form-control" autocomplete="off" placeholder="لینک تصویر">
+                        <span class="text-danger" asp-validation-for="ImageHomeThreeLink"></span>
+                    </div>
+                    <div class="form-group  col-4">
+                        <label>متن جایگزین تصویر</label>
+                        <input type="text" asp-for="ImageHomeThreeAlt" class="form-control" autocomplete="off" placeholder="متن جایگزین تصویر">
+                        <span class="text-danger" asp-validation-for="ImageHomeThreeAlt"></span>
+                    </div>
+                    <div class="form-group col-4">
+                        <label>آپلود تصویر</label>
+                        <input type="file" id="imagePathHomeThree" onchange="ChangeImageHomeThree(this)" asp-for="ImageHomeThreeFile" class="form-control" />
+                        <span class="text-danger" asp-validation-for="ImageHomeThreeFile"></span>
+                    </div>
+                </div>
+                <hr />
+                
+                
+                
+                
+
                 <button type="submit" class="btn btn-primary ml-2">ثبت</button>
             </form>
             </div>

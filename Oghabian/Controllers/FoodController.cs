@@ -19,7 +19,7 @@ namespace Oghabian.Controllers
             _home = home;
         }
         [HttpGet][Route("/foods")]
-        public IActionResult Foods(string calories, string carbohydrate, string fat, string protein,string meal,string sickness,int page=1,string search="")
+        public IActionResult Foods(string calories = "", string carbohydrate = "", string fat = "", string protein = "", string meal = "", string sickness = "", int page=1,string search="")
         {
             ViewBag.carbohydrate = carbohydrate;
             ViewBag.calories = calories;
@@ -27,7 +27,7 @@ namespace Oghabian.Controllers
             ViewBag.fat = fat;
             ViewBag.sickness = sickness;
             ViewBag.meal = meal;
-            var pageModel = _home.GetFoods(meal, sickness, calories, carbohydrate, fat, protein, page);
+            var pageModel = _home.GetFoods(search, meal, sickness, calories, carbohydrate, fat, protein, page);
             return View(pageModel);
         }
 

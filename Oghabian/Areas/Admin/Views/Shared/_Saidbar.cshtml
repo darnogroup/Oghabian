@@ -18,7 +18,7 @@
                     <span class="link-title">داشبورد</span>
                 </a>
             </li>
-       
+
             <li class="nav-item">
                 <a class="nav-link" data-toggle="collapse" href="#emails" role="button" aria-expanded="false"
                    aria-controls="emails">
@@ -34,11 +34,11 @@
                         <li class="nav-item">
                             <a asp-controller="Role" asp-action="create" class="nav-link">افزودن نقش</a>
                         </li>
-                      
+
                     </ul>
                 </div>
             </li>
-          
+
             <li class="nav-item">
                 <a class="nav-link" data-toggle="collapse" href="#uiComponents" role="button" aria-expanded="false"
                    aria-controls="uiComponents">
@@ -48,16 +48,13 @@
                 </a>
                 <div class="collapse" id="uiComponents">
                     <ul class="nav sub-menu">
-                       
+
                         <li class="nav-item">
                             <a asp-controller="User" asp-action="index" class="nav-link">لیست کاربران</a>
                         </li>
                         <li class="nav-item">
                             <a asp-controller="User" asp-action="create" class="nav-link">افزودن کاربر</a>
                         </li>
-                      
-                     
-                     
                     </ul>
                 </div>
             </li>
@@ -78,7 +75,8 @@
                         </li>
                         <li class="nav-item">
                             <a asp-controller="Category" asp-action="Index" class="nav-link">لیست دسته بندی</a>
-                        </li>  <li class="nav-item">
+                        </li>
+                        <li class="nav-item">
                             <a asp-controller="Category" asp-action="Create" class="nav-link">افزودن دسته بندی</a>
                         </li>
                     </ul>
@@ -99,7 +97,7 @@
                         <li class="nav-item">
                             <a asp-controller="Location" asp-action="Create" class="nav-link">افزودن استان</a>
                         </li>
-                        
+
                     </ul>
                 </div>
             </li>
@@ -118,7 +116,7 @@
                         <li class="nav-item">
                             <a asp-controller="Meal" asp-action="Create" class="nav-link">افزودن وعده</a>
                         </li>
-                       
+
                     </ul>
                 </div>
             </li>
@@ -140,24 +138,24 @@
                     </ul>
                 </div>
             </li>
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#authPages" role="button" aria-expanded="false"
-               aria-controls="authPages">
-                <i class="link-icon" data-feather="box"></i>
-                <span class="link-title">پک های غذایی</span>
-                <i class="link-arrow" data-feather="chevron-down"></i>
-            </a>
-            <div class="collapse" id="authPages">
-                <ul class="nav sub-menu">
-                    <li class="nav-item">
-                        <a asp-controller="Food" asp-action="Index" class="nav-link">لیست پک های غذایی</a>
-                    </li>
-                    <li class="nav-item">
-                        <a asp-controller="Food" asp-action="Create" class="nav-link">افزودن پک غذایی</a>
-                    </li>
-                </ul>
-            </div>
-        </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="collapse" href="#authPages" role="button" aria-expanded="false"
+                   aria-controls="authPages">
+                    <i class="link-icon" data-feather="box"></i>
+                    <span class="link-title">پک های غذایی</span>
+                    <i class="link-arrow" data-feather="chevron-down"></i>
+                </a>
+                <div class="collapse" id="authPages">
+                    <ul class="nav sub-menu">
+                        <li class="nav-item">
+                            <a asp-controller="Food" asp-action="Index" class="nav-link">لیست پک های غذایی</a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-controller="Food" asp-action="Create" class="nav-link">افزودن پک غذایی</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
             <li class="nav-item">
                 <a class="nav-link" data-toggle="collapse" href="#icons" role="button" aria-expanded="false"
                    aria-controls="icons">
@@ -173,11 +171,11 @@
                         <li class="nav-item">
                             <a asp-controller="Question" asp-action="create" class="nav-link">افزودن سوال</a>
                         </li>
-                      
+
                     </ul>
                 </div>
             </li>
-          
+
             <li class="nav-item">
                 <a class="nav-link" data-toggle="collapse" href="#general-pages" role="button" aria-expanded="false"
                    aria-controls="general-pages">
@@ -193,30 +191,70 @@
                         <li class="nav-item">
                             <a asp-controller="Slider" asp-action="create" class="nav-link">افزودن تصویر</a>
                         </li>
-                       
+
                     </ul>
                 </div>
             </li>
-          
+            
+        
         <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#errorPages" role="button" aria-expanded="false"
                aria-controls="errorPages">
-                <i class="link-icon" data-feather="smile"></i>
-                <span class="link-title">حامیان و شرکای تجاری</span>
+                <i class="link-icon" data-feather="layout"></i>
+                <span class="link-title">جداول</span>
                 <i class="link-arrow" data-feather="chevron-down"></i>
             </a>
             <div class="collapse" id="errorPages">
                 <ul class="nav sub-menu">
                     <li class="nav-item">
-                        <a asp-controller="Supporter" asp-action="index" class="nav-link">لیست شرکای تجاری</a>
+                        <a asp-controller="Table" asp-action="index" class="nav-link">لیست  جداول</a>
                     </li>
                     <li class="nav-item">
-                        <a asp-controller="Supporter" asp-action="create" class="nav-link">افزودن شریک تجاری</a>
+                        <a asp-controller="Table" asp-action="create" class="nav-link">افزودن جدول</a>
                     </li>
                 </ul>
             </div>
         </li>
-          
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#errorages" role="button" aria-expanded="false"
+               aria-controls="errorages">
+                <i class="link-icon" data-feather="clipboard"></i>
+                <span class="link-title">پرسش و پاسخ</span>
+                <i class="link-arrow" data-feather="chevron-down"></i>
+            </a>
+            <div class="collapse" id="errorages">
+                <ul class="nav sub-menu">
+                    <li class="nav-item">
+                        <a asp-controller="Table" asp-action="index" class="nav-link">لیست  پرسش ها</a>
+                    </li>
+                  
+                </ul>
+            </div>
+        </li>
+
+        
+        
+        
+
+        <li class="nav-item">
+                <a class="nav-link" data-toggle="collapse" href="#rrorPages" role="button" aria-expanded="false"
+                   aria-controls="rrorPages">
+                    <i class="link-icon" data-feather="smile"></i>
+                    <span class="link-title">حامیان و شرکای تجاری</span>
+                    <i class="link-arrow" data-feather="chevron-down"></i>
+                </a>
+                <div class="collapse" id="rrorPages">
+                    <ul class="nav sub-menu">
+                        <li class="nav-item">
+                            <a asp-controller="Supporter" asp-action="index" class="nav-link">لیست شرکای تجاری</a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-controller="Supporter" asp-action="create" class="nav-link">افزودن شریک تجاری</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
             <li class="nav-item">
                 <a class="nav-link" data-toggle="collapse" href="#errorages" role="button" aria-expanded="false"
                    aria-controls="errorages">
@@ -229,10 +267,11 @@
                         <li class="nav-item">
                             <a asp-controller="Ads" asp-action="Ads" class="nav-link">بنر های تبلیغاتی</a>
                         </li>
-                     
+
                     </ul>
                 </div>
-            </li> <li class="nav-item">
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" data-toggle="collapse" href="#errorag" role="button" aria-expanded="false"
                    aria-controls="errorag">
                     <i class="link-icon" data-feather="settings"></i>
@@ -243,10 +282,10 @@
                     <ul class="nav sub-menu">
                         <li class="nav-item">
                             <a asp-controller="Setting" asp-action="Setting" class="nav-link">عمومی</a>
-                        </li>   <li class="nav-item">
+                        </li>
+                        <li class="nav-item">
                             <a asp-controller="Seo" asp-action="Seo" class="nav-link">سفارش سازی</a>
                         </li>
-                     
                     </ul>
                 </div>
             </li>

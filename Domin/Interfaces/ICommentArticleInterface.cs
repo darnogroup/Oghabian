@@ -14,6 +14,6 @@ namespace Domin.Interfaces
         void InsertCommentArticle(CommentArticleEntity commentArticle);
         void UpdateCommentArticle(CommentArticleEntity commentArticle);
         void DeleteCommentArticle(CommentArticleEntity commentArticle);
-        int CountCommentArticle();
+        int CountCommentArticle(string id);
     }
 }

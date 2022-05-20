@@ -13,6 +13,6 @@ namespace Application.ViewModel.Home.Profile
         public string Seller { set; get; }
         public string State { set; get; }
         public string City { set; get; }
-        public string TotalCart { set; get; }
+        public int TotalCart { set; get; }
     }
 }

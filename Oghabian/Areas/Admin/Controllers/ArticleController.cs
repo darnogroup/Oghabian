@@ -123,5 +123,39 @@ namespace Oghabian.Areas.Admin.Controllers
             var result = _article.GetCategories().Result;
             ViewBag.Categories = new SelectList(result, "Value", "Text",selected);
         }
+
+        [HttpGet]
+        [Route("/Admin/Article/Comments")]
+        public IActionResult Comments(string id, int page = 1, string search = "")
+        {
+            ViewBag.Id = id;
+            ViewBag.Search = search;
+            var pageModel = _article.GetComment(id,page, search ?? "");
+            return View(pageModel);
+        }
+
+        [HttpGet]
+        [Route("/Admin/Article/CommentDetail")]
+        public IActionResult Detail(string id)
+        {
+            var pageModel = _article.GetCommentArticleDetail(id).Result;
+          
+            return View(pageModel);
+        }
+
+        [HttpPost]
+        [Route("/Admin/Article/CommentDetail")]
+        public IActionResult Detail(CommentArticleDetailViewModel model)
+        {
+            _article.UpdateComment(model);
+            return RedirectToAction(nameof(Comments), new {id = model.ParentId});
+        }
+
+        [HttpGet]
+        [Route("/Admin/Article/DeleteComment/{id}")]
+        public void DeleteComment(string id)
+        {
+            _article.DeleteComment(id);
+        }
     }
 }

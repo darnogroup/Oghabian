@@ -230,5 +230,43 @@ namespace Oghabian.Areas.Admin.Controllers
             var result = _food.GetMeals().Result;
             ViewBag.Meals = new SelectList(result,"Value","Text", selectId);
         }
+
+
+
+
+
+        [HttpGet]
+        [Route("/Admin/Food/Comments")]
+        public IActionResult Comments(string id, int page = 1, string search = "")
+        {
+            ViewBag.Id = id;
+            ViewBag.Search = search;
+            var pageModel = _food.GetComment(id, page, search ?? "");
+            return View(pageModel);
+        }
+
+        [HttpGet]
+        [Route("/Admin/Food/CommentDetail")]
+        public IActionResult Detail(string id)
+        {
+            var pageModel = _food.GetCommentFoodDetail(id).Result;
+
+            return View(pageModel);
+        }
+
+        [HttpPost]
+        [Route("/Admin/Food/CommentDetail")]
+        public IActionResult Detail(CommentFoodDetailViewModel model)
+        {
+            _food.UpdateComment(model);
+            return RedirectToAction(nameof(Comments), new { id = model.ParentId });
+        }
+
+        [HttpGet]
+        [Route("/Admin/Food/DeleteComment/{id}")]
+        public void DeleteComment(string id)
+        {
+            _food.DeleteComment(id);
+        }
     }
 }

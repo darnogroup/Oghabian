@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Application.ViewModel.Home;
 using Application.ViewModel.Home.Blogs;
 using Application.ViewModel.Home.Card;
 using Application.ViewModel.Home.Foods;
@@ -16,11 +17,17 @@ namespace Application.Service.Interface
         Task<BlogDetailViewModel> GetBlogDetail(string id);
         void InsertArticleComment(InsertCommentViewModel model);
         void InsertFoodComment(InsertFoodCommentViewModel model);
-        Tuple<List<FoodCartViewModel>, int, int> GetFoods(string meal, string sickness, string calories, string carbohydrate, string fat, string protein, int page);
+        Tuple<List<FoodCartViewModel>, int, int> GetFoods(string search,string meal, string sickness, string calories, string carbohydrate, string fat, string protein, int page);
         Tuple<FoodDetailViewModel, List<FoodImageViewModel>, List<FoodPropertyViewModel>> GetFoodDetail(string id);
         Task<List<FoodCartViewModel>> GetLastFoods();
         Task<List<BlogViewModel>> GetFourArticle();
         void AddToCart(AddToCardViewModel model);
-        Tuple<CartDetailViewModel, List<CartItemViewModel>> GetCart(string user);
+        Tuple<List<CartItemViewModel>,CartDetailViewModel> GetCart(string user);
+        void RemoveOrderDetail(string id);
+        Task<List<UserQuestionViewModel>> Questions();
+        Task<List<UserAnswerViewModel>> Answer(string id);
+        void InsertAnswer(InsertUserAnswerViewModel model);
+        void InsertQuestion(InsertUserQuestionViewModel model);
+        void Insert(ContactViewModel model);
     }
 }

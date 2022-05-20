@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Application.ViewModel.Home;
 using Application.ViewModel.Home.Blogs;
 using Application.ViewModel.Home.Component;
 using Application.ViewModel.Home.Foods;
@@ -23,5 +24,7 @@ namespace Application.Service.Interface
         Task<SeoFoodViewModel> GetSeoFood(string id);
         Task<List<CommentFoodViewModel>> GetCommentFood(string id);
         Task<LocationViewModel> GetUserLocation(string id);
+        Task<ThreeBannerViewModel> GetThreeBanner();
+        Task<SiteSeoViewModel> GetSeoSite();
     }
 }

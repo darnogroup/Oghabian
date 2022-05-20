@@ -1,108 +1,99 @@
-﻿
+﻿@model Tuple<List<CartItemViewModel>, CartDetailViewModel>
 @{
     ViewData["Title"] = "سبد خرید";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<section class="inner-section checkout-part">
+<section class="inner-section checkout-part mt-5">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8">
+            <div class="col-lg-9">
                 <div class="account-card">
                     <div class="account-title"><h4>سفارش شما</h4></div>
                     <div class="account-content">
                         <div class="table-scroll">
-                            <table class="table-list">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">تولید - محصول</th>
-                                        <th scope="col">نام</th>
-                                        <th scope="col">قیمت</th>
-                                        <th scope="col">تعداد</th>
-                                        <th scope="col">عمل</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="table-image"><img src="assets/img/product/01.png" alt="تولید - محصول"></td>
-                                        <td class="table-name"><h6>سیب تازه</h6></td>
-                                        <td class="table-price">
-                                            <h6>25 تومان </h6>
-                                        </td>
-                                        <td class="table-quantity">
-                                            <div class="cart-action-group">
-                                                <div class="product-action">
-                                                    <button class="action-minus" title="مقدار منهای"><i class="far fa-minus"></i></button><input class="action-input" title="تعداد" type="text" name="quantity" value="1">
-                                                    <button class="action-plus" title="مقدار به علاوه"><i class="far fa-plus"></i></button>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="table-action">
-                                            <a class="view" href="#" title="مشاهده سریع" data-bs-toggle="modal" data-bs-target="#product-view"><i class="far fa-eye"></i></a>
-                                            <a class="trash" href="#" title="لیست خواسته ها را حذف کنید"><i class="far fa-times"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="table-image"><img src="assets/img/product/01.png" alt="تولید - محصول"></td>
-                                        <td class="table-name"><h6>سیب تازه</h6></td>
-                                        <td class="table-price">
-                                            <h6>25 تومان </h6>
-                                        </td>
-                                        <td class="table-quantity">
-                                            <div class="cart-action-group">
-                                                <div class="product-action">
-                                                    <button class="action-minus" title="مقدار منهای"><i class="far fa-minus"></i></button><input class="action-input" title="تعداد" type="text" name="quantity" value="1">
-                                                    <button class="action-plus" title="مقدار به علاوه"><i class="far fa-plus"></i></button>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="table-action">
-                                            <a class="view" href="#" title="مشاهده سریع" data-bs-toggle="modal" data-bs-target="#product-view"><i class="far fa-eye"></i></a>
-                                            <a class="trash" href="#" title="لیست خواسته ها را حذف کنید"><i class="far fa-times"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="table-image"><img src="assets/img/product/01.png" alt="تولید - محصول"></td>
-                                        <td class="table-name"><h6>سیب تازه</h6></td>
-                                        <td class="table-price">
-                                            <h6>25 تومان </h6>
-                                        </td>
-                                        <td class="table-quantity">
-                                            <div class="cart-action-group">
-                                                <div class="product-action">
-                                                    <button class="action-minus" title="مقدار منهای"><i class="far fa-minus"></i></button><input class="action-input" title="تعداد" type="text" name="quantity" value="1">
-                                                    <button class="action-plus" title="مقدار به علاوه"><i class="far fa-plus"></i></button>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="table-action">
-                                            <a class="view" href="#" title="مشاهده سریع" data-bs-toggle="modal" data-bs-target="#product-view"><i class="far fa-eye"></i></a>
-                                            <a class="trash" href="#" title="لیست خواسته ها را حذف کنید"><i class="far fa-times"></i></a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            @if (Model.Item1.Count>0)
+                            {
+                                <table class="table-list">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">تصویر</th>
+                                            <th scope="col">عنوان</th>
+                                            <th scope="col">قیمت</th>
+                                            <th scope="col">تعداد</th>
+                                            <th scope="col">وضعیت</th>
+                                            <th scope="col">عملیات</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model.Item1)
+                                        {
+                                          
+                                            <tr>
+                                                <td class="table-image"><img src="~/Images/@item.FoodImage" class="img-thumbnail" width="150" height="150" alt="@item.FoodTitle"></td>
+                                                <td class="table-name"><h6>@item.FoodTitle</h6></td>
+                                                <td class="table-price">
+                                                    <h6 id="price">@item.FoodPrice</h6>
+                                                </td>
+                                                <td >
+                                                  @item.FoodCount
+                                                </td>
+                                                <td>
+                                                    @if (item.Healthy == 1)
+                                                    {
+                                                        <div class="alert alert-success rounded-3">این پک مناسب شما می باشد</div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="alert alert-danger rounded-3">این پک مناسب شما نمی باشد</div>
+                                                    }
+                                                </td>
+
+                                                <td class="table-action">
+                                                    <a class="view" asp-controller="Food" asp-action="FoodDetail" asp-route-id="@item.FoodId"><i class="far fa-eye"></i></a>
+                                                    <button class="trash" onclick="myFunction('@item.DetailId')" @*asp-controller="Profile" asp-action="RemoveOrderDetail" asp-route-id="@item.DetailId"*@><i class="far fa-times"></i></button>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            }
+                            else
+                            {
+                                <div class="alert alert-danger p-3 rounded-3">سبد خرید شما خالی می باشد</div>
+                            }
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-3">
                 <div class="account-card">
                     <div class="checkout-charge">
-                        <div class="account-title"><h4>خلاصه سفارش</h4></div>
+                        <div class="account-title"><h4>جزئیات سفارش</h4></div>
                         <ul>
-                            <li><span>زیر کل </span><span>250000تومان</span></li>
-                            <li><span>هزینه تحویل </span><span>20000تومان</span></li>
-                            <li><span> تخفیف </span><span>10000تومان</span></li>
-                            <li><span>مالیات </span><span>15000 تومان</span></li>
+                            <li><span>سفارش دهنده </span><br/><span>@Model.Item2.Seller</span></li>
+                            <li><span>استان </span><span>@Model.Item2.State</span></li>
+                            <li><span> شهر </span><span>@Model.Item2.City</span></li>
+                            <li><span>هزینه ارسال </span><span>@Model.Item2.SendPrice</span></li>
+                            <li><span>هزینه سفارش </span><span id="total">@Model.Item2.Total </span><span>تومان</span></li>
+                        @if (Model.Item1.Count > 0)
+                        {    <li>
+                                 <span>هزینه نهائی</span><span id="totalFull"> @Model.Item2.TotalCart  </span><span>تومان</span>
+                             </li>
+                        }
+                        else
+                        {
                             <li>
-                                <span>کل </span><span>295000 تومان</span>
+                                <span>هزینه نهائی</span><span>0</span>
                             </li>
+                        }
+                        
                         </ul>
                     </div>
                     <div class="checkout-proced"><a href="invoice.html" class="btn btn-inline">پرداخت</a></div>
-                    
+
                 </div>
             </div>
         </div>
     </div>
 </section>
+

@@ -35,6 +35,7 @@ namespace Application.Service.Repository
                 model.TwitterTitle = seo.TwitterTitle;
                 model.Header = seo.Header;
                 model.Footer = seo.Footer;
+                model.Description = seo.Description;
             }
             else
             {
@@ -48,6 +49,7 @@ namespace Application.Service.Repository
                 model.TwitterTitle = "";
                 model.Header = "";
                 model.Footer = "";
+                model.Description = "";
             }
             return model;
         }
@@ -59,6 +61,7 @@ namespace Application.Service.Repository
             {
                 SeoEntity entity = new SeoEntity();
                 entity.Header = model.Header;
+                entity.Description = model.Description;
                 entity.Footer = model.Footer;
                 entity.GraphDescription = model.GraphDescription;
                 entity.GraphSiteName = model.GraphSiteName;
@@ -82,6 +85,7 @@ namespace Application.Service.Repository
             }
             else
             {
+                seo.Description = model.Description;
                 seo.Header = model.Header;
                 seo.Footer = model.Footer;
                 seo.GraphDescription = model.GraphDescription;

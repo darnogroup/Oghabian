@@ -23,10 +23,10 @@
                     <div class="product-card">
                         <div class="product-media">
                             <div class="product-label"><label class="label-text new">@item.Category</label></div>
-                          
+
                             @if (User.Identity != null && User.Identity.IsAuthenticated)
                             {
-                                
+
                                 <button class="product-wish wish" onclick="AddFavorite('@item.FoodId')">
                                     <i class="far fa-heart"></i>
                                 </button>
@@ -37,7 +37,7 @@
                                     <i class="far fa-heart"></i>
                                 </button>
                             }
-                            
+
                             <a class="product-image" asp-controller="Food" asp-action="FoodDetail" asp-route-id="@item.FoodId">
                                 <img src="~/Images/@item.FoodImage" alt="@item.FoodTitle">
                             </a>
@@ -105,9 +105,10 @@
                                 }
                                 else
                                 {
-                                    <a class="product-add" onclick="LoginError()" title="افزودن به سبد خرید" ><i class="far fa-shopping-cart"></i></a>
-                                
-                                }     </div>
+                                    <a class="product-add" onclick="LoginError()" title="افزودن به سبد خرید"><i class="far fa-shopping-cart"></i></a>
+
+                                }
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -126,7 +127,7 @@
 
 
 <partial name="_Computing" />
-<partial name="_ThreeBanner" />
+@await Component.InvokeAsync("ThreeBannerComponent")
 <partial name="_Support" />
 <partial name="_FourSection" />
 @await Component.InvokeAsync("FourBlogComponent")

@@ -1,0 +1,58 @@
+﻿@model ContactDetailViewModel
+@{
+    ViewData["Title"] = "جزئیات پیام";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<nav class="page-breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/Admin">پیشخوان</a></li>
+        <li class="breadcrumb-item"><a asp-controller="Contact" asp-action="Index">لیست پیام ها</a></li>
+        <li class="breadcrumb-item " aria-current="page">جزئیات پیام  </li>
+    </ol>
+</nav>
+
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="card-title">جزئیات پیام</h6>
+               
+
+             
+                    <div class="row">
+                  
+                        <div class="form-group  col-12">
+                            <label>فرستنده پیام</label>
+                            <input type="text" asp-for="Name" disabled="disabled" class="form-control">
+                        </div>
+                        <div class="form-group  col-12">
+                            <label>
+                                پست الکترونیک فرستنده
+                            </label>
+                            <input type="text" asp-for="Mail" disabled="disabled" class="form-control">
+                        </div>
+                        <div class="form-group  col-12">
+                            <label>شماره فرستنده</label>
+                            <input type="text" asp-for="Number" disabled="disabled" class="form-control">
+                        </div>
+                         <div class="form-group  col-12">
+                            <label>تاریخ ارسال پیام</label>
+                            <input type="text" asp-for="Time" disabled="disabled" class="form-control">
+                        </div>
+
+
+                        <div class="form-group  col-12">
+                            <label>متن پیام</label>
+                            <textarea id="maxlength-textarea" disabled="disabled" asp-for="Body" class="form-control " rows="15"></textarea>
+                        </div>
+                    </div>
+
+                  
+
+                    
+                    <a role="button" asp-controller="Contact" asp-action="Index"  class="btn btn-light">بازگشت</a>
+             
+            </div>
+        </div>
+    </div>
+</div>

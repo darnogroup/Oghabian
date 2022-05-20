@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Application.Other;
 using Application.Service.Interface;
 using Application.ViewModel.Article;
+using Application.ViewModel.Home;
 using Application.ViewModel.Home.Blogs;
 using Application.ViewModel.Home.Card;
 using Application.ViewModel.Home.Foods;
@@ -29,7 +30,9 @@ namespace Application.Service.Repository
         private readonly IUserInterface _user;
         private readonly IProfileInterface _profile;
 
-        public HomeService(IHomeInterface home, ICommentArticleInterface commentArticle, IOrderInterface order, ICommentFoodInterface commentFood, IFoodInterface food, IUserInterface user, IProfileInterface profile)
+        private readonly IContactInterface _contact;
+
+        public HomeService(IHomeInterface home, ICommentArticleInterface commentArticle, IOrderInterface order, ICommentFoodInterface commentFood, IFoodInterface food, IUserInterface user, IProfileInterface profile, IContactInterface contact)
         {
             _home = home;
             _commentArticle = commentArticle;
@@ -38,6 +41,7 @@ namespace Application.Service.Repository
             _food = food;
             _user = user;
             _profile = profile;
+            _contact = contact;
         }
         public Tuple<List<BlogViewModel>, int, int> GetBlogs(string category, int page, string search)
         {
@@ -117,7 +121,7 @@ namespace Application.Service.Repository
             _commentFood.InsertCommentFood(comment);
         }
 
-        public Tuple<List<FoodCartViewModel>, int, int> GetFoods(string meal, string sickness, string calories, string carbohydrate, string fat, string protein, int page)
+        public Tuple<List<FoodCartViewModel>, int, int> GetFoods(string search,string meal, string sickness, string calories, string carbohydrate, string fat, string protein, int page)
         {
             List<FoodCartViewModel> food = new List<FoodCartViewModel>();
             IEnumerable<FoodEntity> list;
@@ -206,7 +210,7 @@ namespace Application.Service.Repository
             else
             {
                 count = _home.CountFood().PageCount(10); 
-                list = _home.GetFoods( pageSkip).Result;
+                list = _home.GetFoods(search,pageSkip).Result;
 
             }
 
@@ -375,12 +379,12 @@ namespace Application.Service.Repository
             }
         }
 
-        public Tuple<CartDetailViewModel, List<CartItemViewModel>> GetCart(string user)
+        public Tuple<List<CartItemViewModel>, CartDetailViewModel> GetCart(string user)
         {
-            var send= _profile.SenPrice().Result;
+            var send = _profile.SenPrice().Result;
             var userAddress = _profile.GetAddress(user).Result;
-            CartDetailViewModel detailCart=new CartDetailViewModel();
-            List<CartItemViewModel>cartItem=new List<CartItemViewModel>();
+            CartDetailViewModel detailCart = new CartDetailViewModel();
+            List<CartItemViewModel> cartItem = new List<CartItemViewModel>();
             var userInfo = _user.GetMedicalInformation(user).Result;
             var order = _order.GetOrderByUserId(user).Result;
             if (order != null)
@@ -389,7 +393,7 @@ namespace Application.Service.Repository
                 var list = items as OrderDetailEntity[] ?? items.ToArray();
                 foreach (var food in list)
                 {
-                    CartItemViewModel item=new CartItemViewModel();
+                    CartItemViewModel item = new CartItemViewModel();
                     item.FoodImage = food.Food.FoodImage;
                     item.FoodPrice = food.Price.ToString();
                     item.FoodTitle = food.Food.FoodTitle;
@@ -401,12 +405,13 @@ namespace Application.Service.Repository
                         userInfo.UserFat == food.Food.FoodFat &&
                         userInfo.UserProtein == food.Food.FoodProtein)
                     {
-                        item.Healthy = 1;//Good
+                        item.Healthy = 1; //Good
                     }
                     else
                     {
-                        item.Healthy = 2;//Bad
+                        item.Healthy = 2; //Bad
                     }
+
                     cartItem.Add(item);
                 }
 
@@ -415,7 +420,7 @@ namespace Application.Service.Repository
                 detailCart.SendPrice = send;
                 detailCart.Seller = _profile.FullName(user).Result;
                 detailCart.Total = list.Sum(s => s.Price).ToString();
-                detailCart.TotalCart = send + list.Sum(s => s.Price).ToString();
+                detailCart.TotalCart = Convert.ToInt32(send) + list.Sum(s => s.Price);
             }
 
             else
@@ -425,10 +430,92 @@ namespace Application.Service.Repository
                 detailCart.SendPrice = send;
                 detailCart.Seller = _profile.FullName(user).Result;
                 detailCart.Total = "";
-                detailCart.TotalCart = "";
+                detailCart.TotalCart = 0;
             }
 
-            return Tuple.Create(detailCart, cartItem);
+            return Tuple.Create(cartItem, detailCart);
+        }
+
+        public void RemoveOrderDetail(string id)
+        {
+            var orderDetail = _order.GetById(id).Result;
+            if (orderDetail.Count ==1)
+            {
+                _order.DeleteOrderDetail(orderDetail);
+            }
+            else if(orderDetail.Count>1)
+            {
+                orderDetail.Count = orderDetail.Count-1;
+                _order.UpdateOrderDetail(orderDetail);
+            }
+          
+        }
+
+        public async Task<List<UserQuestionViewModel>> Questions()
+        {
+           List<UserQuestionViewModel>question=new List<UserQuestionViewModel>();
+           var result = await _home.UserQuestions();
+           foreach (var item in result)
+           {
+               question.Add(new UserQuestionViewModel()
+               {
+                   UserFullName = item.User.UserFullName,
+                   Body = item.UserQuestionBody,
+                   Id = item.UserQuestionId,
+                   Time = item.CreateTime.SolarYear(),
+                   Title = item.UserQuestionTitle
+               });
+           }
+
+           return question;
+        }
+
+        public async Task<List<UserAnswerViewModel>> Answer(string id)
+        {
+            var result = await _home.GetAnswer(id);
+            List<UserAnswerViewModel>answer=new List<UserAnswerViewModel>();
+            foreach (var item in result)
+            {
+                answer.Add(new UserAnswerViewModel()
+                {
+                    Avatar = item.User.UserAvatar,
+                    Body = item.UserAnswerBody,
+                    Time = item.Time.SolarYear(),
+                    UserName = item.User.UserFullName
+                });
+            }
+
+            return answer;
+        }
+
+        public void InsertAnswer(InsertUserAnswerViewModel model)
+        {
+            UserAnswerEntity answer=new UserAnswerEntity();
+            answer.Time=DateTime.Now;
+            answer.QuestionId = model.Id;
+            answer.UserId = model.UserId;
+            answer.UserAnswerBody = model.Body;
+            _home.InsertAnswer(answer);
+        }
+        public void Insert(ContactViewModel model)
+        {
+            ContactEntity contact = new ContactEntity();
+            contact.Time = DateTime.Now;
+            contact.Body = model.Body;
+            contact.Mail = model.Mail;
+            contact.Name = model.Name;
+            contact.PhoneNumber = model.PhoneNumber;
+            _contact.Insert(contact);
+        }
+        public void InsertQuestion(InsertUserQuestionViewModel model)
+        {
+            UserQuestionEntity question=new UserQuestionEntity();
+            question.UserId = model.UserId;
+            question.CreateTime=DateTime.Now;
+            question.UserQuestionBody = model.Body;
+            question.UserQuestionTitle = model.Title;
+            question.Accept = false;
+            _home.InsertQuestion(question);
         }
     }
 }

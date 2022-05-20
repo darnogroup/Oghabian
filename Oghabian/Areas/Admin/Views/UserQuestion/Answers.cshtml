@@ -1,0 +1,33 @@
+﻿@model List<UserQuestionAnswerViewModel>
+@{
+    ViewData["Title"] = "پاسخ ها";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<nav class="page-breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/Admin">پیشخوان</a></li>
+        <li class="breadcrumb-item"><a asp-controller="Category" asp-action="Index">لیست پرسش ها</a></li>
+        <li class="breadcrumb-item " aria-current="page">پاسخ ها</li>
+    </ol>
+</nav>
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="card-title">پاسخ های ثبت شده</h6>
+              @foreach (var item in Model)
+              {
+                  <div class="card text-white bg-primary col-12" id="item_@item.Id">
+                      <div class="card-header">تاریخ ثبت پاسخ:@item.Time</div>
+                      <div class="card-body">
+                          <h5 class="card-title">@item.UserName این پاسخ را نوشته</h5>
+                          <p class="card-text">@item.Answer</p>
+                          <button onclick="DeleteUserAnswer('@item.Id')" class="btn btn-outline-light">پاک کردن</button>
+                      </div>
+                  </div>
+              }
+            </div>
+        </div>
+    </div>
+</div>

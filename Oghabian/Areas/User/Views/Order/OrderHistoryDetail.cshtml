@@ -1,0 +1,51 @@
+﻿@model List<DetailHistoryViewModel>
+@{
+    ViewData["Title"] = "جزئیات صورتحاسب";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section class="inner-section profile-part mt-5">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-12">
+
+                <div class="account-card p-2">
+                    <div class="account-title">
+                        <h4>جزئیات سفارش</h4>
+
+                    </div>
+                    <div class="table-scroll ">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr><th scope="col">تصویر</th>
+                                    <th scope="col">عنوان</th>
+                                    <th scope="col">تعداد</th>
+                                    <th scope="col">قیمت</th>
+                                 
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <th class="text-center">
+                                            <img src="~/Images/@item.Image" width="140" height="140" class="img-thumbnail"/>
+                                        </th>
+                                        <td class="mt-3">@item.Title</td>
+                                        <td class="mt-3">
+                                            @item.Count
+                                        </td>  <td class="mt-3">
+                                        @item.Price تومان
+                                        </td>
+                                       
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

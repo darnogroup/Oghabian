@@ -14,6 +14,6 @@ namespace Domin.Interfaces
         void InsertCommentFood(CommentFoodEntity commentFood);
         void UpdateCommentFood(CommentFoodEntity commentFood);
         void DeleteCommentFood(CommentFoodEntity commentFood);
-        int CountCommentFood();
+        int CountCommentFood(string id);
     }
 }

@@ -1,0 +1,69 @@
+﻿@model List<ColumnViewModel>
+@{
+    ViewData["Title"] = "سطر ها";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<nav class="page-breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/Admin">پیشخوان</a></li>
+        <li class="breadcrumb-item"><a asp-controller="Table" asp-action="Index">لیست جداول</a></li>
+        <li class="breadcrumb-item " aria-current="page">لیست سطرها </li>
+    </ol>
+</nav>
+
+
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="card-title">لیست  سطرها </h6>
+                <div>
+                    <div id="dataTableExample_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-4">
+                                <div class="dataTables_length" id="dataTableExample_length">
+                                    <label><a role="button" asp-controller="Table" asp-action="CreateColumn" asp-route-id="@ViewBag.Id" class="btn btn-outline-success">افزودن سطر</a></label>
+
+                                </div>
+                            </div>
+                          
+                        </div><div class="row">
+                            <div class="col-sm-12 table-responsive">
+                                <table id="dataTableExample" class="table dataTable no-footer" role="grid" aria-describedby="dataTableExample_info">
+                                    <thead>
+                                        <tr role="row">
+                                            <th>مقادیر سطر</th>
+                                        
+
+                                            <th>عملیات</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr role="row" id="item_@item.Id">
+
+                                                <td>@item.Column</td>
+                                           
+                                                <td>
+
+                                             
+                                                        <button onclick="DeleteColumn('@item.Id')" class="btn btn-outline-danger">پاک کردن</button>
+                                                </td>
+
+                                            </tr>
+                                        }
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

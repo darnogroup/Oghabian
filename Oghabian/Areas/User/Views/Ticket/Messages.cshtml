@@ -1,0 +1,36 @@
+﻿@model List<TicketMessageViewModel>
+@{
+    ViewData["Title"] = "پیام ها";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="inner-section profile-part mt-5">
+    <div class="container">
+        <a asp-controller="Ticket" asp-action="AddNewTicket" asp-route-id="@ViewBag.Id" class="btn btn-sm btn-primary text-white">پاسخ جدید</a>
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                @if (ViewBag.User == item.UserId)
+                {
+                    <div class="alert alert-primary p-3 mt-2 rounded-3">
+                        <h4>پیام شما</h4>
+                        <hr/>
+                        <p>@item.Text</p>
+                        <hr/>
+                        <span>فایل پیوستی:<a href="~/Images/@item.Path">مشاهده</a></span>
+                    </div>
+                }
+                else
+                {
+                    <div class="alert alert-warning p-3 mt-2 rounded-3">
+                        <h4>پیام پشتیبان</h4>
+                        <hr/>
+                        <p>@item.Text</p>
+                        <hr/>
+                        <span>فایل پیوستی:<a href="~/Images/@item.Path">مشاهده</a></span>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</section>

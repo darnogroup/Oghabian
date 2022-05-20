@@ -93,7 +93,7 @@ namespace Date.Repositories
 
         public async Task<string> FullName(string id)
         {
-            return await _context.Users.Select(s => s.UserFullName).SingleOrDefaultAsync();
+            return await _context.Users.Where(w=>w.Id==id).Select(s => s.UserFullName).SingleOrDefaultAsync();
         }
 
         public void Save()
