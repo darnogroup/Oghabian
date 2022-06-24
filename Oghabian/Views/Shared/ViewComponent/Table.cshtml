@@ -1,0 +1,10 @@
+﻿@model List<TableMenuViewModel>
+<li class="navbar-item dropdown">
+    <a class="navbar-link dropdown-arrow">جداول</a>
+    <ul class="dropdown-position-list">
+        @foreach (var item in Model)
+        {
+            <li><a asp-controller="Home" asp-action="Table" asp-route-id="@item.Id">@item.Name</a></li>
+        }
+    </ul>
+</li>

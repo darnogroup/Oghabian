@@ -1,0 +1,20 @@
+﻿@model Tuple<List<SicknessMenuViewModel>, List<MailMenuViewModel>>
+<li class="navbar-item dropdown">
+    <a class="navbar-link dropdown-arrow">بیماری ها</a>
+    <ul class="dropdown-position-list">
+      
+ @foreach (var item in Model.Item1)
+ {
+     <li><a href="/foods?sickness=@item.Id">@item.Title</a></li>
+ }
+    </ul>
+</li>
+<li class="navbar-item dropdown">
+    <a class="navbar-link dropdown-arrow">وعده های غذایی</a>
+    <ul class="dropdown-position-list">
+        @foreach (var item in Model.Item2)
+        {
+            <li><a href="/foods?meal=@item.Id">@item.Title</a></li>
+        }
+    </ul>
+</li>

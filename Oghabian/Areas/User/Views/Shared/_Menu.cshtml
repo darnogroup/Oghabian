@@ -5,175 +5,36 @@
             <div class="col-lg-12">
                 <div class="navbar-content">
                     <ul class="navbar-list">
-                        <li class="navbar-item dropdown">
-                            <a class="navbar-link dropdown-arrow" href="#">خانه</a>
-                            <ul class="dropdown-position-list">
-                                <li><a href="index.html">صفحه اصلی</a></li>
-                                <li><a href="index-2.html">صفحه اصلی دو</a></li>
-                                <li><a href="index-3.html">صفحه اصلی سه</a></li>
-                                <li><a href="index-4.html">صفحه اصلی چهار</a></li>
-                            </ul>
+                        <li class="navbar-item ">
+                            <a class="navbar-link " asp-controller="Home" asp-action="Index">خانه</a>
                         </li>
-                        <li class="navbar-item dropdown">
-                            <a class="navbar-link dropdown-arrow" href="#">خرید</a>
-                            <ul class="dropdown-position-list">
-                                <li><a href="shop-grid.html">شبکه مغازه</a></li>
-                                <li><a href="shop-standard.html">استاندارد خرید</a></li>
-                                <li><a href="product-details.html">جزئیات محصول</a></li>
-                            </ul>
+                        <li class="navbar-item ">
+                            <a class="navbar-link " asp-controller="Food" asp-action="Foods">منو غذایی</a>
                         </li>
-                        <li class="navbar-item dropdown-megamenu">
-                            <a class="navbar-link dropdown-arrow" href="#">دسته بندی</a>
-                            <div class="megamenu">
-                                <div class="container">
-                                    <div class="row row-cols-5">
-                                        <div class="col">
-                                            <div class="megamenu-wrap">
-                                                <h5 class="megamenu-title">سبزیجات تازه</h5>
-                                                <ul class="megamenu-list">
-                                                    <li><a href="#">هویج</a></li>
-                                                    <li><a href="#">کلم بروکلی</a></li>
-                                                    <li><a href="#">گل کلم</a></li>
-                                                    <li><a href="#">خیار</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="megamenu-wrap">
-                                                <h5 class="megamenu-title">میوه و آب میوه</h5>
-                                                <ul class="megamenu-list">
-                                                    <li><a href="#">هویج</a></li>
-                                                    <li><a href="#">کلم بروکلی</a></li>
-                                                    <li><a href="#">گل کلم</a></li>
-                                                    <li><a href="#">خیار</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="megamenu-wrap">
-                                                <h5 class="megamenu-title">لبنیات و تخم مرغ </h5>
-                                                <ul class="megamenu-list">
-                                                    <li><a href="#">هویج</a></li>
-                                                    <li><a href="#">کلم بروکلی</a></li>
-                                                    <li><a href="#">گل کلم</a></li>
-                                                    <li><a href="#">خیار</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="megamenu-wrap">
-                                                <h5 class="megamenu-title">غذاهای دریایی و ماهی ها</h5>
-                                                <ul class="megamenu-list">
-                                                    <li><a href="#">هویج</a></li>
-                                                    <li><a href="#">کلم بروکلی</a></li>
-                                                    <li><a href="#">گل کلم</a></li>
-                                                    <li><a href="#">خیار</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <img src="~/assets/img/banner/8.jpg" class="w-100" alt="">
-                                        </div>
-                                        <div class="col">
-                                            <div class="megamenu-wrap">
-                                                <h5 class="megamenu-title">فست فودها</h5>
-                                                <ul class="megamenu-list">
-                                                    <li><a href="#">هویج</a></li>
-                                                    <li><a href="#">کلم بروکلی</a></li>
-                                                    <li><a href="#">گل کلم</a></li>
-                                                    <li><a href="#">خیار</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="megamenu-wrap">
-                                                <h5 class="megamenu-title">نوشیدنی بدون الکل</h5>
-                                                <ul class="megamenu-list">
-                                                    <li><a href="#">هویج</a></li>
-                                                    <li><a href="#">کلم بروکلی</a></li>
-                                                    <li><a href="#">گل کلم</a></li>
-                                                    <li><a href="#">خیار</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="megamenu-wrap">
-                                                <h5 class="megamenu-title">گوشت</h5>
-                                                <ul class="megamenu-list">
-                                                    <li><a href="#">هویج</a></li>
-                                                    <li><a href="#">کلم بروکلی</a></li>
-                                                    <li><a href="#">گل کلم</a></li>
-                                                    <li><a href="#">خیار</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="megamenu-wrap">
-                                                <h5 class="megamenu-title">غذاهای خشک</h5>
-                                                <ul class="megamenu-list">
-                                                    <li><a href="#">هویج</a></li>
-                                                    <li><a href="#">کلم بروکلی</a></li>
-                                                    <li><a href="#">گل کلم</a></li>
-                                                    <li><a href="#">خیار</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <img src="~/assets/img/banner/9.jpg" class="w-100" alt="">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        @await Component.InvokeAsync("SicknessAndMealComponent")
+
+
+                        @await Component.InvokeAsync("TableComponent")
+                        <li class="navbar-item ">
+                            <a class="navbar-link " href="/blogs">وبلاگ </a>
+
                         </li>
-                        <li class="navbar-item dropdown">
-                            <a class="navbar-link dropdown-arrow" href="#">صفحات</a>
-                            <ul class="dropdown-position-list">
-                                <li><a href="about.html">درباره ما</a></li>
-                                <li><a href="contact.html">با ما تماس بگیرید</a></li>
-                                <li><a href="offer.html">تخفیف</a></li>
-                                <li><a href="faq.html">سوالات متداول</a></li>
-                                <li><a href="compare.html">مقایسه کنید</a></li>
-                                <li><a href="privacy.html">حریم خصوصی</a></li>
-                                <li><a href="coming-soon.html">به زودی</a></li>
-                                <li><a href="blank-page.html">صفحه خالی</a></li>
-                                <li><a href="error.html">خطای 404</a></li>
-                                <li><a href="wishlist.html">لیست علاقه مندیها</a></li>
-                                <li><a href="checkout.html">پرداخت</a></li>
-                                <li><a href="cart.html">سبد خرید</a></li>
-                                <li><a href="orderlist.html">لیست سفارش</a></li>
-                                <li><a href="order-detail.html">جزئیات سفارش</a></li>
-                                <li><a href="invoice.html">فاکتور سفارش</a></li>
-                            </ul>
+                        <li class="navbar-item ">
+                            <a class="navbar-link " asp-controller="Home" asp-action="ContactUs">ارتباط با ما</a>
+                        </li>    <li class="navbar-item ">
+                            <a class="navbar-link " asp-controller="Home" asp-action="Question">سوالات شما</a>
+                        </li> 
+                        <li class="navbar-item ">
+                            <a class="navbar-link " asp-controller="ImmediateOrder" asp-action="SelectPerson">سفارش فوری</a>
                         </li>
-                        <li class="navbar-item dropdown">
-                            <a class="navbar-link dropdown-arrow" href="#">حساب</a>
-                            <ul class="dropdown-position-list">
-                                <li><a href="profile.html">پروفایل من</a></li>
-                                <li><a href="login.html">ورود</a></li>
-                                <li><a href="register.html">ثبت نام</a></li>
-                                <li><a href="reset.html">رمز عبور را تنظیم کنید</a></li>
-                                <li><a href="change.html">رمز عبور را تغییر دهید</a></li>
-                            </ul>
-                        </li>
-                        <li class="navbar-item dropdown">
-                            <a class="navbar-link dropdown-arrow" href="#">وبلاگ ها</a>
-                            <ul class="dropdown-position-list">
-                                <li><a href="blog-grid.html">شبکه وبلاگ</a></li>
-                                <li><a href="blog-standard.html">استاندارد وبلاگ</a></li>
-                                <li><a href="blog-details.html">جزئیات وبلاگ</a></li>
-                            </ul>
-                        </li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="navbar-item ">
+                                <a class="navbar-link " asp-controller="Ticket" asp-action="AllTickets">تیکت ها</a>
+                            </li>
+                        }
                     </ul>
-                    <div class="navbar-info-group">
-                        <div class="navbar-info">
-                            <i class="fal fa-phone"></i>
-                            <p><small>شماره تماس</small><span>021444676</span></p>
-                        </div>
-                        <div class="navbar-info">
-                            <i class="fal fa-envelope-open-text"></i>
-                            <p><small>برای ما ایمیل بزنید </small><span><a href="#" class="__cf_email__" data-cfemail="f29b9c949db2978a939f829e97dc919d9f">info@gmail.com</a></span></p>
-                        </div>
-                    </div>
+                    @await Component.InvokeAsync("InfoComponent")
                 </div>
             </div>
         </div>

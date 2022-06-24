@@ -1,0 +1,87 @@
+﻿@model SelectFoodItemViewModel
+@{
+    ViewData["Title"] = "انتخاب غذا";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var list = ViewBag.model as List<SelectFoodViewModel>;
+}
+@{
+    System.Diagnostics.Debug.Assert(list != null, nameof(list) + " != null");
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+
+        <div class="user-form-card mt-5 col-xl-10 col-lg-10 col-md-12 col-sm-12">
+            <div class="user-form-title">
+
+                <h2>سفارش فوری</h2>
+                <p>مرحله سوم-انتخاب غذا</p>
+                @if (ViewBag.Alert != null)
+                {
+                    <div class="alert alert-warning p-3 rounded-3">
+                        @ViewBag.Alert
+                        <a href="/Profile/Medical">برای تکمیل کلیک کنید</a>
+                    </div>
+                }
+            </div>
+            <form asp-controller="ImmediateOrder" asp-action="SelectFood" class="user-form">
+                <div class="row">
+                    <div class="select-food">
+                        @if(list.Count!=0)
+                        {
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr>
+                                    <th scope="col">انتخاب</th>
+                                    <th scope="col">تصویر</th>
+                                    <th scope="col">عنوان</th>
+                                    <th scope="col">کالری</th>
+                                    <th scope="col">کربوهیدرات</th>
+                                    <th scope="col">پروتیئن</th>
+                                    <th scope="col">چربی</th>
+                                    <th scope="col">قیمت</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach (var item in list)
+                                {
+                                <tr>
+                                    <th scope="row"> <input class="form-check-input " name="Food" type="checkbox" value="@item.FoodId" id="defaultCheck1"></th>
+                                    <td> <img src="~/Images/@item.FoodImage" class="img-thumbnail " width="50" height="50" /></td>
+                                    <td> @item.FoodName  </td>
+                                    <td> @item.FoodCalories  </td>
+                                    <td> @item.FoodCarbohydrate  </td>
+                                    <td> @item.FoodProtein  </td>
+                                    <td> @item.FoodFat  </td>
+                                    <td> @item.FoodPrice <span>تومان</span>  </td>
+                        
+                                </tr>}
+                                </tbody>
+                            </table>
+
+                                
+                           
+                        }
+                        else
+                        { <div class="alert alert-warning p-3 rounded-3">
+                                <h3>موردی یافت نشد!</h3>
+                            </div>
+                        }
+                        <input type="hidden" asp-for="User" value="@ViewBag.Person" />
+                    </div>
+                </div>
+
+                <div class="row justify-content-center">
+                    <div class="form-button col-6 ">
+                        <button class="col-5" type="submit">برو مرحله بعد</button>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+@section Footer{
+    <partial name="_ValidationScriptsPartial" />
+}

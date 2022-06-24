@@ -7,6 +7,7 @@ using Application.Service.Interface;
 using Application.Service.Repository;
 using Date.Repositories;
 using Domin.Interfaces;
+using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Ioc
@@ -43,7 +44,12 @@ namespace Ioc
             service.AddScoped<ITicketInterface,TicketRepository>();
             service.AddScoped<IUserQuestionInterface,UserQuestionRepository>();
             service.AddScoped<ITableInterface,TableRepository>();
+            service.AddScoped<IFilterInterface,FilterRepository>();
             service.AddScoped<IContactInterface,ContactRepository>();
+            service.AddScoped<IMailInterface,MailRepository>();
+            service.AddScoped<ILinkInterface,LinkRepository>();
+            service.AddScoped<IDiscountInterface,DiscountRepository>();
+            service.AddScoped<IRegisteredOrderInterface,RegisteredOrder>();
             //Services
             service.AddScoped<IMealService, MealService>();
             service.AddScoped<ISicknessService, SicknessService>();
@@ -69,6 +75,9 @@ namespace Ioc
             service.AddScoped<IUserQuestionService, UserQuestionService>();
             service.AddScoped<ITableService, TableService>();
             service.AddScoped<IContactService,ContactService>();
+            service.AddScoped<ILinkService,LinkService>();
+            service.AddScoped<IDiscountService,DiscountService>();
+            service.AddScoped<IRegisteredOrderService,RegisterOrderService>();
         }
     }
 }

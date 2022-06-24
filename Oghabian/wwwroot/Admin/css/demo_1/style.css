@@ -9691,9 +9691,13 @@ mark,
 }
 
 .list-unstyled {
-  padding-left: 0;
-  list-style: none;
+    padding-left: 0;
+    list-style: none;
+    overflow: scroll;
+    max-height: 500px;
 }
+
+
 
 .list-inline {
   padding-left: 0;
@@ -37472,8 +37476,9 @@ select.border-danger-muted:focus,
 }
 
 .chat-wrapper .chat-aside .aside-body .tab-content {
-  position: relative;
-  max-height: calc(100vh - 385px);
+    position: relative;
+    max-height: 500px;
+ 
 }
 
 @media (max-width: 767px) {

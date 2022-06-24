@@ -282,9 +282,9 @@ button:focus {
 .btn {
     border: none;
     font-size: 15px;
-    font-weight: 500;
+  /*  font-weight: 500;*/
     text-transform: uppercase;
-    padding: 14px 32px;
+   /* padding: 14px 32px;*/
     border-radius: 8px
 }
 
@@ -4813,7 +4813,7 @@ tbody tr td:last-child {
 
 .news-part {
     padding: 70px 0;
-    background: url(../img/newsletter.jpg);
+    background: url(../img/news.jpg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -4828,7 +4828,7 @@ tbody tr td:last-child {
     right: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to left, rgba(6, 23, 56, 0.8), rgba(17, 151, 68, 0.8));
+    background: linear-gradient(to left, rgba(33, 109, 222, 0.8), rgba(18, 5, 137, 0.8));
     z-index: -1
 }
 
@@ -7736,11 +7736,12 @@ tbody tr td:last-child {
 }
 
 .form-button button {
+    margin-top: 7px;
     width: 100%;
-    height: 45px;
+    height: 35px;
     font-size: 14px;
-    font-weight: 500;
-    line-height: 45px;
+    /*font-weight: 500;*/
+   /* line-height: 45px;*/
     border-radius: 8px;
     letter-spacing: .3px;
     text-align: center;

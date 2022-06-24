@@ -3,13 +3,15 @@
     <div class="container">
         <div class="header-content-group">
             <div class="header-widget-group left">
-                <button class="header-widget header-user" title="حساب من"><img src="~/assets/img/us2er.jpg" alt="کاربر"></button>
-                <a class="header-logo" href="index.html"><img src="~/assets/img/logo.png" alt="لوگو"></a>
-                <button class="header-widget header-src" title="نوار جستجو"><i class="far fa-search"></i></button>
-                <button class="header-widget header-cate" title="لیست دسته بندی"><i class="flaticon-menu-1"></i></button>
+                      
+       
+
+            @await Component.InvokeAsync("LogoComponent")
+            <button class="header-widget header-src" title="نوار جستجو"><i class="far fa-search"></i></button>
+               
             </div>
-            <form class="header-form">
-                <input type="text" placeholder="مورد خود را در اینجا جستجو کنید ..."><button><i class="far fa-search"></i></button>
+            <form class="header-form" asp-controller="Food" asp-action="Foods" method="get">
+                <input type="text" name="search" placeholder="مورد خود را در اینجا جستجو کنید ..."><button type="submit"><i class="far fa-search"></i></button>
             </form>
             <div class="header-widget-group right">
               
@@ -18,9 +20,9 @@
                
                 @if (User.Identity != null && User.Identity.IsAuthenticated)
                 {
-                    <a class="header-widget" href="login.html" title="حساب من"><img src="~/Images/@User.Claims.FirstOrDefault(c=>c.Type=="Avatar").Value" alt="کاربر"></a>
-                    <a class="header-widget" href="wishlist.html" title="لیست علاقه مندیها"><i class="far fa-heart"></i><sup>3</sup></a>
-                    <button class="header-widget header-cart" title="سبد خرید"><i class="far fa-shopping-cart"></i><sup>5</sup></button>
+                    <a class="header-widget" href="/profile" title="حساب من"><img src="~/Images/@User.Claims.FirstOrDefault(c=>c.Type=="Avatar").Value" alt="کاربر"></a>
+                    <a class="header-widget" href="/profile/favorite" title="لیست علاقه مندیها"><i class="far fa-heart"></i></a>
+                    <button class="header-widget header-cart" title="سبد خرید"><i class="far fa-shopping-cart"></i></button>
           
                 }
                 else

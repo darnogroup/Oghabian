@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
+using System.Threading;
 using System.Threading.Tasks;
 using Application.Other;
 using Application.Service.Interface;
@@ -12,7 +13,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Oghabian.Controllers
 {
-    
+
     public class AccountController : Controller
     {
         private readonly UserManager<UserEntity> _userManager;
@@ -27,7 +28,8 @@ namespace Oghabian.Controllers
             _sender = sender;
             _signInManager = signInManager;
         }
-        [HttpGet][Route("/SignUp")]
+        [HttpGet]
+        [Route("/SignUp")]
         public IActionResult SignUp()
         {
             if (User.Identity != null && User.Identity.IsAuthenticated)
@@ -39,16 +41,17 @@ namespace Oghabian.Controllers
                 ViewBag.Alert = null;
                 return View();
             }
-        } 
-        [HttpPost][Route("/SignUp")]
-        public IActionResult SignUp(SignUpViewModel model)
+        }
+        [HttpPost]
+        [Route("/SignUp")]
+        public async Task<IActionResult> SignUp(SignUpViewModel model)
         {
             if (ModelState.IsValid)
             {
                 if (model.Accept)
                 {
                     Random random = new Random();
-                    UserEntity user=new UserEntity();
+                    UserEntity user = new UserEntity();
                     user.UserName = model.Mail;
                     user.MedicalRecords = true;
                     user.Email = model.Mail;
@@ -58,23 +61,40 @@ namespace Oghabian.Controllers
                     user.UserFullName = model.FullName;
                     user.PhoneNumber = model.PhoneNumber;
                     var role = _roleManager.FindByNameAsync("User").Result;
-                    user.Role = "User"; 
+                    user.Role = "User";
                     user.LoginCode = random.Next(999, 9999).ToString();
                     user.Time = DateTime.Now;
+                    user.EmailConfirmed = true;
+                    user.PhoneNumberConfirmed = true;
                     user.UserAvatar = "male.jpg";
                     var result = _userManager.CreateAsync(user, model.Password).Result;
                     if (result.Succeeded)
                     {
-                        Claim claim=new Claim("Avatar",user.UserAvatar,ClaimValueTypes.String);
-                        _userManager.AddClaimAsync(user,claim);
-                      _userManager.AddToRoleAsync(user,"User");
-                      var token = _userManager.GenerateEmailConfirmationTokenAsync(user).Result;
-                      var link = Url.Action("ActiveAccount", "Account", new { id = user.Id, token = token },
-                          protocol: Request.Scheme);
-                      var text = "<a href=" + link + ">برای فعالسازی حساب کاربری در سایت بهین فود بر روی این لینک کلیک کنید</a>";
-                      _sender.SendMail(user.Email, text, "فعالسازی حساب کاربری");
-                        ViewBag.Alert = "ایمیلی حاوی لینک فعالسازی حساب کاربری برای شما ارسال شد";
-                      return View(model);
+
+                        Claim claim = new Claim("Avatar", user.UserAvatar, ClaimValueTypes.String);
+                      await  _userManager.AddClaimAsync(user, claim);
+                      await  _userManager.AddToRoleAsync(user, "User");
+                      var resultSignIn = await _signInManager.PasswordSignInAsync(user, model.Password, false, true)
+                          ;
+
+                        if (resultSignIn.Succeeded)
+                        {
+                            return Redirect("/Profile/Medical");
+                        }
+                        else
+                        {
+                            return RedirectToAction(nameof(SignIn));
+                        }
+
+                        //var token = _userManager.GenerateEmailConfirmationTokenAsync(user).Result;
+                        //var link = Url.Action("ActiveAccount", "Account", new { id = user.Id, token = token },
+                        //    protocol: Request.Scheme);
+                        //var text = "<a href=" + link + ">برای فعالسازی حساب کاربری در سایت بهین فود بر روی این لینک کلیک کنید</a>";
+                        //_sender.SendMail(user.Email, text, "فعالسازی حساب کاربری");
+                        //  ViewBag.Alert = "ایمیلی حاوی لینک فعالسازی حساب کاربری برای شما ارسال شد";
+
+
+
                     }
                     else
                     {
@@ -109,7 +129,7 @@ namespace Oghabian.Controllers
                 var user = _userManager.FindByNameAsync(model.Mail).Result;
                 if (user != null)
                 {
-                   
+
                     var result = _signInManager.PasswordSignInAsync(user, model.Password, model.SaveInfo, true)
                         .Result;
                     if (result.Succeeded)
@@ -263,7 +283,7 @@ namespace Oghabian.Controllers
         }
         [HttpGet]
         [Route("/ActiveAccount")]
-        public IActionResult ActiveAccount(string id,string token)
+        public IActionResult ActiveAccount(string id, string token)
         {
             if (id == null && token == null)
             {

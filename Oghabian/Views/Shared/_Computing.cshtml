@@ -2,36 +2,40 @@
     <div class="container">
         <div class="row text-center">
             <h2 class="mb-3 text-white">محاسبه آنلاین کالری روزانه</h2>
-            <form class="row">
-                <div class="col-xl-2 col-lg-2 cil-md-6 col-sm-12 form-group"> <label for="exampleFormControlSelect1" class="text-white">وزن</label> <input type="number" name="INPUT" required="" class="form-control " placeholder="وزن"></div>
+            <div class="row">
+                <div class="col-xl-2 col-lg-2 cil-md-6 col-sm-12 form-group"> <label class="text-white">وزن</label> 
+                    <input type="number" id="Weight" name="INPUT" required="" class="form-control " placeholder="وزن"></div>
 
-                <div class="col-xl-2 col-lg-2 cil-md-6 col-sm-12 form-group"> <label for="exampleFormControlSelect1" class="text-white">قد</label> <input type="number" required="" class="form-control " placeholder="قد"></div>
+                <div class="col-xl-2 col-lg-2 cil-md-6 col-sm-12 form-group"> <label  class="text-white">قد</label> 
+                    <input type="number" id="Height" required="" class="form-control " placeholder="قد"></div>
 
-                <div class="col-xl-2 col-lg-2 cil-md-6 col-sm-12 form-group"> <label for="exampleFormControlSelect1" class="text-white">سن</label> <input type="number" required="" class="form-control " placeholder="سن"></div>
+                <div class="col-xl-2 col-lg-2 cil-md-6 col-sm-12 form-group"> <label  class="text-white">سن</label>
+                    <input type="number" required="" id="Age" class="form-control " placeholder="سن"></div>
                 <div class="form-group col-xl-3 col-lg-3 cil-md-6 col-sm-12">
-                    <label for="exampleFormControlSelect1" class="text-white">جنسیت</label>
-                    <select class="form-control" id="exampleFormControlSelect1">
-                        <option>مذکر</option>
-                        <option>مونث</option>
+                    <label  class="text-white">جنسیت</label>
+                    <select class="form-control" id="Gender">
+                        <option value="male">مذکر</option>
+                        <option value="fmale">مونث</option>
 
                     </select>
                 </div>
                 <div class="form-group col-xl-3 col-lg-3 cil-md-6 col-sm-12">
                     <label for="exampleFormControlSelect1" class="text-white">میزان فعالیت</label>
-                    <select class="form-control" id="exampleFormControlSelect1">
-                        <option>بی تحرک</option>
-                        <option>هفته&zwnj;ای یک تا سه مرتبه کمی ورزش</option>
-                        <option>سه تا پنج روز در هفته ورزش با شدت متوسط&zwnj;</option>
-                        <option>هفته&zwnj;ای شش مرتبه ورزش</option>
+                    <select class="form-control" id="Active">
+                        <option value="1">بی تحرک</option>
+                        <option value="2">هفته&zwnj;ای یک تا سه مرتبه کمی ورزش</option>
+                        <option value="3">سه تا پنج روز در هفته ورزش با شدت متوسط&zwnj;</option>
+                        <option value="4">هفته&zwnj;ای شش مرتبه ورزش</option>
 
                     </select>
                 </div>
                 <div class="row text-center">
                     <div class="col text-center">
-                        <button class="btn btn-warning btn-sm">محاسبه</button>
+                        <a  id="computing" class="btn btn-warning btn-sm">محاسبه</a>
                     </div>
                 </div>
-            </form>
+            </div>
+           
         </div>
 
 

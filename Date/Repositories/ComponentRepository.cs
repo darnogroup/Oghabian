@@ -80,5 +80,15 @@ namespace Date.Repositories
         {
             return _context.Food.Count(c => c.MealId == id);
         }
+
+        public async Task<List<RowEntity>> GetRows()
+        {
+            return await _context.Row.ToListAsync();
+        }
+
+        public async Task<List<SupporterEntity>> GetSupporters()
+        {
+            return await _context.Supporter.ToListAsync();
+        }
     }
 }

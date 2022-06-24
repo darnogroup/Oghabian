@@ -20,5 +20,7 @@ namespace Domin.Interfaces
         Task<ArticleSeoEntity> GetSeoArticleId(string id);
         Task<FoodSeoEntity> GetSeoFoodId(string id);
         Task<List<MealEntity>> GetMeals(); int GetMealCount(string id);
+        Task<List<RowEntity>> GetRows();
+        Task<List<SupporterEntity>> GetSupporters();
     }
 }

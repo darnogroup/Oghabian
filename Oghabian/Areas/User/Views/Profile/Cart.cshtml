@@ -1,12 +1,12 @@
 ﻿@model Tuple<List<CartItemViewModel>, CartDetailViewModel>
 @{
     ViewData["Title"] = "سبد خرید";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Areas/User/Views/Shared/_UserLayout.cshtml";
 }
 <section class="inner-section checkout-part mt-5">
     <div class="container">
         <div class="row">
-            <div class="col-lg-9">
+            <div class="col-lg-7">
                 <div class="account-card">
                     <div class="account-title"><h4>سفارش شما</h4></div>
                     <div class="account-content">
@@ -65,7 +65,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3">
+            <div class="col-lg-5">
                 <div class="account-card">
                     <div class="checkout-charge">
                         <div class="account-title"><h4>جزئیات سفارش</h4></div>
@@ -73,23 +73,45 @@
                             <li><span>سفارش دهنده </span><br/><span>@Model.Item2.Seller</span></li>
                             <li><span>استان </span><span>@Model.Item2.State</span></li>
                             <li><span> شهر </span><span>@Model.Item2.City</span></li>
+                           
+                            
+                        @if (Model.Item2.TotalCart != 0)
+                        {
                             <li><span>هزینه ارسال </span><span>@Model.Item2.SendPrice</span></li>
                             <li><span>هزینه سفارش </span><span id="total">@Model.Item2.Total </span><span>تومان</span></li>
+                        }
+                        else
+                        {
+                            <li><span>هزینه ارسال </span></li>
+                            <li><span>هزینه سفارش </span></li>
+                        }
+                            
+
+                          
                         @if (Model.Item1.Count > 0)
                         {    <li>
-                                 <span>هزینه نهائی</span><span id="totalFull"> @Model.Item2.TotalCart  </span><span>تومان</span>
+                                 <span>هزینه نهایی</span><span id="totalFull"> @Model.Item2.TotalCart  </span><span>تومان</span>
                              </li>
                         }
                         else
                         {
                             <li>
-                                <span>هزینه نهائی</span><span>0</span>
+                                <span>هزینه نهایی</span><span>0</span>
                             </li>
                         }
                         
                         </ul>
                     </div>
-                    <div class="checkout-proced"><a href="invoice.html" class="btn btn-inline">پرداخت</a></div>
+                    <div class="checkout-proced">
+                      @if (Model.Item2.TotalCart!=0)
+                      {
+                          <a asp-controller="Profile" asp-action="AcceptOrder" class="btn btn-inline">ادامه</a>
+                      }
+                      else
+                      {
+                          <a  class="btn btn-inline">سبد خرید شما خالی است</a>
+                      }
+                    </div>
 
                 </div>
             </div>

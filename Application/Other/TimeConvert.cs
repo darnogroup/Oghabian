@@ -25,6 +25,14 @@ namespace Application.Other
             return pc.GetYear(date).ToString() + "/" + pc.GetMonth(date).ToString("00") + "/" +
                    pc.GetDayOfMonth(date).ToString("00");
         }
+        public static string LocalTime(this DateTime date)
+        {
+            PersianCalendar pc = new PersianCalendar();
+            var hour = pc.GetHour(date).ToString();
+           var minute=  pc.GetMinute(date).ToString();
+           var second = pc.GetSecond(date).ToString();
+           return hour + ":" + minute + ":" + second;
+        }
 
         public static string GetEnglishNumbers(this string s)
         {

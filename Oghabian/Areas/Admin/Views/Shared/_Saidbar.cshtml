@@ -1,7 +1,7 @@
 ﻿<nav class="sidebar">
     <div class="sidebar-header">
-        <a href="#" class="sidebar-brand">
-            Noble<span>UI</span>
+        <a href="/" class="sidebar-brand">
+            مشاهده<span>سایت</span>
         </a>
         <div class="sidebar-toggler not-active">
             <span></span>
@@ -138,25 +138,141 @@
                     </ul>
                 </div>
             </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#authPages" role="button" aria-expanded="false"
+               aria-controls="authPages">
+                <i class="link-icon" data-feather="box"></i>
+                <span class="link-title">پک های غذایی</span>
+                <i class="link-arrow" data-feather="chevron-down"></i>
+            </a>
+            <div class="collapse" id="authPages">
+                <ul class="nav sub-menu">
+                    <li class="nav-item">
+                        <a asp-controller="Food" asp-action="Index" class="nav-link">لیست پک های غذایی</a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-controller="Food" asp-action="Create" class="nav-link">افزودن پک غذایی</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        
+        
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#a" role="button" aria-expanded="false"
+               aria-controls="a">
+                <i class="link-icon" data-feather="box"></i>
+                <span class="link-title">سفارشات ثبت شده</span>
+                <i class="link-arrow" data-feather="chevron-down"></i>
+            </a>
+            <div class="collapse" id="a">
+                <ul class="nav sub-menu">
+                    <li class="nav-item">
+                        <a asp-controller="Register" asp-action="Register" class="nav-link">سفارشات ثبت شده</a>
+                    </li>
+                  
+                </ul>
+            </div>
+        </li>
+        
+        
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#b" role="button" aria-expanded="false"
+               aria-controls="b">
+                <i class="link-icon" data-feather="box"></i>
+                <span class="link-title">سفارشات آشپزخانه </span>
+                <i class="link-arrow" data-feather="chevron-down"></i>
+            </a>
+            <div class="collapse" id="b">
+                <ul class="nav sub-menu">
+                    <li class="nav-item">
+                        <a asp-controller="Register" asp-action="Kitchen" class="nav-link">سفارشات  آشپزخانه</a>
+                    </li>
+                  
+                </ul>
+            </div>
+        </li>
+        
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#c" role="button" aria-expanded="false"
+               aria-controls="c">
+                <i class="link-icon" data-feather="box"></i>
+                <span class="link-title">سفارشات ارسالی </span>
+                <i class="link-arrow" data-feather="chevron-down"></i>
+            </a>
+            <div class="collapse" id="c">
+                <ul class="nav sub-menu">
+                    <li class="nav-item">
+                        <a asp-controller="Register" asp-action="Delivery" class="nav-link">سفارشات  ارسالی</a>
+                    </li>
+                  
+                </ul>
+            </div>
+        </li>
+        
             <li class="nav-item">
-                <a class="nav-link" data-toggle="collapse" href="#authPages" role="button" aria-expanded="false"
-                   aria-controls="authPages">
-                    <i class="link-icon" data-feather="box"></i>
-                    <span class="link-title">پک های غذایی</span>
-                    <i class="link-arrow" data-feather="chevron-down"></i>
-                </a>
-                <div class="collapse" id="authPages">
-                    <ul class="nav sub-menu">
-                        <li class="nav-item">
-                            <a asp-controller="Food" asp-action="Index" class="nav-link">لیست پک های غذایی</a>
-                        </li>
-                        <li class="nav-item">
-                            <a asp-controller="Food" asp-action="Create" class="nav-link">افزودن پک غذایی</a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#d" role="button" aria-expanded="false"
+               aria-controls="d">
+                <i class="link-icon" data-feather="box"></i>
+                <span class="link-title">سفارشات تحویل داده شده </span>
+                <i class="link-arrow" data-feather="chevron-down"></i>
+            </a>
+            <div class="collapse" id="d">
+                <ul class="nav sub-menu">
+                    <li class="nav-item">
+                        <a asp-controller="Register" asp-action="Close" class="nav-link">سفارشات  تحویل داده شده</a>
+                    </li>
+                  
+                </ul>
+            </div>
+        </li>
+        
+
+        
+        
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#link" role="button" aria-expanded="false"
+               aria-controls="link">
+                <i class="link-icon" data-feather="link"></i>
+                <span class="link-title">لینک ها</span>
+                <i class="link-arrow" data-feather="chevron-down"></i>
+            </a>
+            <div class="collapse" id="link">
+                <ul class="nav sub-menu">
+                    <li class="nav-item">
+                        <a asp-controller="link" asp-action="Index" class="nav-link">لیست لینک ها</a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-controller="link" asp-action="Create" class="nav-link">افزودن لینک</a>
+                    </li>
+
+                </ul>
+            </div>
+        </li>
+         
+        
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#Discount" role="button" aria-expanded="false"
+               aria-controls="Discount">
+                <i class="link-icon" data-feather="award"></i>
+                <span class="link-title">تخفیف ها</span>
+                <i class="link-arrow" data-feather="chevron-down"></i>
+            </a>
+            <div class="collapse" id="Discount">
+                <ul class="nav sub-menu">
+                    <li class="nav-item">
+                        <a asp-controller="Discount" asp-action="Index" class="nav-link">لیست تخفیف ها</a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-controller="Discount" asp-action="Create" class="nav-link">افزودن تخفیف</a>
+                    </li>
+
+                </ul>
+            </div>
+        </li>
+        
+
+        <li class="nav-item">
                 <a class="nav-link" data-toggle="collapse" href="#icons" role="button" aria-expanded="false"
                    aria-controls="icons">
                     <i class="link-icon" data-feather="folder"></i>
@@ -225,7 +341,7 @@
             <div class="collapse" id="errorages">
                 <ul class="nav sub-menu">
                     <li class="nav-item">
-                        <a asp-controller="Table" asp-action="index" class="nav-link">لیست  پرسش ها</a>
+                        <a asp-controller="UserQuestion" asp-action="index" class="nav-link">لیست  پرسش ها</a>
                     </li>
                   
                 </ul>

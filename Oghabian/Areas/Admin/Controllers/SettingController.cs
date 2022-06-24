@@ -5,10 +5,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Application.Service.Interface;
 using Application.ViewModel.Setting;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Oghabian.Areas.Admin.Controllers
 {
-    [Area("Admin")]
+    [Area("Admin")][Authorize(Roles = "Admin")]
     public class SettingController : Controller
     {
         private readonly ISettingService _setting;
@@ -31,6 +32,15 @@ namespace Oghabian.Areas.Admin.Controllers
         {
             _setting.ChangeSetting(model);
             return RedirectToAction(nameof(Setting));
+        }
+
+
+
+        [HttpGet]
+        [Route("/Admin/Chats")]
+        public IActionResult Chats()
+        {
+            return View();
         }
     }
 }

@@ -1,0 +1,63 @@
+﻿@model SelectDayAndMealViewModel
+@{
+    ViewData["Title"] = "انتخاب شخص";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+    <div class="row justify-content-center">
+
+        <div class="user-form-card mt-5 col-xl-6 col-lg-6 col-md-12 col-sm-12">
+            <div class="user-form-title">
+
+                <h2>سفارش فوری</h2>
+                <p> انتخاب اطلاعات پزشکی</p>
+               
+            </div>
+            <form asp-controller="ImmediateOrder" asp-action="Select"  method="post" class="user-form">
+                <div class="row">
+                    <div class="form-group col-12">
+                        <label>انتخاب بیماری</label>
+                        <select class="form-control" asp-items="@ViewBag.Sickness" asp-for="SicknessId">
+                            <option selected="" disabled="">یک  گزینه را انتخاب کنید</option>
+                        </select>   <span class="text-danger" asp-validation-for="SicknessId"></span>
+                    </div>
+                    <div class="form-group col-3">
+                        <label>کربوهیدرات</label>
+                        <input type="text" class="form-control" asp-for="FoodCarbohydrate" placeholder="کربوهیدرات  خود را وارد کنید">
+                    </div>
+                    
+                    <div class="form-group col-3">
+                        <label>کالری</label>
+                        <input type="text" class="form-control" asp-for="FoodCalories" placeholder="کالری  خود را وارد کنید">
+                    </div>
+                    <div class="form-group col-3">
+                        <label>پروتئین</label>
+                        <input type="text" class="form-control" asp-for="FoodProtein" placeholder="پروتئین  خود را وارد کنید">
+                    </div>
+                         <div class="form-group col-3">
+                        <label>چربی</label>
+                        <input type="text" class="form-control" asp-for="FoodFat" placeholder="چربی  خود را وارد کنید">
+                    </div>
+                    
+                    
+
+                </div>
+                <input type="hidden" asp-for="Person" />
+                <input type="hidden" asp-for="Meal" />
+                <input type="hidden" asp-for="Week"  />
+                <div class="row justify-content-center">
+                    <div class="form-button col-6 ">
+                        <button class="col-5" type="submit">برو مرحله بعد</button>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+@section Footer{
+    <partial name="_ValidationScriptsPartial" />
+}

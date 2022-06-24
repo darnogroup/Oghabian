@@ -1,0 +1,20 @@
+﻿@model List<SupporterViewModel>
+    <section class="section partner-part">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading"><h2>شرکا عالی ما</h2></div>
+                </div>
+                <div class="col-lg-12">
+                    <ul class="partner-slider slider-arrow">
+                        @foreach (var item in Model)
+                        {
+                            <li>
+                                <a  asp-controller="Home" asp-action="Supporter" asp-route-id="@item.Id"><img src="~/Images/@item.Logo" alt="@item.Title"></a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>

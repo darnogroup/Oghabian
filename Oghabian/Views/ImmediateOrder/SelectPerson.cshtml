@@ -1,0 +1,53 @@
+﻿@model SelectPersonViewModel
+@{
+    ViewData["Title"] = "انتخاب شخص";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+    <div class="row justify-content-center">
+
+        <div class="user-form-card mt-5 col-xl-6 col-lg-6 col-md-12 col-sm-12">
+            <div class="user-form-title">
+
+                <h2>سفارش فوری</h2>
+                <p>مرحله اول-سفارش برای چه شخصی است؟</p>
+             @if (ViewBag.Alert != null)
+             {
+                 <div class="alert alert-warning p-3 rounded-3">
+                     @ViewBag.Alert
+                     <a href="/Profile/Medical">برای تکمیل کلیک کنید</a>
+                 </div>
+             }
+            </div>
+            <form asp-controller="ImmediateOrder" asp-action="SelectPerson" class="user-form">
+                <div class="row">
+                    <div class="form-check col-6">
+                        <input class="form-check-input" type="radio" asp-for="Person" value="1" checked>
+                        <label class="form-check-label" for="exampleRadios1">
+                           برای خودم میخواهم
+                        </label>
+                    </div>  <div class="form-check col-6">
+                        <input class="form-check-input" type="radio" asp-for="Person" value="2" checked>
+                        <label class="form-check-label" for="exampleRadios1">
+                            برای شخص دیگری میخواهم
+                        </label>
+                    </div>
+                    <span class="text-danger" asp-validation-for="Person"></span>
+                </div>
+                
+                <div class="row justify-content-center">
+                    <div class="form-button col-6 ">
+                        <button class="col-5" type="submit">برو مرحله بعد</button>
+
+                    </div>    
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+@section Footer{
+    <partial name="_ValidationScriptsPartial" />
+}

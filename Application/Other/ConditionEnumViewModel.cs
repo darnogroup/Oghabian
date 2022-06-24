@@ -11,6 +11,7 @@ namespace Application.Other
         Open,
         Record,
         Preparation,
-        Delive
+        Delive,
+        Close
     }
 }

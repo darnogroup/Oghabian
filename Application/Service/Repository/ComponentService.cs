@@ -20,13 +20,19 @@ namespace Application.Service.Repository
         private readonly IHomeInterface _home;
         private readonly IProfileInterface _profile;
         private readonly ISeoInterface _seo;
+        private readonly ITableInterface _table;
+        private readonly IGeneralInterface _general;
+        private readonly ISettingInterface _setting;
 
-        public ComponentService(IComponentInterface component, IHomeInterface home, IProfileInterface profile, ISeoInterface seo)
+        public ComponentService(IComponentInterface component, IHomeInterface home, IProfileInterface profile, ISeoInterface seo, ITableInterface table, IGeneralInterface general, ISettingInterface setting)
         {
             _component = component;
             _home = home;
             _profile = profile;
             _seo = seo;
+            _table = table;
+            _general = general;
+            _setting = setting;
         }
         public Tuple<List<SectionTwoRightViewModel>, SectionOneLeftViewModel> GetSectionOne()
         {
@@ -270,6 +276,101 @@ namespace Application.Service.Repository
             seo.TwitterImagePath = result.TwitterImage;
             seo.TwitterTitle = result.TwitterTitle;
             return seo;
+        }
+
+        public async Task<List<TableMenuViewModel>> GetMenu()
+        {
+            var list =await _component.GetRows();
+            List<TableMenuViewModel> menu=new List<TableMenuViewModel>();
+            foreach (var item in list)
+            {
+              menu.Add(new TableMenuViewModel()
+              {
+                  Id = item.Id,
+                  Name = item.TableName
+              });  
+            }
+
+            return menu;
+        }
+
+        public async Task<List<SupporterViewModel>> GetSupporters()
+        {
+            var result =await _component.GetSupporters();
+            List<SupporterViewModel> supporter=new List<SupporterViewModel>();
+            foreach (var item in result)
+            {
+                supporter.Add(new SupporterViewModel()
+                {
+                    Id = item.SupporterId,
+                    Logo = item.SupporterImage,Title = item.SupporterName
+                });
+            }
+
+            return supporter;
+        }
+
+        public async Task<FooterViewModel> GetFooter()
+        {
+            var result = await _setting.GetSetting();
+            FooterViewModel setting=new FooterViewModel();
+            setting.Description = result.Description;
+            setting.LogoPath = result.Logo;
+            setting.Instagram = result.Instagram;
+            setting.Linkdin = result.Linkdin;
+            setting.Mail = result.Mail;
+            setting.TitleSite = result.TitleSite;
+            setting.Number = result.Number;
+            setting.WhatsApp = result.WhatsApp;
+            setting.FaceBook = result.FaceBook;
+            setting.Address = result.Address;
+            return setting;
+        }
+
+        public Tuple<List<SicknessMenuViewModel>, List<MailMenuViewModel>> GetSicknessAndMealMenu()
+        {
+            var resultOne =  _general.GetMeals().Result;
+            List<MailMenuViewModel> meals = new List<MailMenuViewModel>();
+            foreach (var item in resultOne)
+            {
+                meals.Add(new MailMenuViewModel()
+                {
+                    Id = item.MealId,
+                    Title = item.MealTitle
+                });
+            }
+            var result =  _general.GetSickness().Result;
+            List<SicknessMenuViewModel> sickness = new List<SicknessMenuViewModel>();
+            foreach (var item in result)
+            {
+                sickness.Add(new SicknessMenuViewModel()
+                {
+                    Id = item.SicknessId,
+                    Title = item.SicknessTitle
+                });
+            }
+
+            return Tuple.Create(sickness, meals);
+        }
+
+        public async Task<LogoViewModel> LogoPath()
+        {
+            var result = await _setting.GetSetting();
+            LogoViewModel model=new LogoViewModel()
+            {
+                Alt = result.TitleSite,
+                Path = result.Logo
+            };
+            return model;
+        }
+
+        public async Task<InfoViewModel> GetInfo()
+        {
+            var result = await _setting.GetSetting();
+            InfoViewModel model=new InfoViewModel();
+            model.Mail = result.Mail;
+            model.Number = result.Number;
+            return model;
         }
     }
 }

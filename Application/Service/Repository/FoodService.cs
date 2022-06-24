@@ -63,10 +63,11 @@ namespace Application.Service.Repository
             food.FoodCount = result.FoodCount;
             food.FoodSummary = result.FoodSummary;
             food.FoodLink = result.FoodLink;
+            food.Day = ConvertEnum.ChangeWeek(result.Day);
             food.Rate = result.Rate;
             food.FoodCode = result.FoodCode;
             food.FoodDiscountPrice = result.FoodDiscountPrice.ToString();
-            food.FoodCalories = result.FoodCalories;
+            food.FoodCalories = result.FoodCalories.ToString();
             food.FoodCarbohydrate = result.FoodCarbohydrate;
             food.FoodDescription = result.FoodDescription;
             food.FoodFat = result.FoodFat;
@@ -80,6 +81,7 @@ namespace Application.Service.Repository
         {
             FoodEntity food = new FoodEntity();
             food.Time = DateTime.Now;
+            food.Day = ConvertEnum.ChangeWeekEnum(model.Day);
             food.SicknessId = model.SicknessId;
             food.MealId = model.MealId;
             food.FoodPrice = Convert.ToInt32(model.FoodPrice);
@@ -89,7 +91,7 @@ namespace Application.Service.Repository
             food.FoodLink = model.FoodLink;
             food.Rate = model.Rate;
             food.FoodDiscountPrice =Convert.ToInt32(model.FoodDiscountPrice);
-            food.FoodCalories = model.FoodCalories;
+            food.FoodCalories = Convert.ToInt32(model.FoodCalories);
             food.FoodCarbohydrate = model.FoodCarbohydrate;
             food.FoodDescription = model.FoodDescription;
             food.FoodFat = model.FoodFat; food.FoodCode = model.FoodCode;
@@ -138,7 +140,7 @@ namespace Application.Service.Repository
 
         public bool UpdateFood(UpdateFoodViewModel model)
         {
-            var food = _food.GetFoodById(model.FoodId).Result;
+            var food = _food.GetFoodById(model.FoodId).Result; food.Day = ConvertEnum.ChangeWeekEnum(model.Day);
             food.SicknessId = model.SicknessId;
             food.MealId = model.MealId;
             food.FoodPrice = Convert.ToInt32(model.FoodPrice);
@@ -147,7 +149,7 @@ namespace Application.Service.Repository
             food.FoodSummary = model.FoodSummary; food.FoodCode = model.FoodCode;
             food.FoodLink = model.FoodLink;
             food.FoodDiscountPrice = Convert.ToInt32(model.FoodDiscountPrice);
-            food.FoodCalories = model.FoodCalories;
+            food.FoodCalories = Convert.ToInt32(model.FoodCalories);
             food.FoodCarbohydrate = model.FoodCarbohydrate;
             food.FoodDescription = model.FoodDescription;
             food.FoodFat = model.FoodFat; food.Rate = model.Rate;

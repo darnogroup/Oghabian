@@ -113,7 +113,7 @@ namespace Application.Service.Repository
             {
                 favorite.Add(new FavoriteViewModel()
                 {
-                    FoodCalories = item.Food.FoodCalories,
+                    FoodCalories = item.Food.FoodCalories.ToString(),
                     FoodCarbohydrate = item.Food.FoodCarbohydrate,
                     FoodFat = item.Food.FoodFat,
                     FoodProtein = item.Food.FoodProtein,
@@ -260,6 +260,42 @@ namespace Application.Service.Repository
 
             _ticket.CreateSub(detail);
 
+        }
+
+        public async Task<bool> RunDiscount(string code, string user)
+        {
+            var order =await _order.GetOrderByUserId(user);
+            if (order.Discount != true)
+            {
+                var codeCheck = await _profile.ExistDiscount(code);
+                if (codeCheck)
+                {
+                    var discountPrice = await _profile.GetWithCode(code);
+                    var price = Convert.ToInt32(discountPrice.DiscountPrice);
+                    order.Total = order.Total - price;
+                    order.Discount = true;
+                    _order.UpdateOrder(order);
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public async Task<string> FinishOrder(string user)
+        {
+            var order = await _order.GetOrderByUserId(user);
+            order.Close = true;
+            order.PaymentOnTheSpot = true;
+            order.Condition = ConvertEnum.ConditionToModel(ConditionEnumViewModel.Record);
+            _order.UpdateOrder(order);
+            return order.Code;
         }
     }
 }

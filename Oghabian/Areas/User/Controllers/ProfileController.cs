@@ -228,11 +228,50 @@ namespace Oghabian.Areas.User.Controllers
         }
 
         [HttpGet]
+        [Route("/Profile/AcceptOrder")]
+        public IActionResult AcceptOrder()
+        {
+            var exist = _home.ExistAddress(UserId()).Result;
+            if (exist == false)
+            {
+                return Redirect("/Profile/Address");
+            }
+            else
+            {
+                var pageModel = _home.GetCardAddress(UserId()).Result;
+                return View(pageModel);
+            }
+          
+        }
+        [HttpGet]
         [Route("/RemoveOrderDetail/{id}")]
         public void RemoveOrderDetail(string id)
         {
             _home.RemoveOrderDetail(id);
          
+        }
+
+        [HttpGet]
+        [Route("/RunDiscount/{code}")]
+        public int RunDiscount(string code)
+        {
+            var x = _profile.RunDiscount(code, UserId()).Result;
+            if (x)
+            {
+                return 1;
+            }
+            else
+            {
+                return 2;
+            }
+            // return _profile.RunDiscount(code, UserId()).Result;
+        }
+
+        [HttpGet][Route("/profile/finishOrder")]
+        public IActionResult FinishOrder()
+        {
+             ViewBag.pageModel = _profile.FinishOrder(UserId()).Result;
+            return View();
         }
     }
 }

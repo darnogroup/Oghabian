@@ -75,14 +75,21 @@
                             <span class="text-danger" asp-validation-for="FoodDiscountPrice"></span>
                         </div>
                     </div>
+
                     <div class="row">
-                        <div class="form-group col-6">
+                        <div class="form-group col-4">
+                            <label>انتخاب روز غذا</label>
+                            <select class="form-control" asp-items="Html.GetEnumSelectList<Week>()" asp-for="Day">
+                                <option selected="" disabled="">یک  گزینه را انتخاب کنید</option>
+                            </select>   <span class="text-danger" asp-validation-for="Day"></span>
+                        </div>
+                        <div class="form-group col-4">
                             <label>انتخاب وعده غذایی</label>
                             <select class="form-control" asp-items="@ViewBag.Meals" asp-for="MealId">
                                 <option selected="" disabled="">یک  گزینه را انتخاب کنید</option>
                             </select>   <span class="text-danger" asp-validation-for="MealId"></span>
                         </div>
-                        <div class="form-group col-6">
+                        <div class="form-group col-4">
                             <label>انتخاب بیماری</label>
                             <select class="form-control" asp-items="@ViewBag.Sickness" asp-for="SicknessId">
                                 <option selected="" disabled="">یک  گزینه را انتخاب کنید</option>

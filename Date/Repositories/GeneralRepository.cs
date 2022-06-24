@@ -32,5 +32,35 @@ namespace Date.Repositories
         {
             return await _context.Sickness.ToListAsync();
         }
+
+        public async Task<string> CreateChatGroup(string connection)
+        {
+            var check = await _context.Chat.SingleOrDefaultAsync(a => a.ConnectionClient == connection);
+            if (check != null)
+            {
+                return check.ChatId;
+            }
+            else
+            {
+                ChatEntity chat=new ChatEntity();
+                chat.Time=DateTime.Now;
+                chat.ConnectionClient = connection;
+              await  _context.Chat.AddAsync(chat);
+              await _context.SaveChangesAsync();
+              return chat.ChatId;
+            }
+        }
+
+        public async Task<string> GetChatGroupKey(string connection)
+        {
+            var chat= await _context.Chat.SingleOrDefaultAsync(a => a.ConnectionClient == connection);
+            return chat.ChatId;
+        }
+
+        public void SaveMessage(ChatMessageEntity message)
+        {
+            _context.ChatMessage.Add(message);
+            _context.SaveChanges();
+        }
     }
 }

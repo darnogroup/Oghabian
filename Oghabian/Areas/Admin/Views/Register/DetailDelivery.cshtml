@@ -1,0 +1,54 @@
+﻿@model Tuple<List<RegisterItemViewModel>, InfoUserRegisterViewModel>
+@{
+    ViewData["Title"] = "جزئیات ارسال";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<nav class="page-breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/Admin">پیشخوان</a></li>
+        <li class="breadcrumb-item"><a asp-controller="Register" asp-action="Delivery">لیست سفارشات ارسالی</a></li>
+        <li class="breadcrumb-item " aria-current="page">اطلاعات فاکتور</li>
+    </ol>
+</nav>
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="card-title">سفارش دهنده:@Model.Item2.Name</h6>
+                <hr />
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">شماره تماس</th>
+                            <td>@Model.Item2.Number</td>
+                        </tr>
+                        <tr>
+                            <th scope="col">استان</th>
+                            <td>@Model.Item2.State</td>
+                        </tr>
+                        <tr>
+                            <th scope="col">شهر</th>
+                            <td>@Model.Item2.City</td>
+                        </tr>
+                        <tr>
+                            <th scope="col">کد پستی</th>
+                            <td>@Model.Item2.AddressCode</td>
+                        </tr>
+                        <tr>
+                            <th scope="col">نشانی</th>
+                            <td>@Model.Item2.AddressText</td>
+                        </tr>
+                      
+                      
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+             
+
+            </div>
+        </div>
+    </div>
+</div>

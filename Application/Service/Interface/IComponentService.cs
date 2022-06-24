@@ -26,5 +26,12 @@ namespace Application.Service.Interface
         Task<LocationViewModel> GetUserLocation(string id);
         Task<ThreeBannerViewModel> GetThreeBanner();
         Task<SiteSeoViewModel> GetSeoSite();
+        Task<List<TableMenuViewModel>> GetMenu();
+        Task<List<SupporterViewModel>> GetSupporters();
+        Task<FooterViewModel> GetFooter();
+        Tuple<List<SicknessMenuViewModel>, List<MailMenuViewModel>> GetSicknessAndMealMenu();
+        Task<LogoViewModel> LogoPath();
+        Task<InfoViewModel> GetInfo();
+
     }
 }

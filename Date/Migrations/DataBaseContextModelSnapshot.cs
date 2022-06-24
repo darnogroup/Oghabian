@@ -234,6 +234,48 @@ namespace Date.Migrations
                     b.ToTable("Category");
                 });
 
+            modelBuilder.Entity("Domin.Entities.ChatEntity", b =>
+                {
+                    b.Property<string>("ChatId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ConnectionClient")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Time")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("ChatId");
+
+                    b.ToTable("Chat");
+                });
+
+            modelBuilder.Entity("Domin.Entities.ChatMessageEntity", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ChatId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Sender")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Time")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ChatId");
+
+                    b.ToTable("ChatMessage");
+                });
+
             modelBuilder.Entity("Domin.Entities.CityEntity", b =>
                 {
                     b.Property<string>("CityId")
@@ -361,6 +403,33 @@ namespace Date.Migrations
                     b.ToTable("Contact");
                 });
 
+            modelBuilder.Entity("Domin.Entities.DiscountEntity", b =>
+                {
+                    b.Property<string>("DiscountId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("DiscountCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("DiscountPrice")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("DiscountTitle")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("EndTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("StartTime")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("DiscountId");
+
+                    b.ToTable("Discount");
+                });
+
             modelBuilder.Entity("Domin.Entities.FavoriteEntity", b =>
                 {
                     b.Property<string>("FavoriteId")
@@ -386,9 +455,11 @@ namespace Date.Migrations
                     b.Property<string>("FoodId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("FoodCalories")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Day")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FoodCalories")
+                        .HasColumnType("int");
 
                     b.Property<string>("FoodCarbohydrate")
                         .IsRequired()
@@ -528,6 +599,38 @@ namespace Date.Migrations
                     b.ToTable("Gallery");
                 });
 
+            modelBuilder.Entity("Domin.Entities.LinkEntity", b =>
+                {
+                    b.Property<string>("LinkId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Link")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LinkTitle")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("LinkId");
+
+                    b.ToTable("Link");
+                });
+
+            modelBuilder.Entity("Domin.Entities.MailEntity", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Mail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Mail");
+                });
+
             modelBuilder.Entity("Domin.Entities.MealEntity", b =>
                 {
                     b.Property<string>("MealId")
@@ -635,6 +738,9 @@ namespace Date.Migrations
                     b.Property<string>("FoodId")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<bool>("Me")
+                        .HasColumnType("bit");
+
                     b.Property<string>("OrderId")
                         .HasColumnType("nvarchar(450)");
 
@@ -667,6 +773,15 @@ namespace Date.Migrations
 
                     b.Property<DateTime>("DateTime")
                         .HasColumnType("datetime2");
+
+                    b.Property<bool>("Discount")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("PaymentOnTheSpot")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Total")
+                        .HasColumnType("int");
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
@@ -1312,6 +1427,16 @@ namespace Date.Migrations
                     b.Navigation("Article");
                 });
 
+            modelBuilder.Entity("Domin.Entities.ChatMessageEntity", b =>
+                {
+                    b.HasOne("Domin.Entities.ChatEntity", "Chat")
+                        .WithMany("Message")
+                        .HasForeignKey("ChatId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.Navigation("Chat");
+                });
+
             modelBuilder.Entity("Domin.Entities.CityEntity", b =>
                 {
                     b.HasOne("Domin.Entities.StateEntity", "State")
@@ -1589,6 +1714,11 @@ namespace Date.Migrations
             modelBuilder.Entity("Domin.Entities.CategoryEntity", b =>
                 {
                     b.Navigation("Articles");
+                });
+
+            modelBuilder.Entity("Domin.Entities.ChatEntity", b =>
+                {
+                    b.Navigation("Message");
                 });
 
             modelBuilder.Entity("Domin.Entities.CityEntity", b =>

@@ -9,6 +9,7 @@ namespace Domin.Interfaces
 {
     public interface IProfileInterface
     {
+        Task<bool> ExistAddress(string user);
         Task<List<StateEntity>> GetState();
         Task<List<CityEntity>> GetCities(string state);
         Task<AddressEntity> GetAddress(string user);
@@ -24,5 +25,7 @@ namespace Domin.Interfaces
         bool Exist(string user, string food);
         Task<string> SenPrice();
         Task<string> FullName(string id);
+        Task<bool> ExistDiscount(string code);
+        Task<DiscountEntity> GetWithCode(string code);
     }
 }

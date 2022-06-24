@@ -24,5 +24,7 @@ namespace Application.Service.Interface
        Task<List<TicketsViewModel>> GetUserTicket(string user);
        Task<List<TicketMessageViewModel>> GetMessages(string ticket);
        void AddNewTicket(AddNewTicketViewModel model);
+       Task<bool> RunDiscount(string code,string user);
+       Task<string> FinishOrder(string user);
    }
 }

@@ -20,6 +20,11 @@ namespace Date.Repositories
         }
 
 
+        public async Task<bool> ExistAddress(string user)
+        {
+            return await _context.Address.Where(w => w.UserId == user).AnyAsync();
+        }
+
         public async Task<List<StateEntity>> GetState()
         {
             return await _context.State.ToListAsync();
@@ -94,6 +99,19 @@ namespace Date.Repositories
         public async Task<string> FullName(string id)
         {
             return await _context.Users.Where(w=>w.Id==id).Select(s => s.UserFullName).SingleOrDefaultAsync();
+        }
+
+        public async Task<bool> ExistDiscount(string code)
+        {
+            return await _context.Discount.AnyAsync(a => 
+            a.StartTime.Date<=DateTime.Now.Date && a.EndTime.Date>=DateTime.Now.Date &&a.DiscountCode==code
+                );
+
+        }
+
+        public async Task<DiscountEntity> GetWithCode(string code)
+        {
+            return await _context.Discount.SingleOrDefaultAsync(w => w.DiscountCode == code);
         }
 
         public void Save()

@@ -1,0 +1,126 @@
+﻿@model Tuple<List<RegisterItemViewModel>, InfoUserRegisterViewModel>
+@{
+    ViewData["Title"] = "جزئیات";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<nav class="page-breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/Admin">پیشخوان</a></li>
+        <li class="breadcrumb-item"><a asp-controller="Register" asp-action="DetailClose">لیست سفارشات تحویل داده شده</a></li>
+        <li class="breadcrumb-item " aria-current="page">اطلاعات فاکتور</li>
+    </ol>
+</nav>
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="card-title">سفارش دهنده:@Model.Item2.Name</h6>
+                <hr />
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">شماره تماس</th>
+                            <td>@Model.Item2.Number</td>
+                        </tr>
+                        <tr>
+                            <th scope="col">استان</th>
+                            <td>@Model.Item2.State</td>
+                        </tr>
+                        <tr>
+                            <th scope="col">شهر</th>
+                            <td>@Model.Item2.City</td>
+                        </tr>
+                        <tr>
+                            <th scope="col">کد پستی</th>
+                            <td>@Model.Item2.AddressCode</td>
+                        </tr>
+                        <tr>
+                            <th scope="col">نشانی</th>
+                            <td>@Model.Item2.AddressText</td>
+                        </tr>
+                        <tr>
+                            <th scope="col">بیماری</th>
+                            <td>@Model.Item2.SicknessId</td>
+                        </tr>
+                        <tr>
+                            <th scope="col">وزن</th>
+                            <td>@Model.Item2.UserWeight</td>
+                        </tr>
+                        <tr>
+                            <th scope="col">قد</th>
+                            <td>@Model.Item2.UserHeight</td>
+                        </tr>
+                        <tr>
+                            <th scope="col">سن</th>
+                            <td>@Model.Item2.UserAge</td>
+                        </tr>
+                        <tr>
+                            <th scope="col">جنسیت</th>
+                            <td>@Model.Item2.UserGender</td>
+                        </tr>
+                        <tr>
+                            <th scope="col">کربوهیدرات</th>
+                            <td>@Model.Item2.UserCarbohydrate</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="col">کالری</th>
+                            <td>@Model.Item2.UserCalories</td>
+                        </tr>
+                        <tr>
+                            <th scope="col">چربی</th>
+                            <td>@Model.Item2.UserFat</td>
+                        </tr>
+                        <tr>
+                            <th scope="col">پروتئین</th>
+                            <td>@Model.Item2.UserProtein</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                <hr />
+                <h3>پک های غذایی</h3>
+                <br />
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">تصویر</th>
+                            <th scope="col">عنوان</th>
+                            <th scope="col">وعده</th>
+                            <th scope="col">تعداد</th>
+                            <th scope="col">کد پک</th>
+                            <th scope="col">روز</th>
+                            <th scope="col">کربوهیدرات</th>
+                            <th scope="col">کالری</th>
+                            <th scope="col">پروتئین</th>
+                            <th scope="col">چربی</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Item1)
+                        {
+                            <tr>
+                                <td>
+                                    <img src="~/Images/@item.FoodImage" width="25" height="25" class="img-thumbnail">
+                                </td>
+                                <td>@item.FoodTitle</td>
+                                <td>@item.Meal</td>
+                                <td>@item.Count</td>
+                                <td>@item.FoodCode</td>
+                                <td>@item.Week</td>
+                                <td>@item.FoodCarbohydrate</td>
+                                <td>@item.FoodCalories</td>
+                                <td>@item.FoodProtein</td>
+                                <td>@item.FoodFat</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>

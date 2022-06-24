@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Application.Other;
 using Microsoft.AspNetCore.Http;
 
 namespace Application.ViewModel.Food
@@ -41,6 +42,8 @@ namespace Application.ViewModel.Food
         public string SicknessId { set; get; }
         public int Rate { set; get; }
         [Required(ErrorMessage = " کد غذا الزامی است")]
-        public string FoodCode { set; get; }
+        public string FoodCode { set; get; }  
+        [Required(ErrorMessage = " روز غذا الزامی است")]
+        public Week Day { set; get; }
     }
 }

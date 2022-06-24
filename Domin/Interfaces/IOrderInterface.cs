@@ -21,6 +21,7 @@ namespace Domin.Interfaces
         void InsertOrderDetail(OrderDetailEntity order);
         void UpdateOrderDetail(OrderDetailEntity order);
         void DeleteOrderDetail(OrderDetailEntity order);
+        void DeleteOrder(OrderEntity order);
         bool OpenOrder(string id);
 
     }

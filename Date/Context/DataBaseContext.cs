@@ -50,6 +50,11 @@ namespace Date.Context
         public virtual DbSet<RowEntity>Row { set; get; }
         public virtual DbSet<ColumnEntity>Column { set; get; }
         public virtual DbSet<ContactEntity>Contact { set; get; }
+        public virtual DbSet<MailEntity>Mail { set; get; }
+        public virtual DbSet<LinkEntity>Link { set; get; }
+        public virtual DbSet<DiscountEntity>Discount { set; get; }
+        public virtual DbSet<ChatEntity>Chat { set; get; }
+        public virtual DbSet<ChatMessageEntity>ChatMessage { set; get; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             foreach (var mutableForeignKey in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
@@ -61,6 +66,7 @@ namespace Date.Context
             modelBuilder.Entity<ArticleSeoEntity>().HasKey(k => k.SeoId);
             modelBuilder.Entity<SettingEntity>().HasKey(k => k.Id);
             modelBuilder.Entity<SeoEntity>().HasKey(k => k.SeoId);
+            modelBuilder.Entity<ChatEntity>().HasKey(k => k.ChatId);
             Configuration(modelBuilder);
             modelBuilder.HasDefaultSchema("BF");
             base.OnModelCreating(modelBuilder);
@@ -68,6 +74,7 @@ namespace Date.Context
 
         public  void Configuration(ModelBuilder builder)
         {
+            builder.ApplyConfiguration(new LinkConfiguration());
             builder.ApplyConfiguration(new AdsConfiguration());
             builder.ApplyConfiguration(new ArticleConfiguration());
             builder.ApplyConfiguration(new CategoryConfiguration());
@@ -97,6 +104,9 @@ namespace Date.Context
             builder.ApplyConfiguration(new RowConfiguration());
             builder.ApplyConfiguration(new ColumnConfiguration());
             builder.ApplyConfiguration(new ContactConfiguration());
+            builder.ApplyConfiguration(new MailConfiguration());
+            builder.ApplyConfiguration(new ChatMessageConfiguration());
+            builder.ApplyConfiguration(new DiscountConfiguration());
         }
     }
 }

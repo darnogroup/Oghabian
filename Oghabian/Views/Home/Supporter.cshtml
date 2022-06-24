@@ -1,0 +1,37 @@
+﻿@model SupporterDetailViewModel
+@{
+    ViewData["Title"] = Model.SupporterName;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="inner-section about-company mt-3">
+    <div class="container card rounded-3 p-3">
+
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+    
+                <div class="about-img-single">
+                    <img src="~/Images/@Model.SupporterImagePath" alt="@Model.SupporterName">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="about-content">
+                    <h2>@Model.SupporterName</h2>
+                    <label>مدت فعالیت</label>
+                    <h4>@Model.SupporterActivity</h4><br/>       
+                    <label>شماره تماس</label>
+                    <h4>@Model.SupporterNumber</h4><br/>
+                    <label>پست الکترونیک</label>
+                    <h4>@Model.SupporterMail</h4><br/>
+                  <label>نشانی:</label>
+                    <p>
+                  @Model.SupporterAddress
+                    </p>
+                </div>
+    
+            </div>
+        </div><div class="row">
+            <p>@Html.Raw(Model.SupporterDescription)</p>
+        </div>
+    </div>
+</section>

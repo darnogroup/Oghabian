@@ -10,6 +10,7 @@ namespace Domin.Enum
     { Open,
         Record,
         Preparation,
-        Delivery
+        Delivery,
+        Close
     }
 }

@@ -1,0 +1,48 @@
+﻿@model Tuple<TableRowViewModel,List<TableColumnViewModel>>
+@{
+    ViewData["Title"] = Model.Item1.Name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section class="inner-section compare-part mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card rounded-3 p-3">
+                    <h3>@Model.Item1.Name</h3>
+                    <p class="mt-3">@Model.Item1.Description</p>
+                    <div class="table-scroll mt-5">
+                        <table class="table-list">
+                            <thead>
+                            <tr>
+                               @if (Model.Item1.Row != null)
+                               {
+                                   @foreach (var row in Model.Item1.Row)
+                                   {
+                                       <th scope="col">@row</th>
+                                   }
+                               }
+                               
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach (var column in Model.Item2)
+                            {
+                                <tr>
+                                    @if (column.Column != null)
+                                    {
+                                        @foreach (var item in column.Column)
+                                        {
+                                            <td><h6>@item</h6></td>
+                                        }
+                                    }
+
+                                </tr>
+                            }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

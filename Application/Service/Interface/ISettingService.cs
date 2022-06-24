@@ -11,5 +11,9 @@ namespace Application.Service.Interface
     {
         Task<SettingViewModel> GetSettingViewModel();
         void ChangeSetting(SettingViewModel model);
+        Task<string> CreateChatGroup(string connection);
+        Task<string> GetChatGroupKey(string connection);
+        Task<List<ChatViewModel>> GetRooms();
+        Task<List<ChatMessageViewModel>> GetMessages(string room);
     }
 }

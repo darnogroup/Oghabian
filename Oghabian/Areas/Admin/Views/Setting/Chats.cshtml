@@ -1,0 +1,75 @@
+﻿
+@{
+    ViewData["Title"] = "Chats";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="row chat-wrapper">
+    <div class="col-md-12">
+
+        <div class="card">
+            <div class="card-body">
+                <div class="row position-relative">
+                    <div class="col-lg-6 chat-aside border-lg-left">
+                        <div class="aside-content">
+                         
+                            <div class="aside-body">
+                         
+                                <div class="tab-content mt-3 ps ps__rtl ps--active-y">
+                                    <div class="tab-pane fade show active" id="chats" role="tabpanel" aria-labelledby="chats-tab">
+                                        <div>
+                                            <p class="text-muted mb-1">گفتگو های اخیر</p>
+                                            <ul class="list-unstyled chat-list px-1" id="groups">
+                                              
+                                           
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 chat-content">
+                        <div class="chat-header border-bottom pb-2">
+                            <div class="d-flex justify-content-between">
+                                <div class="d-flex align-items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-corner-up-left icon-lg ml-2 mr-n2 text-muted d-lg-none" id="backToChatList"><polyline points="9 14 4 9 9 4"></polyline><path d="M20 20v-7a4 4 0 0 0-4-4H4"></path></svg>
+                                    <figure class="mb-0 ml-2">
+                                        <img src="~/Images/male.jpg" class="img-sm rounded-circle" alt="image">
+                                        <div class="status online"></div>
+                                        <div class="status online"></div>
+                                    </figure>
+                                    <div>
+                                        <p>کاربر سایت</p>
+                                        <p class="text-muted tx-13">اتاق گفتگو</p>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="chat-body ps ps__rtl ps--active-y">
+                            <ul class="messages" id="message">
+                                
+       
+                               
+                            </ul>
+                            <div class="ps__rail-x" style="left: 1px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; height: 380px; left: 788px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 205px;"></div></div>
+                        </div>
+                        <div class="chat-footer d-flex">
+                          
+                            <div id="adminForm" class="search-form flex-grow ml-2">
+                                <div class="input-group">
+                                    <input type="text" class="form-control rounded-pill" id="chatText" placeholder="نوشتن یک پیام">
+                                </div>
+                            </div>
+                            <div>
+                                <button id="submit" class="btn btn-primary btn-icon rounded-circle">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-send"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

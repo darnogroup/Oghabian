@@ -7,6 +7,7 @@ using Application.ViewModel.Home;
 using Application.ViewModel.Home.Blogs;
 using Application.ViewModel.Home.Card;
 using Application.ViewModel.Home.Foods;
+using Application.ViewModel.Home.ImmediateOrder;
 using Application.ViewModel.Home.Profile;
 
 namespace Application.Service.Interface
@@ -17,7 +18,7 @@ namespace Application.Service.Interface
         Task<BlogDetailViewModel> GetBlogDetail(string id);
         void InsertArticleComment(InsertCommentViewModel model);
         void InsertFoodComment(InsertFoodCommentViewModel model);
-        Tuple<List<FoodCartViewModel>, int, int> GetFoods(string search,string meal, string sickness, string calories, string carbohydrate, string fat, string protein, int page);
+        Tuple<List<FoodCartViewModel>, int, int> GetFoods(string search,string meal, string sickness, int calories, string carbohydrate, string fat, string protein, int page,string activeUser);
         Tuple<FoodDetailViewModel, List<FoodImageViewModel>, List<FoodPropertyViewModel>> GetFoodDetail(string id);
         Task<List<FoodCartViewModel>> GetLastFoods();
         Task<List<BlogViewModel>> GetFourArticle();
@@ -29,5 +30,16 @@ namespace Application.Service.Interface
         void InsertAnswer(InsertUserAnswerViewModel model);
         void InsertQuestion(InsertUserQuestionViewModel model);
         void Insert(ContactViewModel model);
+        void AddMail(AddMailViewModel model);
+        Tuple<TableRowViewModel, List<TableColumnViewModel>> GetTableById(string id);
+        Task<SupporterDetailViewModel> GetSupporterById(string id);
+        Task<LawViewModel> GetLaw();
+        Task<string> CreateChatGroup(string connection);
+        Task<string> GetChatGroupKey(string connection);
+        void InsertChatMessage(InsertChatMessageViewModel model);
+        Task<List<SelectFoodViewModel>> GetFoodForce(SelectDayAndMealViewModel model);
+        void FoodForceAddCard(List<string> foods, string userId, bool me);
+        Task<UserAddressViewModel> GetCardAddress(string user);
+        Task<bool> ExistAddress(string user);
     }
 }

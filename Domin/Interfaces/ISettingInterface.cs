@@ -9,6 +9,10 @@ namespace Domin.Interfaces
 {
     public interface ISettingInterface
     {
+        Task<string> CreateChatGroup(string connection);
+        Task<string> GetChatGroupKey(string connection);
+        Task<List<ChatEntity>> GetRooms();
+        Task<List<ChatMessageEntity>> GetMessageByRoomId(string room);
         Task<SettingEntity> GetSetting();
         void Update(SettingEntity model);
         void Insert(SettingEntity model);

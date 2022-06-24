@@ -9,6 +9,7 @@ namespace Domin.Interfaces
 {
     public interface ITableInterface
     {
+       
         Task<List<RowEntity>> GetRows(string search,int skip);
         Task<RowEntity> GetRowById(string id);
         Task<List<ColumnEntity>> GetColumns(string id);

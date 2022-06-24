@@ -5,12 +5,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Application.Service.Interface;
 using Application.ViewModel.User;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Oghabian.Areas.Admin.Controllers
 {
-    [Area("Admin")]
+    [Area("Admin")][Authorize(Roles = "Admin")]
     public class UserController : Controller
     {
         private readonly IUserService _user;

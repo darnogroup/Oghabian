@@ -13,6 +13,7 @@ using Date.Context;
 using Domin.Entities;
 using Ioc;
 using Microsoft.EntityFrameworkCore;
+using Oghabian.Areas.Admin.Models;
 using Oghabian.Helper;
 
 namespace Oghabian
@@ -36,24 +37,29 @@ namespace Oghabian
             {
                 option.UseSqlServer(Configuration.GetConnectionString("Food"));
             });
+            services.AddSignalR();
             services.AddIdentity<UserEntity, IdentityRole>()
                 .AddEntityFrameworkStores<DataBaseContext>().AddRoles<IdentityRole>()
                 .AddDefaultTokenProviders().AddErrorDescriber<CustomErrorMessage>();
             services.Configure<IdentityOptions>(option =>
             {
                 option.User.RequireUniqueEmail = true;
-                option.Password.RequireDigit = false;
-                option.Password.RequireLowercase = false;
                 option.Password.RequireNonAlphanumeric = true;
                 option.Password.RequiredLength = 6;
-                option.Password.RequiredUniqueChars = 1;
                 option.SignIn.RequireConfirmedEmail = true;
                 option.SignIn.RequireConfirmedAccount = false;
                 option.SignIn.RequireConfirmedPhoneNumber = false;
                 option.Lockout.MaxFailedAccessAttempts = 4;
                 option.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(15);
-
+                option.User.RequireUniqueEmail = true;
+                option.Password.RequireDigit = false;
+                option.Password.RequireLowercase = false;
+                option.Password.RequiredUniqueChars = 1;
+                option.Password.RequireNonAlphanumeric = false;
+                option.Password.RequireUppercase = false;
+                option.Password.RequireLowercase = false;
             });
+           
             services.ConfigureApplicationCookie(cooke =>
             {
                 cooke.ExpireTimeSpan = TimeSpan.FromDays(30);
@@ -101,6 +107,8 @@ namespace Oghabian
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapHub<ChatHub>("/chatHub");
+                endpoints.MapHub<AdminHub>("/AdminHub");
             });
         }
 

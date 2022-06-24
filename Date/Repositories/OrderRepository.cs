@@ -83,6 +83,11 @@ namespace Date.Repositories
             _context.OrderDetail.Remove(order);Save();
         }
 
+        public void DeleteOrder(OrderEntity order)
+        {
+            _context.Order.Remove(order);Save();
+        }
+
         public bool OpenOrder(string id)
         {
             return _context.Order.Any(w => w.Close == false && w.UserId == id);

@@ -1,4 +1,185 @@
-﻿function ChangeImage(input) {
+﻿
+
+function DeleteRegisterOrder(id) {
+    Swal.fire({
+        title: 'آیا سفارش پاک شود؟',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'بله پاک شود',
+        cancelButtonText: 'انصراف'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            var check = $.get("/Admin/DeleteOrder/" + id);
+            if (check) {
+                $("#item_" + id).hide('slow');
+
+                Swal.fire({
+                    title: 'عملیات موفقیت آمیز بود',
+                    icon: 'success',
+
+                    confirmButtonColor: '#3085d6',
+
+                    confirmButtonText: 'تائید',
+
+                });
+            } else {
+
+
+                Swal.fire({
+                    title: 'عملیات انجام نشد',
+                    icon: 'error',
+
+                    confirmButtonColor: '#3085d6',
+
+                    confirmButtonText: 'تائید',
+
+                });
+            }
+        }
+    });
+}
+
+
+
+
+
+function DeliveryFood(id) {
+    Swal.fire({
+        title: 'آیا به مشتری ارسال شد؟',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'بله ',
+        cancelButtonText: 'انصراف'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            var check = $.get("/Admin/CloseOrder/" + id);
+            if (check) {
+                $("#item_" + id).hide('slow');
+
+                Swal.fire({
+                    title: 'عملیات موفقیت آمیز بود',
+                    icon: 'success',
+
+                    confirmButtonColor: '#3085d6',
+
+                    confirmButtonText: 'تائید',
+
+                });
+            } else {
+
+
+                Swal.fire({
+                    title: 'عملیات انجام نشد',
+                    icon: 'error',
+
+                    confirmButtonColor: '#3085d6',
+
+                    confirmButtonText: 'تائید',
+
+                });
+            }
+        }
+    });
+}
+
+
+function ReadyFood(id) {
+    Swal.fire({
+        title: 'آیا به آشپزخانه ارجاع داده شود؟',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'بله ',
+        cancelButtonText: 'انصراف'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            var check = $.get("/Admin/ReadyFood/" + id);
+            if (check) {
+                $("#item_" + id).hide('slow');
+
+                Swal.fire({
+                    title: 'عملیات موفقیت آمیز بود',
+                    icon: 'success',
+
+                    confirmButtonColor: '#3085d6',
+
+                    confirmButtonText: 'تائید',
+
+                });
+            } else {
+
+
+                Swal.fire({
+                    title: 'عملیات انجام نشد',
+                    icon: 'error',
+
+                    confirmButtonColor: '#3085d6',
+
+                    confirmButtonText: 'تائید',
+
+                });
+            }
+        }
+    });
+}
+
+
+function AcceptFood(id) {
+    Swal.fire({
+        title: 'آیا به آشپزخانه ارجاع داده شود؟',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'بله ',
+        cancelButtonText: 'انصراف'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            var check = $.get("/Admin/AcceptFood/" + id);
+            if (check) {
+                $("#item_" + id).hide('slow');
+
+                Swal.fire({
+                    title: 'عملیات موفقیت آمیز بود',
+                    icon: 'success',
+
+                    confirmButtonColor: '#3085d6',
+
+                    confirmButtonText: 'تائید',
+
+                });
+            } else {
+
+
+                Swal.fire({
+                    title: 'عملیات انجام نشد',
+                    icon: 'error',
+
+                    confirmButtonColor: '#3085d6',
+
+                    confirmButtonText: 'تائید',
+
+                });
+            }
+        }
+    });
+}
+
+
+
+
+
+
+
+
+
+
+function ChangeImage(input) {
 
     if (input.files && input.files[0]) {
         var reader = new FileReader();
@@ -926,6 +1107,92 @@ function DeleteContact(id) {
     }).then((result) => {
         if (result.isConfirmed) {
             var check = $.get("/Admin/Contact/Delete/" + id);
+            if (check) {
+                $("#item_" + id).hide('slow');
+
+                Swal.fire({
+                    title: 'عملیات موفقیت آمیز بود',
+                    icon: 'success',
+
+                    confirmButtonColor: '#3085d6',
+
+                    confirmButtonText: 'تائید',
+
+                });
+            } else {
+
+
+                Swal.fire({
+                    title: 'عملیات انجام نشد',
+                    icon: 'error',
+
+                    confirmButtonColor: '#3085d6',
+
+                    confirmButtonText: 'تائید',
+
+                });
+            }
+        }
+    });
+}
+
+
+
+function DeleteLink(id) {
+    Swal.fire({
+        title: 'آیا لینک پاک شود؟',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'بله پاک شود',
+        cancelButtonText: 'انصراف'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            var check = $.get("/Admin/Link/Delete/" + id);
+            if (check) {
+                $("#item_" + id).hide('slow');
+
+                Swal.fire({
+                    title: 'عملیات موفقیت آمیز بود',
+                    icon: 'success',
+
+                    confirmButtonColor: '#3085d6',
+
+                    confirmButtonText: 'تائید',
+
+                });
+            } else {
+
+
+                Swal.fire({
+                    title: 'عملیات انجام نشد',
+                    icon: 'error',
+
+                    confirmButtonColor: '#3085d6',
+
+                    confirmButtonText: 'تائید',
+
+                });
+            }
+        }
+    });
+}
+
+
+
+function DeleteDiscount(id) {
+    Swal.fire({
+        title: 'آیا تخفیف پاک شود؟',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'بله پاک شود',
+        cancelButtonText: 'انصراف'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            var check = $.get("/Admin/Discount/Delete/" + id);
             if (check) {
                 $("#item_" + id).hide('slow');
 

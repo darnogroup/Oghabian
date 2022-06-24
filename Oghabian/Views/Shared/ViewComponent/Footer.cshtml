@@ -1,0 +1,81 @@
+﻿@model FooterViewModel
+
+
+    <footer class="footer-part">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-xl-3">
+                    <div class="footer-widget">
+                        <a class="footer-logo"  href="/"><img src="~/Images/@Model.LogoPath" width="80"  height="80"alt="@Model.TitleSite"></a>
+                        <p class="footer-desc">
+                           @Model.Description
+                        </p>
+                        <ul class="footer-social">
+                            <li><a class="fab fa-facebook-f" href="@Model.FaceBook"></a></li>
+                            <li><a class="fab fa-whatsapp" href="@Model.WhatsApp"></a></li>
+                            <li><a class="fab fa-linkedin-in" href="@Model.Linkdin"></a></li>
+                            <li><a class="fab fa-instagram" href="@Model.Instagram"></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xl-3">
+                    <div class="footer-widget">
+                        <h3 class="footer-title">لینک های سریع</h3>
+                        <div class="footer-links">
+                            <ul>
+                                <li><a href="/profile">پروفایل من</a></li>
+                                <li><a href="/Profile/OrderHistory">تاریخچه سفارش ها</a></li>
+
+                                <li><a href="/signup">ایجاد حساب</a></li>
+                                <li><a href="/signin">ورود به سیستم</a></li>
+
+                            </ul>
+                            <ul>
+
+
+                                <li><a href="/ContactUs">با ما تماس بگیرید</a></li>
+                                <li><a href="#">حرفه ما</a></li>
+                                <li><a href="/law">قوانین و مقررات</a></li>
+                                <li><a href="/Question">پرسش و پاسخ</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xl-3">
+                    <div class="footer-widget contact">
+                        <h3 class="footer-title">با ما تماس بگیرید</h3>
+                        <ul class="footer-contact">
+                            <li>
+                                <i class="fal fa-envelope-open-text"></i>
+                                <p><span><a href="#" class="__cf_email__" data-cfemail="90f9fef6ffd0f5e8f1fde0fcf5bef3fffd">@Model.Mail</a></span>
+                                 </p>
+                            </li>
+                            <li>
+                                <i class="fal fa-phone"></i>
+                                <p><span>@Model.Number </span></p>
+                            </li>
+                            <li>
+                                <i class="fal fa-map-marker-alt"></i>
+                                <p>@Model.Address</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xl-3">
+                    <div class="footer-widget">
+                        <h3 class="footer-title">عضویت در خبر نامه</h3>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="footer-bottom">
+                        <p class="footer-copytext">کلیه حقوق سایت متعلق به بهین فود می باشد</p>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+

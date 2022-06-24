@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewData["Title"] = "سفارش ثبت شد";
+    Layout = "~/Areas/User/Views/Shared/_UserLayout.cshtml";
+}
+<section class="error-part">
+    <div class="container">
+        <div class="col-lg-6 mx-auto">
+            <img class="img-fluid" src="~/Images/order.png" >
+        </div>
+        <h3>سفارش شما ثبت شد</h3>
+        <p>با تشکر ...سفارش شما ثبت شد
+            <span>کد پیگیری سفارش:@ViewBag.pageModel</span></p>
+        <a href="/profile">به خانه برو</a>
+    </div>
+</section>

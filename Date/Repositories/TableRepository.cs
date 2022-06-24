@@ -18,6 +18,9 @@ namespace Date.Repositories
         {
             _context = context;
         }
+
+    
+
         public async Task<List<RowEntity>> GetRows(string search, int skip)
         {
             return await _context.Row.Where(w=>w.TableName.ToLower().Contains(search)).Skip(skip).Take(10).ToListAsync();

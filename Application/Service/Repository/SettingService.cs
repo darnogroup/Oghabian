@@ -122,5 +122,48 @@ namespace Application.Service.Repository
                 _setting.Update(setting);
             }
         }
+
+        public async Task<string> CreateChatGroup(string connection)
+        {
+            return await _setting.CreateChatGroup(connection);
+        }
+
+        public async Task<string> GetChatGroupKey(string connection)
+        {
+            return await _setting.GetChatGroupKey(connection);
+        }
+
+        public async Task<List<ChatViewModel>> GetRooms()
+        {
+            var result = await _setting.GetRooms();
+            List<ChatViewModel>chat=new List<ChatViewModel>();
+            foreach (var item in result)
+            {
+                chat.Add(new ChatViewModel()
+                {
+                    ConnectionClient = item.ConnectionClient,
+                    ChatId = item.ChatId
+                });
+            }
+
+            return chat;
+        }
+
+        public async Task<List<ChatMessageViewModel>> GetMessages(string room)
+        {
+            var result = await _setting.GetMessageByRoomId(room);
+            List<ChatMessageViewModel>messages=new List<ChatMessageViewModel>();
+            foreach (var item in result)
+            {
+                 messages.Add(new ChatMessageViewModel()
+                 {
+                     Id = item.Id,
+                     Text = item.Text,Sender = item.Sender,
+                     Time = item.Time.LocalTime()
+                 });
+            }
+
+            return messages;
+        }
     }
 }

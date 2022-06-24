@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Domin.Entities;
+using Domin.Enum;
 
 namespace Domin.Interfaces
 {
@@ -16,20 +17,14 @@ namespace Domin.Interfaces
         Task<List<CategoryEntity>> GatCategories();
         Task<ArticleEntity> GetArticleById(string id);
         Task<IEnumerable<FoodEntity>> GetFoods(string search,int skip);
-        Task<IEnumerable<FoodEntity>> GetFoodsWithMeal(string meal,int skip);
-        Task<IEnumerable<FoodEntity>> GetFoodsWithMealAndSickness(string meal,string sickness, int skip);
-        Task<IEnumerable<FoodEntity>> GetFoodsWithMealAndFilter(string meal, string calories, string carbohydrate, string fat, string protein, int skip);
-        Task<IEnumerable<FoodEntity>> GetFoodsWithSicknessAndFilter(string sickness,string calories,string carbohydrate,string fat ,string protein, int skip);
-        Task<IEnumerable<FoodEntity>> GetFoodsFilter(string meal, string sickness,string calories,string carbohydrate,string fat ,string protein, int skip);
-        Task<IEnumerable<FoodEntity>> GetFoodsWithSickness(string sickness, int skip);
-        Task<IEnumerable<FoodEntity>> GetFoodsWithFilter(string calories, string carbohydrate, string fat, string protein, int skip);
-       int CountGetFoodsWithMeal(string meal);
-       int CountGetFoodsWithMealAndSickness(string meal, string sickness);
-       int CountGetFoodsWithMealAndFilter(string meal, string calories, string carbohydrate, string fat, string protein);
-        int CountGetFoodsWithSicknessAndFilter(string sickness, string calories, string carbohydrate, string fat, string protein);
-        int CountGetFoodsFilter(string meal, string sickness, string calories, string carbohydrate, string fat, string protein);
-        int CountGetFoodsWithSickness(string sickness);
-        int CountGetFoodsWithFilter(string calories, string carbohydrate, string fat, string protein);
+       
+        Task<IEnumerable<FoodEntity>> GetFoodsFilter(string meal, string sickness,int calories,string carbohydrate,string fat ,string protein, int skip);
+        Task<IEnumerable<FoodEntity>> GetFoodForce(string meal, string sickness,int calories,string carbohydrate,string fat ,string protein, WeekEnum week);
+        Task<IEnumerable<FoodEntity>> GetFoodForceOther(string meal, string sickness, int calories, string carbohydrate, string fat, string protein, WeekEnum week);
+
+    
+        int CountGetFoodsFilter(string meal, string sickness, int calories, string carbohydrate, string fat, string protein);
+
         int CountFood();
 
         Task<FoodEntity> GetFoodById(string id);

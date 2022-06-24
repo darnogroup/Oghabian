@@ -66,8 +66,6 @@ namespace Oghabian.Controllers
             model.UserId = UserId();
             _home.AddToCart(model);
         }
-
-     
         [HttpGet]
         [Route("/Question")]
         public IActionResult Question()
@@ -102,13 +100,16 @@ namespace Oghabian.Controllers
             }
         }
 
-
-
-
-
-
-
-
+        [HttpGet]
+        [Route("/AddMail/{mail}")]
+        public void AddMail(string mail)
+        {
+            AddMailViewModel model=new AddMailViewModel()
+            { 
+                Mail = mail
+            };
+            _home.AddMail(model);
+        }
 
         [HttpGet]
         [Route("/Question/Answer")]
@@ -165,6 +166,28 @@ namespace Oghabian.Controllers
             {
                 return View(model);
             }
+        }
+        [HttpGet][Route("/Table")]
+        public IActionResult Table(string id)
+        {
+            var pageModel = _home.GetTableById(id);
+            return View(pageModel);
+        }
+
+        [HttpGet]
+        [Route("/Supporter")]
+        public IActionResult Supporter(string id)
+        {
+            var pageModel = _home.GetSupporterById(id).Result;
+            return View(pageModel);
+        }
+
+        [HttpGet]
+        [Route("/law")]
+        public IActionResult Law()
+        {
+            var pageModel = _home.GetLaw().Result;
+            return View(pageModel);
         }
     }
 }

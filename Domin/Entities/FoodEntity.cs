@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Domin.Enum;
 
 namespace Domin.Entities
 {
@@ -12,13 +13,14 @@ namespace Domin.Entities
         public string FoodTitle { set; get; }
         public int FoodPrice { set; get; }
         public int Rate { set; get; }
+        public WeekEnum Day { set; get; }
         public int FoodDiscountPrice { set; get; }
         public string FoodImage { set; get; }
         public string FoodCount { set; get; }
         public string FoodTags { set; get; }
         public string FoodDescription { set; get; }
         public string FoodSummary { set; get; }
-        public string FoodCalories { set; get; }
+        public int FoodCalories { set; get; }
         public string FoodCarbohydrate { set; get; }
         public string FoodFat { set; get; }
         public string FoodCode { set; get; }
